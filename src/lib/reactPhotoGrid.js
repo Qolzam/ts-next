@@ -40,7 +40,7 @@ function imageLoadCallback(id, callback) {
 }
 
 function getImageDimensions(src, id, cb) {
-    var img = new Image();
+    var img = new window.Image();
     img.id = id;
     imageElements.push(img);
     img.addEventListener("load", imageLoadCallback(id, cb));

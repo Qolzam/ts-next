@@ -1,22 +1,23 @@
 // - Import external components
+import Link from '~/components/Link';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import StringAPI from 'api/StringAPI';
-import { push } from 'connected-react-router';
-import { ServerRequestType } from 'constants/serverRequestType';
+import StringAPI from '~/api/StringAPI';
+import Router from 'next/router'
+import { ServerRequestType } from '~/constants/serverRequestType';
 import { Map } from 'immutable';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import { NavLink, withRouter } from 'react-router-dom';
-import config from 'config';
-import { OAuthType } from 'core/domain/authorize';
-import * as authorizeActions from 'store/actions/authorizeActions';
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType';
+import { withRouter } from 'next/router';
+import config from '~/config';
+import { OAuthType } from '~/core/domain/authorize';
+import * as authorizeActions from '~/store/actions/authorizeActions';
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType';
 
 import { ILoginComponentProps } from './ILoginComponentProps';
 import { ILoginComponentState } from './ILoginComponentState';
@@ -193,11 +194,11 @@ export class LoginComponent extends Component<ILoginComponentProps, ILoginCompon
             </div>
           </div>
           <div className={classes.forgotRoot}>
-            <span className={classes.bottomPaper}><NavLink to='/resetPassword' className={classes.forgotText}>{t!('login.forgetPasswordMessage')}</NavLink></span>
+            <span className={classes.bottomPaper}><Link href='/resetPassword'>{t!('login.forgetPasswordMessage')}</Link></span>
           </div>
           <Divider />
           <div className={classes.forgotRoot}>
-            <span className={classes.bottomPaper}>{t!('login.createAccountText')} <NavLink to='/signup' className={classes.link}>{t!('login.createAccountButton')}</NavLink></span>
+            <span className={classes.bottomPaper}>{t!('login.createAccountText')} <Link href='/signup'>{t!('login.createAccountButton')}</Link></span>
           </div>
 
         </div>
@@ -216,7 +217,7 @@ const mapDispatchToProps = (dispatch: any, ownProps: ILoginComponentProps) => {
     },
     loginWithOAuth: (type: OAuthType) => dispatch(authorizeActions.dbLoginWithOAuth(type)),
     signupPage: () => {
-      dispatch(push('/signup'))
+      Router.push('/signup')
     }
   }
 }
@@ -232,6 +233,6 @@ const mapStateToProps = (state: Map<string, any>, ownProps: ILoginComponentProps
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(LoginComponent as any)
+const translateWrapper = withTranslation('common')(LoginComponent as any)
 
 export default withRouter<any, any>(connect(mapStateToProps, mapDispatchToProps)(withStyles(loginStyles as any)(translateWrapper as any) as any))

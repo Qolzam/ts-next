@@ -1,4 +1,4 @@
-import StringAPI from 'api/StringAPI'
+import StringAPI from '~/api/StringAPI'
 export interface IHomeHeaderComponentProps {
 
   /**

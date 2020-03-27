@@ -1,5 +1,5 @@
-import { BaseDomain } from 'core/domain/common'
-import { MessageType } from 'core/domain/chat/MessageType'
+import { BaseDomain } from '~/core/domain/common'
+import { MessageType } from '~/core/domain/chat/MessageType'
 
 export class Message extends BaseDomain {
 

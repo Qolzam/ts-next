@@ -1,5 +1,5 @@
 import {Map} from 'immutable'
-import { UserRegisterModel } from 'models/users'
+import { UserRegisterModel } from '~/models/users'
 export interface ICodeVerificationProps {
 
   /**

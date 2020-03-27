@@ -1,4 +1,4 @@
-import { OAuthType } from 'core/domain/authorize'
+import { OAuthType } from '~/core/domain/authorize'
 import {Map} from 'immutable'
 export interface ILoginComponentProps {
 

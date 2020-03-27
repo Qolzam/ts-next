@@ -8,12 +8,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { withStyles } from '@material-ui/core/styles';
 import GroupIcon from '@material-ui/icons/Group';
 import SearchIcon from '@material-ui/icons/Search';
-import StringAPI from 'api/StringAPI';
+import StringAPI from '~/api/StringAPI';
 import classNames from 'classnames';
-import { push } from 'connected-react-router';
+import Router from 'next/router'
 import { Map } from 'immutable';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
 
 import { ISearchBoxProps } from './ISearchBoxProps';
@@ -191,7 +191,7 @@ export class SearchBoxComponent extends Component<ISearchBoxProps, ISearchBoxSta
 // - Map dispatch to props
 const mapDispatchToProps = (dispatch: Function, ownProps: ISearchBoxProps) => {
   return {
-    goTo: (url: string) => dispatch(push(url))
+    goTo: (url: string) => Router.push(url)
   }
 }
 
@@ -204,6 +204,6 @@ const mapStateToProps = (state: Map<string, any>, ownProps: ISearchBoxProps) => 
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(SearchBoxComponent as any)
+const translateWrapper = withTranslation('common')(SearchBoxComponent as any)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(searchBoxStyles as any, { withTheme: true })(translateWrapper as any) as any)

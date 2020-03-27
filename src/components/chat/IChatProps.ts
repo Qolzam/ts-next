@@ -1,9 +1,9 @@
-import { User } from 'core/domain/users'
+import { User } from '~/core/domain/users'
 import {Map} from 'immutable'
-import { Message } from 'core/domain/chat/message'
-import { ChatRoom } from 'core/domain/chat/chatRoom'
+import { Message } from '~/core/domain/chat/message'
+import { ChatRoom } from '~/core/domain/chat/chatRoom'
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
-import { ChatMessageModel } from 'models/chat/chatMessageModel'
+import { ChatMessageModel } from '~/models/chat/chatMessageModel'
 
 export interface IChatProps {
 

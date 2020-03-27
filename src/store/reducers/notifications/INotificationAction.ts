@@ -1,4 +1,4 @@
-import {NotificationActionType} from 'constants/notificationActionType'
+import {NotificationActionType} from '~/constants/notificationActionType'
 
 /**
  *  Notification action interface

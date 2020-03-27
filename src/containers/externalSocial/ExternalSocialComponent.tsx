@@ -4,19 +4,19 @@ import Paper from '@material-ui/core/Paper';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import InfoIcon from '@material-ui/icons/Announcement';
-import StringAPI from 'api/StringAPI';
+import StringAPI from '~/api/StringAPI';
 import { Map } from 'immutable';
-import FacebookPage from 'layouts/facebookPage';
-import InstagramIcon from 'layouts/instagramIcon';
+import FacebookPage from '~/layouts/facebookPage';
+import InstagramIcon from '~/layouts/instagramIcon';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
-import InstagramLogin from 'react-instagram-login';
+import { withTranslation } from '~/locales/i18n';
+const InstagramLogin  = require('react-instagram-login');
 import { connect } from 'react-redux';
 import { Timeline } from 'react-twitter-widgets';
-import config from 'config';
-import * as globalActions from 'store/actions/globalActions';
-import { authorizeSelector } from 'store/reducers/authorize';
-import { postSelector } from 'store/reducers/posts';
+import config from '~/config';
+import * as globalActions from '~/store/actions/globalActions';
+import { authorizeSelector } from '~/store/reducers/authorize';
+import { postSelector } from '~/store/reducers/posts';
 
 import PostStreamComponent from '../postStream';
 import { externalSocialStyles } from './externalSocialStyles';
@@ -219,6 +219,6 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IExternalSocialProps
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(ExternalSocialComponent as any)
+const translateWrapper = withTranslation('common')(ExternalSocialComponent as any)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(externalSocialStyles as any)(translateWrapper as any))

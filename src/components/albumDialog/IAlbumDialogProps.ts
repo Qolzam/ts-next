@@ -1,9 +1,9 @@
-import { Image } from 'core/domain/imageGallery'
+import { Image } from '~/core/domain/imageGallery'
 import {Map, Collection, List} from 'immutable'
-import { Post } from 'core/domain/posts/post'
-import { User } from 'core/domain/users'
-import { Media } from 'core/domain/imageGallery/media'
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType'
+import { Post } from '~/core/domain/posts/post'
+import { User } from '~/core/domain/users'
+import { Media } from '~/core/domain/imageGallery/media'
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType'
 
 export interface IAlbumDialogProps {
 

@@ -1,6 +1,8 @@
-import { LanguageType } from 'store/reducers/locale/langugeType'
-import { VerificationType } from 'core/domain/authorize/verificationType'
+import { LanguageType } from '~/store/reducers/locale/langugeType'
+import { VerificationType } from '~/core/domain/authorize/verificationType'
+import config from './config.prd.json'
 export const environment = {
+  ...config,
   firebase: {
     apiKey: "AIzaSyBtlAw6mYUMqaoqIa6WyXoMKWLwhTe7ZK0",
     authDomain: "resume-web-app.firebaseapp.com",
@@ -13,9 +15,6 @@ export const environment = {
   algolia: {
     appId: 'TOS20M7VT1',
     apiKey: 'c283440030db1f9446e8b410f7352479'
-  },
-  websocket: {
-    url: (window as any).WEBSOCKET_URL || "wss://red-gold-socket.herokuapp.com"
   },
   data: {
     imageFolderPath: 'images',
@@ -36,18 +35,18 @@ export const environment = {
     enabledOAuthLogin: true,
     appName: 'React Social',
     supportEmail: 'amir.gholzam@live.com',
-    appIcon: require('assets/images/appIcon.png'),
-    logo: require('assets/images/logo.png'),
+    appIcon: require('~/assets/images/appIcon.png'),
+    logo: require('~/assets/images/logo.png'),
     defaultLanguage: LanguageType.English,
-    defaultVideoThumbnails: require('assets/images/defaultVideoThumbnails.png'),
+    defaultVideoThumbnails: require('~/assets/images/defaultVideoThumbnails.png'),
     verificationType: VerificationType.Email,
     companyName: 'Red Gold',
-    defaultProfileCover: require('assets/images/coversocial.png'),
-    publicCover: require('assets/images/public-cover.jpg'),
-    raisedLogo: require('assets/images/raised-logo.png'),
-    loginCover: require('assets/images/login-cover.jpg'),
-    signupCover: require('assets/images/signup-cover.jpg'),
-    logoHead: require('assets/images/logo-head.png'),
+    defaultProfileCover: require('~/assets/images/coversocial.png'),
+    publicCover: require('~/assets/images/public-cover.jpg'),
+    raisedLogo: require('~/assets/images/raised-logo.png'),
+    loginCover: require('~/assets/images/login-cover.jpg'),
+    signupCover: require('~/assets/images/signup-cover.jpg'),
+    logoHead: require('~/assets/images/logo-head.png'),
     androidAppLink: 'https://github.com/Qolzam/react-mobile-social',
     iosAppLink: 'https://github.com/Qolzam/react-mobile-social',
     api: '/',

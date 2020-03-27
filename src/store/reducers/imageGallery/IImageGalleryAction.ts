@@ -1,4 +1,4 @@
-import { ImageGalleryActionType } from 'constants/imageGalleryActionType'
+import { ImageGalleryActionType } from '~/constants/imageGalleryActionType'
 
 /**
  *  ImageGallery action interface

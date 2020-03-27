@@ -1,6 +1,6 @@
-import { BaseDomain } from 'core/domain/common'
-import { User } from 'core/domain/users'
-import { NotificationType } from 'core/domain/notifications/notificationType'
+import { BaseDomain } from '~/core/domain/common'
+import { User } from '~/core/domain/users'
+import { NotificationType } from '~/core/domain/notifications/notificationType'
 
 export class Notification extends BaseDomain {
 

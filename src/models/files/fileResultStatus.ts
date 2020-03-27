@@ -1,5 +1,5 @@
 import { FileResult } from './fileResult'
-import { SocialError } from 'core/domain/common'
+import { SocialError } from '~/core/domain/common'
 
 export class FileResultStatus {
   progress: number

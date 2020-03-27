@@ -1,5 +1,5 @@
-import { ChatRoomType } from 'core/domain/chat/ChatRoomType'
-import { Message } from 'core/domain/chat/message'
+import { ChatRoomType } from '~/core/domain/chat/ChatRoomType'
+import { Message } from '~/core/domain/chat/message'
 import { UserChatStatus } from './userChatStatus'
 
 export class ChatRoom {

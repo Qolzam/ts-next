@@ -1,5 +1,5 @@
 import {Map} from 'immutable'
-import { DialogType } from 'models/common/dialogType'
+import { DialogType } from '~/models/common/dialogType'
 import { createSelector } from 'reselect'
 
 const getCaller = (state: Map<string, any>) => {

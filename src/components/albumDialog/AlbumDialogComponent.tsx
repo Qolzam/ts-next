@@ -20,29 +20,29 @@ import SvgDelete from '@material-ui/icons/Delete';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LockIcon from '@material-ui/icons/VpnLock';
-import FileAPI from 'api/FileAPI';
-import StringAPI from 'api/StringAPI';
-import { albumDialogStyles } from 'components/albumDialog/albumDialogStyles';
-import UserPermissionComponent from 'components/userPermission/UserPermissionComponent';
-import { ServerRequestType } from 'constants/serverRequestType';
-import { UserPermissionType } from 'core/domain/common/userPermissionType';
-import { Album } from 'core/domain/imageGallery/album';
-import { Media } from 'core/domain/imageGallery/media';
-import { Post } from 'core/domain/posts/post';
-import { PostType } from 'core/domain/posts/postType';
-import { User } from 'core/domain/users/user';
+import FileAPI from '~/api/FileAPI';
+import StringAPI from '~/api/StringAPI';
+import { albumDialogStyles } from '~/components/albumDialog/albumDialogStyles';
+import UserPermissionComponent from '~/components/userPermission/UserPermissionComponent';
+import { ServerRequestType } from '~/constants/serverRequestType';
+import { UserPermissionType } from '~/core/domain/common/userPermissionType';
+import { Album } from '~/core/domain/imageGallery/album';
+import { Media } from '~/core/domain/imageGallery/media';
+import { Post } from '~/core/domain/posts/post';
+import { PostType } from '~/core/domain/posts/postType';
+import { User } from '~/core/domain/users/user';
 import { Map } from 'immutable';
 import moment from 'moment/moment';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
 import SwipeableViews from 'react-swipeable-views';
-import config from 'config';
-import * as globalActions from 'store/actions/globalActions';
-import * as imageGalleryActions from 'store/actions/imageGalleryActions';
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType';
-import { authorizeSelector } from 'store/reducers/authorize/authorizeSelector';
-import { serverSelector } from 'store/reducers/server/serverSelector';
+import config from '~/config';
+import * as globalActions from '~/store/actions/globalActions';
+import * as imageGalleryActions from '~/store/actions/imageGalleryActions';
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType';
+import { authorizeSelector } from '~/store/reducers/authorize/authorizeSelector';
+import { serverSelector } from '~/store/reducers/server/serverSelector';
 import uuid from 'uuid';
 
 import { IAlbumDialogProps } from './IAlbumDialogProps';
@@ -614,6 +614,6 @@ const makeMapStateToProps = () => {
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(AlbumDialogComponent as any)
+const translateWrapper = withTranslation('common')(AlbumDialogComponent as any)
 const componentWithStyles: any = withStyles(albumDialogStyles as any, { withTheme: true })(translateWrapper as any)
 export default connect(makeMapStateToProps, mapDispatchToProps)(componentWithStyles)

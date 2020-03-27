@@ -1,6 +1,6 @@
 // - Import react components
+import Link from '~/components/Link'
 import AppBar from '@material-ui/core/AppBar';
-import Badge from '@material-ui/core/Badge';
 import { blue } from '@material-ui/core/colors';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
@@ -11,30 +11,28 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Tooltip from '@material-ui/core/Tooltip';
 import withWidth, { isWidthDown } from '@material-ui/core/withWidth';
 import BackIcon from '@material-ui/icons/ArrowBack';
-import ChatIcon from '@material-ui/icons/Chat';
 import SvgDehaze from '@material-ui/icons/Dehaze';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import SearchIcon from '@material-ui/icons/Search';
 import classNames from 'classnames';
-import Notify from 'components/notify';
-import RecentChatComponent from 'components/recentChat/RecentChatComponent';
-import SearchBoxComponent from 'components/searchBox';
-import UserAvatarComponent from 'components/userAvatar/UserAvatarComponent';
-import EditProfile from 'components/editProfile/EditProfileComponent';
-import { push } from 'connected-react-router';
-import { User } from 'core/domain/users';
+import Notify from '~/components/notify';
+import SearchBoxComponent from '~/components/searchBox';
+import UserAvatarComponent from '~/components/userAvatar/UserAvatarComponent';
+import EditProfile from '~/components/editProfile/EditProfileComponent';
+import Router from 'next/router'
+
 import { Map } from 'immutable';
 import queryString from 'query-string';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import { NavLink, withRouter } from 'react-router-dom';
-import config from 'config';
-import * as authorizeActions from 'store/actions/authorizeActions';
-import * as chatActions from 'store/actions/chatActions';
-import * as userActions from 'store/actions/userActions';
-import { userSelector } from 'store/reducers/users/userSelector';
-import TelarMonoLogo from 'layouts/telarMonoLogo';
+import { withRouter } from 'next/router';
+import config from '~/config';
+import * as authorizeActions from '~/store/actions/authorizeActions';
+import * as chatActions from '~/store/actions/chatActions';
+import * as userActions from '~/store/actions/userActions';
+import { userSelector } from '~/store/reducers/users/userSelector';
+import TelarMonoLogo from '~/layouts/telarMonoLogo';
 
 import { homeHeaderStyles } from './homeHeaderStyles';
 import { IHomeHeaderComponentProps } from './IHomeHeaderComponentProps';
@@ -102,6 +100,7 @@ export class HomeHeaderComponent extends Component<IHomeHeaderComponentProps, IH
     this.handleCloseNotify = this.handleCloseNotify.bind(this)
     this.checkPageLocation = this.checkPageLocation.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
+    this.handleRouteChange = this.handleRouteChange.bind(this)
 
   }
 
@@ -240,16 +239,24 @@ export class HomeHeaderComponent extends Component<IHomeHeaderComponentProps, IH
     event.preventDefault()
   }
 
+  /**
+   * Handle route change
+   */
+  handleRouteChange = (url: string) => {
+    console.log('App is changing to: ', url)
+  }
+
   componentDidMount() {
-    const { history } = this.props
-    this.unlisten = history.listen((location: any, action: any) => {
-      this.checkPageLocation(location)
-    })
-    this.handleResize(null)
+  
+    Router.events.on('routeChangeStart', this.handleRouteChange)
+    
+
+      this.handleResize(null)
+    
   }
 
   componentWillUnmount() {
-    this.unlisten()
+    Router.events.off('routeChangeStart', this.handleRouteChange)
   }
 
   // Render app DOM component
@@ -333,11 +340,11 @@ export class HomeHeaderComponent extends Component<IHomeHeaderComponentProps, IH
             </IconButton>)
 
             : (
-              <NavLink to={previousLocation}>
+              <Link href={previousLocation}>
                 <IconButton >
                   <BackIcon style={{ cursor: 'pointer', color: theme.palette.common.white }} />
                 </IconButton>
-              </NavLink>
+              </Link>
             )
           }
 
@@ -388,7 +395,7 @@ const mapDispatchToProps = (dispatch: Function, ownProps: IHomeHeaderComponentPr
     logout: () => dispatch(authorizeActions.dbLogout()),
     openRecentChat: () => dispatch(chatActions.openRecentChat()),
     closeRecentChat: () => dispatch(chatActions.closeRecentChat()),
-    goTo: (url: string) => dispatch(push(url)),
+    goTo: (url: string) => Router.push(url),
     openEditor: () => dispatch(userActions.openEditProfile())
   }
 }
@@ -416,7 +423,7 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IHomeHeaderComponent
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(HomeHeaderComponent as any)
+const translateWrapper = withTranslation('common')(HomeHeaderComponent as any)
 const withStylesComponent = withStyles(homeHeaderStyles, { withTheme: true })(translateWrapper)
 const connectedComponent = connect(mapStateToProps, mapDispatchToProps)(withStylesComponent)
 const routerWrapper = withRouter<any, any>(withWidth()(connectedComponent) as any) as any

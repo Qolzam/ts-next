@@ -1,5 +1,5 @@
-import { ChatActionType } from 'constants/chatActionType';
-import { Message } from 'core/domain/chat/message';
+import { ChatActionType } from '~/constants/chatActionType';
+import { Message } from '~/core/domain/chat/message';
 import { Map } from 'immutable';
 
 

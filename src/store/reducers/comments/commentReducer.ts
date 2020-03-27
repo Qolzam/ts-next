@@ -1,5 +1,5 @@
 // - Import react components
-import { CommentActionType } from 'constants/commentActionType';
+import { CommentActionType } from '~/constants/commentActionType';
 import { Map } from 'immutable';
 
 import { CommentState } from './CommentState';

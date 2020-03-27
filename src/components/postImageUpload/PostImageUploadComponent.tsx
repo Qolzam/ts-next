@@ -6,21 +6,21 @@ import IconButton from '@material-ui/core/IconButton';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { withStyles } from '@material-ui/core/styles';
 import SvgDelete from '@material-ui/icons/Delete';
-import StringAPI from 'api/StringAPI';
-import { ServerRequestType } from 'constants/serverRequestType';
-import { Media } from 'core/domain/imageGallery/media';
-import { User } from 'core/domain/users/user';
+import StringAPI from '~/api/StringAPI';
+import { ServerRequestType } from '~/constants/serverRequestType';
+import { Media } from '~/core/domain/imageGallery/media';
+import { User } from '~/core/domain/users/user';
 import { Map } from 'immutable';
 import * as R from 'ramda';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import config from 'config';
-import * as globalActions from 'store/actions/globalActions';
-import * as imageGalleryActions from 'store/actions/imageGalleryActions';
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType';
-import { authorizeSelector } from 'store/reducers/authorize/authorizeSelector';
-import { serverSelector } from 'store/reducers/server/serverSelector';
+import config from '~/config';
+import * as globalActions from '~/store/actions/globalActions';
+import * as imageGalleryActions from '~/store/actions/imageGalleryActions';
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType';
+import { authorizeSelector } from '~/store/reducers/authorize/authorizeSelector';
+import { serverSelector } from '~/store/reducers/server/serverSelector';
 
 import { IPostImageUploadProps } from './IPostImageUploadProps';
 import { IPostImageUploadState } from './IPostImageUploadState';
@@ -209,7 +209,7 @@ const makeMapStateToProps = () => {
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(PostImageUploadComponent as any)
+const translateWrapper = withTranslation('common')(PostImageUploadComponent as any)
 
 const componentWithStyles: any = withStyles(postImageUploadStyles as any, { withTheme: true })(translateWrapper as any)
 export default connect(makeMapStateToProps, mapDispatchToProps)(componentWithStyles)

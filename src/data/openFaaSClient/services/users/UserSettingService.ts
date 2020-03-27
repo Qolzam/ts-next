@@ -1,11 +1,11 @@
 // - Import react components
-import { SocialError } from 'core/domain/common';
-import { IUserSettingService } from 'core/services/users';
+import { SocialError } from '~/core/domain/common';
 import { injectable, inject } from 'inversify';
-import { IHttpService } from 'core/services/webAPI/IHttpService';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
-import { UserSetting } from 'core/domain/users/userSetting';
+import { IHttpService } from '~/core/services/webAPI';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
+import { UserSetting } from '~/core/domain/users/userSetting';
 import { Map, fromJS } from 'immutable'
+import { IUserSettingService } from '~/core/services/users/IUserSettingService';
 
 /**
  * Firbase userSetting service

@@ -5,13 +5,13 @@ import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import classNames from 'classnames';
-import Footer from 'layouts/footer';
+import Footer from '~/layouts/footer';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import config from 'config';
-import * as authorizeActions from 'store/actions/authorizeActions';
+import { withRouter } from 'next/router';
+import config from '~/config';
+import * as authorizeActions from '~/store/actions/authorizeActions';
 
 import { INewPasswordComponentProps } from './INewPasswordComponentProps';
 import { INewPasswordComponentState } from './INewPasswordComponentState';
@@ -237,6 +237,6 @@ const mapStateToProps = (state: Map<string, any>, ownProps: INewPasswordComponen
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(NewPasswordComponent as any)
+const translateWrapper = withTranslation('common')(NewPasswordComponent as any)
 
 export default withRouter<any, any>(connect<any>(mapStateToProps as any, mapDispatchToProps)(withStyles(styles as any)(translateWrapper as any))) 

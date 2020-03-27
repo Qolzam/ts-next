@@ -2,11 +2,11 @@
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import classNames from 'classnames';
-import UserAvatar from 'components/userAvatar/UserAvatarComponent';
+import UserAvatar from '~/components/userAvatar/UserAvatarComponent';
 import { Map } from 'immutable';
 import React, { Component } from 'react';
-import { emojify } from 'react-emojione';
-import { withTranslation } from 'react-i18next';
+const { emojify } = require('react-emojione');
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
 
 import { chatMessageStyles } from './chatMessageStyles';
@@ -92,6 +92,6 @@ const makeMapStateToProps = () => {
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(ChatMessageComponent as any)
+const translateWrapper = withTranslation('common')(ChatMessageComponent as any)
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(withStyles(chatMessageStyles as any)(translateWrapper as any) as any)

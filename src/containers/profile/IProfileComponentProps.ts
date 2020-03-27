@@ -1,5 +1,5 @@
-import { Post } from 'core/domain/posts'
-import { User } from 'core/domain/users'
+import { Post } from '~/core/domain/posts'
+import { User } from '~/core/domain/users'
 import {Map} from 'immutable'
 
 export interface IProfileComponentProps {
@@ -76,6 +76,11 @@ export interface IProfileComponentProps {
    * Post server request identifier
    */
   postRequestId?: string
+
+  /**
+   *Router
+   */
+  router?: any
 
   /**
    * Translate to locale string

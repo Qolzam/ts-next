@@ -3,15 +3,15 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ClearIcon from '@material-ui/icons/Clear';
-import ImgCoverComponent from 'components/imgCover';
+import ImgCoverComponent from '~/components/imgCover';
 import React, { Component } from 'react';
-import StackGrid, { easings, transitions } from 'react-stack-grid';
-import Lightbox from 'lib/react-lit/index.js';
+const StackGrid = require('react-stack-grid');
+import Lightbox from '~/lib/react-lit/index.js';
 
 import { IPhotoGridProps } from './IPhotoGridProps';
 import { IPhotoGridState } from './IPhotoGridState';
 import { photoGridStyles } from './photoGridStyles';
-
+const { easings, transitions } = StackGrid
 // - Material UI
 /**
  * Create component class

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
-import { postSelector } from 'store/reducers/posts'
+import { postSelector } from '~/store/reducers/posts'
 
-import { authorizeSelector } from 'store/reducers/authorize/authorizeSelector'
+import { authorizeSelector } from '~/store/reducers/authorize/authorizeSelector'
 import { Map } from 'immutable'
 import { IPhotoAlbumProps } from './IPhotoAlbumProps'
 
@@ -11,12 +11,12 @@ import {
   postActions,
   userActions,
   globalActions,
-} from 'store/actions'
-import StringAPI from 'api/StringAPI'
-import { ServerRequestType } from 'constants/serverRequestType'
-import { User } from 'core/domain/users'
-import { serverSelector } from 'store/reducers/server/serverSelector'
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType'
+} from '~/store/actions'
+import StringAPI from '~/api/StringAPI'
+import { ServerRequestType } from '~/constants/serverRequestType'
+import { User } from '~/core/domain/users'
+import { serverSelector } from '~/store/reducers/server/serverSelector'
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType'
 import { Component } from 'react'
 
 /**

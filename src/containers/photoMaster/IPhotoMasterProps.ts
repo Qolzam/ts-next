@@ -1,7 +1,7 @@
-import { Post } from 'core/domain/posts'
+import { Post } from '~/core/domain/posts'
 import { Map, List } from 'immutable'
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType'
-import { User } from 'core/domain/users'
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType'
+import { User } from '~/core/domain/users'
 
 export interface IPhotoMasterProps {
 

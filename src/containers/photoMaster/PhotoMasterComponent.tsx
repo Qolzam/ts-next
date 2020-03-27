@@ -14,15 +14,15 @@ import Typography from '@material-ui/core/Typography';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import PhotoAlbumIcon from '@material-ui/icons/PhotoAlbum';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
-import FileAPI from 'api/FileAPI';
-import AlbumDialogComponent from 'components/albumDialog/AlbumDialogComponent';
-import PhotoStreamComponent from 'components/photoStream';
+import FileAPI from '~/api/FileAPI';
+import AlbumDialogComponent from '~/components/albumDialog/AlbumDialogComponent';
+import PhotoStreamComponent from '~/components/photoStream';
 import { fromJS } from 'immutable';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
-import { withRouter } from 'react-router-dom';
-import UserAvatarComponent from 'components/userAvatar/UserAvatarComponent';
+import { withTranslation } from '~/locales/i18n';
+import { withRouter } from 'next/router';
+import UserAvatarComponent from '~/components/userAvatar/UserAvatarComponent';
 import uuid from 'uuid';
 
 import { connectPhotoMaster } from './connectPhotoMaster';
@@ -311,6 +311,6 @@ export class PhotoMasterComponent extends Component<IPhotoMasterProps, IPhotoMas
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(PhotoMasterComponent as any)
+const translateWrapper = withTranslation('common')(PhotoMasterComponent as any)
 
 export default withRouter<any, any>(connectPhotoMaster(withStyles(photoMasterStyles as any)(translateWrapper as any) as any))

@@ -1,17 +1,17 @@
 // - Import image gallery action types
-import { GlobalActionType } from 'constants/globalActionType';
-import { ServerRequestType } from 'constants/serverRequestType';
+import { GlobalActionType } from '~/constants/globalActionType';
+import { ServerRequestType } from '~/constants/serverRequestType';
 import { Map } from 'immutable';
-import i18n from 'locales/i18n';
-import { DialogType } from 'models/common/dialogType';
-import StringAPI from 'api/StringAPI';
-import { Feed, SocialError } from 'core/domain/common';
-import { ICommonService } from 'core/services/common/ICommonService';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
-import { ServerRequestModel } from 'models/server';
+import i18n from '~/locales/i18n';
+import { DialogType } from '~/models/common/dialogType';
+import StringAPI from '~/api/StringAPI';
+import { Feed, SocialError } from '~/core/domain/common';
+import { ICommonService } from '~/core/services/common';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
+import { ServerRequestModel } from '~/models/server';
 import { provider } from '../../socialEngine';
-import * as serverActions from 'store/actions/serverActions';
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType';
+import * as serverActions from '~/store/actions/serverActions';
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType';
 
 // - Import actions
 /**
@@ -50,14 +50,14 @@ export let dbSendFeed = (newFeed: Feed) => {
 export const showNotificationRequest = () => {
   return (dispatch: Function, getState: Function) => {
     
-    return dispatch(showMessage(i18n.t('common.sentRequestMessage')))
+    return dispatch(showMessage(i18n.i18n.t('common.sentRequestMessage')))
   }
 }
 
 // - Show notification of success
 export const showNotificationSuccess = () => {
   return (dispatch: Function, getState: Function) => {
-    return dispatch(showMessage(i18n.t('common.successfulRequestMessage')))
+    return dispatch(showMessage(i18n.i18n.t('common.successfulRequestMessage')))
   }
 }
 

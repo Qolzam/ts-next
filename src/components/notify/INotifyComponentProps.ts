@@ -1,4 +1,4 @@
-import { Notification } from 'core/domain/notifications'
+import { Notification } from '~/core/domain/notifications'
 import {Map} from 'immutable'
 export interface INotifyComponentProps {
 

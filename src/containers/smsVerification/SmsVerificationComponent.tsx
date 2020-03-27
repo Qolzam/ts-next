@@ -13,22 +13,22 @@ import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import classnames from 'classnames';
-import Captcha from 'components/recaptcha';
-import { push } from 'connected-react-router';
-import { LoginUser } from 'core/domain/authorize/loginUser';
-import { IAuthorizeService } from 'core/services';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import Captcha from '~/components/recaptcha';
+import Router from 'next/router'
+import { LoginUser } from '~/core/domain/authorize/loginUser';
+import { IAuthorizeService } from '~/core/services';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
 import { Map } from 'immutable';
-import FlagIcon from 'layouts/flagIcon';
-import Footer from 'layouts/footer';
+// import FlagIcon from '~/layouts/flagIcon';
+import Footer from '~/layouts/footer';
 import { AsYouType, isValidNumber } from 'libphonenumber-js';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { provider } from 'socialEngine';
-import * as authorizeActions from 'store/actions/authorizeActions';
-import * as globalActions from 'store/actions/globalActions';
+import { withRouter } from 'next/router';
+import { provider } from '~/socialEngine';
+import * as authorizeActions from '~/store/actions/authorizeActions';
+import * as globalActions from '~/store/actions/globalActions';
 
 import { ISmsVerificationComponentProps } from './ISmsVerificationComponentProps';
 import { ISmsVerificationComponentState } from './ISmsVerificationComponentState';
@@ -314,7 +314,7 @@ export class SmsVerificationComponent extends Component<ISmsVerificationComponen
                       <InputAdornment position='end'>
                         <IconButton
                         >
-                          <FlagIcon code={countryCode} />
+                          {/* <FlagIcon code={countryCode} /> */}
                         </IconButton>
                       </InputAdornment>
                     }
@@ -392,7 +392,7 @@ export class SmsVerificationComponent extends Component<ISmsVerificationComponen
 const mapDispatchToProps = (dispatch: Function, ownProps: ISmsVerificationComponentProps) => {
   return {
     logout:  () => dispatch(authorizeActions.dbLogout()),
-   home: () => dispatch(push('/')),
+   home: () => Router.push('/'),
     showMessage: (message: string) => dispatch(globalActions.showMessage(message)),
     login: (user: LoginUser) =>  dispatch(authorizeActions.login(user))
   }
@@ -408,6 +408,6 @@ const mapStateToProps = (state: Map<string, any>, ownProps: ISmsVerificationComp
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(SmsVerificationComponent as any)
+const translateWrapper = withTranslation('common')(SmsVerificationComponent as any)
 
 export default withRouter<any, any>(connect(mapStateToProps, mapDispatchToProps)(withStyles(styles as any)(translateWrapper as any) as any))

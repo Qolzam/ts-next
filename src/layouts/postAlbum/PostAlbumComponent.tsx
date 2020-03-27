@@ -3,12 +3,11 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import NoAlbumIcon from '@material-ui/icons/SettingsSystemDaydream';
 import classNames from 'classnames';
-import PostPhotoGridComponent from 'layouts/postPhotoGrid';
+import PostPhotoGridComponent from '~/layouts/postPhotoGrid';
 import * as R from 'ramda';
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
-import Lightbox from 'lib/react-lit/index.js';
-import { isArray } from 'util';
+import Link from '~/components/Link';
+import Lightbox from '~/lib/react-lit/index.js';
 
 import { IPostAlbumProps } from './IPostAlbumProps';
 import { IPostAlbumState } from './IPostAlbumState';
@@ -76,9 +75,9 @@ export class PostAlbumComponent extends Component<IPostAlbumProps, IPostAlbumSta
                   <div className={classNames(classes.titleContainer, { [classes.noDisplay]: !(currentAlbum && currentAlbum.get('album').get('title')) })}>
                     <div className={classes.aboveContainer} />
                     <div className={classes.bottomContainer} />
-                    <NavLink to={`/u/${currentAlbum && currentAlbum.get('ownerUserId')}/album/${currentAlbum && currentAlbum.get('id')}`}>
+                    <Link href={`/u/${currentAlbum && currentAlbum.get('ownerUserId')}/album/${currentAlbum && currentAlbum.get('id')}`}>
                       <Typography className={classes.title}>{currentAlbum && currentAlbum.get('album').get('title')}</Typography>
-                    </NavLink>
+                    </Link>
                   </div>
                 </div>
             )

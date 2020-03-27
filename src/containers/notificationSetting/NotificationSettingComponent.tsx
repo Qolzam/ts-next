@@ -11,18 +11,18 @@ import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 import Typography from '@material-ui/core/Typography';
-import { notificationSettingStyles } from 'containers/notificationSetting/notificationSettingStyles';
+import { notificationSettingStyles } from '~/containers/notificationSetting/notificationSettingStyles';
 import { Map } from 'immutable';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import * as userSettingActions from 'store/actions/userSettingActions';
+import { withRouter } from 'next/router';
+import * as userSettingActions from '~/store/actions/userSettingActions';
 
 import { INotificationSettingProps } from './INotificationSettingProps';
 import { INotificationSettingState } from './INotificationSettingState';
-import { userSettingSelector } from 'store/reducers/userSetting/userSettingSelector';
-import { UserSettingEnum } from 'constants/userSettingEnum';
+import { userSettingSelector } from '~/store/reducers/userSetting/userSettingSelector';
+import { UserSettingEnum } from '~/constants/userSettingEnum';
 
 /**
  * Material-UI
@@ -103,17 +103,17 @@ export class NotificationSettingComponent extends Component<INotificationSetting
     return (
       <Grid container spacing={2} className={classes.notification}>
         <Grid item sm={12} xs={12} md={3} lg={4} xl={4} className={classes.headerCaption}>
-          <Typography variant='h6' > {t!('config.notificationLabel')} </Typography>
+          <Typography variant='h6' > {t!('~/config.notificationLabel')} </Typography>
 
-          <Typography variant='caption' > {t!('config.notificationCaption')} </Typography>
+          <Typography variant='caption' > {t!('~/config.notificationCaption')} </Typography>
         </Grid>
         <Grid item sm={12} xs={12} md={9} lg={8} xl={8}>
 
           <div className='animate-bottom'>
             <Paper className={classes.root}>
-              <List subheader={<ListSubheader>{t!('config.notificationLabel')}</ListSubheader>}>
+              <List subheader={<ListSubheader>{t!('~/config.notificationLabel')}</ListSubheader>}>
                 <ListItem>
-                  <ListItemText primary={t!('config.notification.emailOnVote')} />
+                  <ListItemText primary={t!('~/config.notification.emailOnVote')} />
                   <ListItemSecondaryAction>
                     <Switch
                       onChange={this.handleToggle(UserSettingEnum.send_email_on_like)}
@@ -122,7 +122,7 @@ export class NotificationSettingComponent extends Component<INotificationSetting
                   </ListItemSecondaryAction>
                 </ListItem>
                 <ListItem>
-                  <ListItemText primary={t!('config.notification.emailOnFollow')} />
+                  <ListItemText primary={t!('~/config.notification.emailOnFollow')} />
                   <ListItemSecondaryAction>
                     <Switch
                       onChange={this.handleToggle(UserSettingEnum.send_email_on_follow)}
@@ -131,7 +131,7 @@ export class NotificationSettingComponent extends Component<INotificationSetting
                   </ListItemSecondaryAction>
                 </ListItem>
                 <ListItem>
-                  <ListItemText primary={t!('config.notification.emailOnComment')} />
+                  <ListItemText primary={t!('~/config.notification.emailOnComment')} />
                   <ListItemSecondaryAction>
                     <Switch
                       onChange={this.handleToggle(UserSettingEnum.send_email_on_comment_post)}
@@ -141,7 +141,7 @@ export class NotificationSettingComponent extends Component<INotificationSetting
                 </ListItem>
               </List>
               <CardActions>
-              <Button color='primary' onClick={this.handleSaveChanges}>{t!('config.saveChangesButton')} </Button>
+              <Button color='primary' onClick={this.handleSaveChanges}>{t!('~/config.saveChangesButton')} </Button>
               </CardActions>
             </Paper>
           </div>
@@ -173,5 +173,5 @@ const makeMapStateToProps = () => {
 }
 
 // - Connect component to redux storea
-const translateWrapper = withTranslation('translations')(NotificationSettingComponent as any)
+const translateWrapper = withTranslation('common')(NotificationSettingComponent as any)
 export default withRouter<any, any>(connect<any>(makeMapStateToProps as any, mapDispatchToProps)(withStyles(notificationSettingStyles as any)(translateWrapper as any)))

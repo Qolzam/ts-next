@@ -1,49 +1,50 @@
-var express = require('express');
-var morgan = require('morgan');
-var path = require('path');
-var webpack = require('webpack');
-var webpackConfig = require('./webpack.config');
-var compiler = webpack(webpackConfig);
+/* eslint-disable no-console */
+const express = require('express')
+const next = require('next')
 
-// Create our app
-var app = express();
-const PORT = process.env.PORT || 3000;
+const devProxy = {
+  '/api': {
+    target: 'http://127.0.0.1:31112/function',
+    pathRewrite: {'^/api': '/' },
+    changeOrigin: true,
+  },
+}
 
-// Setup logger
-app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
+const port = parseInt(process.env.PORT, 10) || 3000
+const env = process.env.NODE_ENV
+const dev = env !== 'production'
+const app = next({
+  dir: '.', // base directory where everything is, could move to src later
+  dev,
+})
 
+const handle = app.getRequestHandler()
 
-app.use(require("webpack-dev-middleware")(compiler, {
-    noInfo: true,
-    publicPath: webpackConfig.output.publicPath
-}));
+let server
+app
+  .prepare()
+  .then(() => {
+    server = express()
 
-app.use(require("webpack-hot-middleware")(compiler));
-
-app.use(function(req, res, next) {
-    if (req.headers['x-forwarded-proto'] === 'https') {
-        res.redirect('http://' + req.hostname + req.url);
-    } else {
-        next();
+    // Set up the proxy.
+    if (dev && devProxy) {
+      const proxyMiddleware = require('http-proxy-middleware')
+      Object.keys(devProxy).forEach(function(context) {
+        server.use(proxyMiddleware(context, devProxy[context]))
+      })
     }
-});
 
-app.use(function(req, res, next) {
-    var userAgent = req.get('User-Agent');
-    console.log(userAgent);
-    next();
-});
+    // Default catch-all handler to allow Next.js to handle all other routes
+    server.all('*', (req, res) => handle(req, res))
 
-app.use(express.static('public'));
-
-
-// Always return the main index.html, so react-router render the route in the client
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve('public', 'index.html'));
-
-});
-
-
-app.listen(PORT, function() {
-    console.log('Express server is up on port ' + PORT);
-});
+    server.listen(port, err => {
+      if (err) {
+        throw err
+      }
+      console.log(`> Ready on port ${port} [${env}]`)
+    })
+  })
+  .catch(err => {
+    console.log('An error occurred, unable to start the server')
+    console.log(err)
+  })

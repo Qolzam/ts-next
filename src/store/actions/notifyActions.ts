@@ -1,14 +1,14 @@
-import { NotificationActionType } from 'constants/notificationActionType';
-import { User } from 'core/domain/users';
+import { NotificationActionType } from '~/constants/notificationActionType';
+import { User } from '~/core/domain/users';
 import { Map } from 'immutable';
 import moment from 'moment/moment';
-import { SocialError } from 'core/domain/common';
-import { Notification } from 'core/domain/notifications';
-import { INotificationService } from 'core/services/notifications';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import { SocialError } from '~/core/domain/common';
+import { Notification } from '~/core/domain/notifications';
+import { INotificationService } from '~/core/services/notifications';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
 import { provider } from '../../socialEngine';
-import * as globalActions from 'store/actions/globalActions';
-import { authorizeSelector } from 'store/reducers/authorize';
+import * as globalActions from '~/store/actions/globalActions';
+import { authorizeSelector } from '~/store/reducers/authorize';
 
 /**
  * Get service providers

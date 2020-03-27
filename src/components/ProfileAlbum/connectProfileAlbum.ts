@@ -1,13 +1,13 @@
-import { User } from 'core/domain/users';
+import { User } from '~/core/domain/users';
 import { Map } from 'immutable';
-import { DialogType } from 'models/common/dialogType';
+import { DialogType } from '~/models/common/dialogType';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { globalActions, userActions } from 'store/actions';
-import * as imageGalleryActions from 'store/actions/imageGalleryActions';
-import { authorizeSelector } from 'store/reducers/authorize/authorizeSelector';
-import { globalSelector } from 'store/reducers/global/globalSelector';
-import { userSelector } from 'store/reducers/users/userSelector';
+import { globalActions, userActions } from '~/store/actions';
+import * as imageGalleryActions from '~/store/actions/imageGalleryActions';
+import { authorizeSelector } from '~/store/reducers/authorize/authorizeSelector';
+import { globalSelector } from '~/store/reducers/global/globalSelector';
+import { userSelector } from '~/store/reducers/users/userSelector';
 
 import { IProfileAlbumProps } from './IProfileAlbumProps';
 

@@ -1,15 +1,14 @@
-import { LoginUser } from 'core/domain/authorize';
-import { OAuthType } from 'core/domain/authorize/oauthType';
-import { UserClaim } from 'core/domain/authorize/userClaim';
-import { IAuthorizeService } from 'core/services/authorize';
+import { LoginUser } from '~/core/domain/authorize';
+import { OAuthType } from '~/core/domain/authorize/oauthType';
+import { UserClaim } from '~/core/domain/authorize/userClaim';
+import { IAuthorizeService } from '~/core/services/authorize';
 import { inject, injectable } from 'inversify';
-import { UserRegisterModel } from 'models/users/userRegisterModel';
-import { IHttpService } from 'core/services/webAPI';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
-import { AuthAPI } from 'api/AuthAPI';
+import { UserRegisterModel } from '~/models/users/userRegisterModel';
+import { IHttpService } from '~/core/services/webAPI';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
+import { AuthAPI } from '~/api/AuthAPI';
 import jwtDecode from 'jwt-decode';
-import { AuthKeywordsEnum } from 'models/authorize/authKeywordsEnum';
-import { SocialError } from 'core/domain/common/socialError';
+import { SocialError } from '~/core/domain/common/socialError';
 
 // - Import react components
 /**
@@ -26,10 +25,19 @@ export class AuthorizeService implements IAuthorizeService {
   /**
    * Login the user
    */
-  public login = (email: string, password: string) => {
-    return " Not implemented!" as any
-
+  public login =  async (email: string, password: string) => {
+    try {
+      const payload = {
+        username: email,
+        password
+      }
+      const result = await this._httpService.post("auth/login/api", payload)
+      return result
+    } catch (error) {
+      throw new SocialError(error.code, error.message)
+    }
   }
+  
 
   /**
    * Whether user is loged in or not
@@ -43,8 +51,8 @@ export class AuthorizeService implements IAuthorizeService {
   /**
    * Get user auth cookie
    */
-  public getUserAuthCookie = () => {
-    const authCookie = AuthAPI.readCookie('pa')
+  public getUserAuthCookie = (cookie?: any) => {
+    const authCookie = AuthAPI.readCookie('pa',cookie)
     if (authCookie) {
       return authCookie
     }
@@ -55,8 +63,8 @@ export class AuthorizeService implements IAuthorizeService {
   /**
    * Get user auth 
    */
-  public getUserAuth = () => {
-    const userAuthCookie = this.getUserAuthCookie()
+  public getUserAuth = (req?: any) => {
+    const userAuthCookie = this.getUserAuthCookie((req && req.headers) && req.headers.cookie)
     if (userAuthCookie) {
       return jwtDecode(`_.${userAuthCookie}._`)
     }

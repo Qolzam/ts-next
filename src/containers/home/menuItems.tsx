@@ -1,24 +1,22 @@
 import SvgAccountCircle from '@material-ui/icons/AccountCircle';
-import SvgFeedback from '@material-ui/icons/Feedback';
-import HelpIcon from '@material-ui/icons/Help';
+import i18n from '~/locales/i18n';
 import SvgHome from '@material-ui/icons/Home';
 import SvgPeople from '@material-ui/icons/People';
-import SvgSettings from '@material-ui/icons/SettingsApplications';
 import React from 'react';
 
-export const menuItems = (userId: string, translate: (key: string) => string, onFeedback: () => void) => [
+export const menuItems = (userId: string, onFeedback: () => void) => [
     {
-      label: translate!('sidebar.home'),
+      label: i18n.i18n.t('sidebar.home'),
       path: '/',
       icon: <SvgHome />
     },
     {
-      label: translate!('sidebar.profile'),
+      label: i18n.i18n.t('sidebar.profile'),
       path: `/${userId}`,
       icon: <SvgAccountCircle />
     },
     {
-      label: translate!('sidebar.people'),
+      label: i18n.i18n.t('sidebar.people'),
       path: `/people`,
       icon: <SvgPeople />
     },
@@ -26,12 +24,12 @@ export const menuItems = (userId: string, translate: (key: string) => string, on
     //   divider: true
     // },
     // {
-    //   label: translate!('sidebar.settings'),
+    //   label: i18n.i18n.t('sidebar.settings'),
     //   path: `/settings`,
     //   icon: <SvgSettings />
     // },
     // {
-    //   label: translate!('sidebar.sendFeedback'),
+    //   label: i18n.i18n.t('sidebar.sendFeedback'),
     //   onClick: () => onFeedback(),
     //   icon: <SvgFeedback />
     // },
@@ -39,7 +37,7 @@ export const menuItems = (userId: string, translate: (key: string) => string, on
     //   divider: true
     // },
     // {
-    //   label: translate!('sidebar.help'),
+    //   label: i18n.i18n.t('sidebar.help'),
     //   path: `/help`,
     //   icon: <HelpIcon />,
     // },

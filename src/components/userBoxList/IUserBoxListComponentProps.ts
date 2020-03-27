@@ -1,5 +1,5 @@
-import { User } from 'core/domain/users'
-import { UserTie } from 'core/domain/circles'
+import { User } from '~/core/domain/users'
+import { UserTie } from '~/core/domain/circles'
 import {Map, List} from 'immutable'
 
 export interface IUserBoxListComponentProps {

@@ -1,5 +1,5 @@
 import {Map} from 'immutable'
-import { userSelector } from 'store/reducers/users/userSelector'
+import { userSelector } from '~/store/reducers/users/userSelector'
 import { createSelector } from 'reselect'
 
 const getCurrentUser = (state: Map<any, string>) => {

@@ -1,5 +1,5 @@
 import {Map} from 'immutable'
-import { Circle, UserTie } from 'core/domain/circles'
+import { Circle, UserTie } from '~/core/domain/circles'
 
 /**
  * Circle service interface
@@ -7,7 +7,7 @@ import { Circle, UserTie } from 'core/domain/circles'
  * @export
  * @interface ICircleService
  */
-export interface ICircleService {
+export default interface ICircleService {
 
   addCircle: (userId: string, circle: Circle) => Promise<string>
   updateCircle: (userId: string, circleId: string, circle: Circle) => Promise<void>

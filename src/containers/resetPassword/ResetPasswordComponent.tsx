@@ -10,21 +10,21 @@ import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import classnames from 'classnames';
-import Captcha from 'components/recaptcha';
-import { push } from 'connected-react-router';
-import { LoginUser } from 'core/domain/authorize/loginUser';
-import { IAuthorizeService } from 'core/services';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import Captcha from '~/components/recaptcha';
+import Router from 'next/router'
+import { LoginUser } from '~/core/domain/authorize/loginUser';
+import { IAuthorizeService } from '~/core/services';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
 import { Map } from 'immutable';
-import Footer from 'layouts/footer';
+import Footer from '~/layouts/footer';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { provider } from 'socialEngine';
-import config from 'config';
-import * as authorizeActions from 'store/actions/authorizeActions';
-import * as globalActions from 'store/actions/globalActions';
+import { withRouter } from 'next/router';
+import { provider } from '~/socialEngine';
+import config from '~/config';
+import * as authorizeActions from '~/store/actions/authorizeActions';
+import * as globalActions from '~/store/actions/globalActions';
 
 import { IResetPasswordComponentProps } from './IResetPasswordComponentProps';
 import { IResetPasswordComponentState } from './IResetPasswordComponentState';
@@ -303,8 +303,8 @@ export class ResetPasswordComponent extends Component<IResetPasswordComponentPro
 const mapDispatchToProps = (dispatch: Function, ownProps: IResetPasswordComponentProps) => {
   return {
     logout: () => dispatch(authorizeActions.dbLogout()),
-    home: () => dispatch(push('/')),
-    updatePassword: () => dispatch(push('/newPassword')),
+    home: () => Router.push('/'),
+    updatePassword: () => Router.push('/newPassword'),
     showMessage: (message: string) => dispatch(globalActions.showMessage(message)),
     login: (user: LoginUser) => dispatch(authorizeActions.login(user))
   }
@@ -320,6 +320,6 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IResetPasswordCompon
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(ResetPasswordComponent as any)
+const translateWrapper = withTranslation('common')(ResetPasswordComponent as any)
 
 export default withRouter<any, any>(connect(mapStateToProps, mapDispatchToProps)(withStyles(resetPasswordStyles as any)(translateWrapper as any)))

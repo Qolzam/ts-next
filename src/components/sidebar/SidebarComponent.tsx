@@ -1,6 +1,5 @@
 // - Import react components
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import EventListener, { withOptions } from 'react-event-listener'
 import keycode from 'keycode'
@@ -10,8 +9,8 @@ import keycode from 'keycode'
 // - Import API
 
 // - Import actions
-import * as authorizeActions from 'store/actions/authorizeActions'
-import * as globalActions from 'store/actions/globalActions'
+import * as authorizeActions from '~/store/actions/authorizeActions'
+import * as globalActions from '~/store/actions/globalActions'
 import { ISidebarComponentProps } from './ISidebarComponentProps'
 import { ISidebarComponentState } from './ISidebarComponentState'
 

@@ -1,6 +1,6 @@
-import { GlobalActionType } from 'constants/globalActionType';
+import { GlobalActionType } from '~/constants/globalActionType';
 import { all, takeLatest } from 'redux-saga/effects';
-import { LanguageType } from 'store/reducers/locale/langugeType';
+import { LanguageType } from '~/store/reducers/locale/langugeType';
 
 
 /***************************** Subroutines ************************************/

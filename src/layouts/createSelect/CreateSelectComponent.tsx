@@ -1,7 +1,7 @@
 // - Import react components
 import React, { Component } from 'react'
 import classNames from 'classnames'
-import CreatableSelect from 'react-select/lib/Creatable'
+const CreatableSelect = require('react-select/lib/Creatable')
 
 // - Material-UI
 import { withStyles } from '@material-ui/core/styles'

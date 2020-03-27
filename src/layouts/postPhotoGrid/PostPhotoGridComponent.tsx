@@ -2,7 +2,7 @@
 import CardMedia from '@material-ui/core/CardMedia';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-import Img from 'components/img';
+import Img from '~/components/img';
 import React, { Component } from 'react';
 
 import { IPostPhotoGridProps } from './IPostPhotoGridProps';

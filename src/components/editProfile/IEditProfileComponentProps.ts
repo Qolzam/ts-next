@@ -1,4 +1,4 @@
-import { User } from 'core/domain/users'
+import { User } from '~/core/domain/users'
 import {Map, List} from 'immutable'
 
 export interface IEditProfileComponentProps {

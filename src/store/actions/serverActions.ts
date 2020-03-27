@@ -1,12 +1,12 @@
 // - Import action types
-import { ServerActionType } from 'constants/serverActionType'
+import { ServerActionType } from '~/constants/serverActionType'
 import {Map} from 'immutable'
 
 // - Import domain
 
 // - Import actions
-import { ServerRequestModel } from 'models/server/serverRequestModel'
-import { SocialError } from 'core/domain/common/socialError'
+import { ServerRequestModel } from '~/models/server/serverRequestModel'
+import { SocialError } from '~/core/domain/common/socialError'
 
 /**
  * Add a request

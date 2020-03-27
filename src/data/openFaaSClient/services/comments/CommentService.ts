@@ -1,11 +1,11 @@
 // - Import react components
-import { Comment } from 'core/domain/comments';
-import { SocialError } from 'core/domain/common';
-import { ICommentService } from 'core/services/comments';
+import { Comment } from '~/core/domain/comments';
+import { SocialError } from '~/core/domain/common';
+import { ICommentService } from '~/core/services/comments';
 import { Map, fromJS } from 'immutable'
 import { injectable, inject } from 'inversify';
-import { IHttpService } from 'core/services/webAPI/IHttpService';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import { IHttpService } from '~/core/services/webAPI';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
 
 /**
  * Firbase comment service

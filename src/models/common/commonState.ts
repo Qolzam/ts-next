@@ -1,5 +1,5 @@
-import { TempState } from 'models/common/tempState'
-import { ProgressState } from 'models/common/progressState'
+import { TempState } from '~/models/common/tempState'
+import { ProgressState } from '~/models/common/progressState'
 
 export class CommonState {
     constructor(

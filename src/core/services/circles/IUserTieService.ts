@@ -1,5 +1,5 @@
 import {Map} from 'immutable'
-import { UserTie } from 'core/domain/circles'
+import { UserTie } from '~/core/domain/circles'
 
 /**
  * User tie service interface

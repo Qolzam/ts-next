@@ -1,11 +1,11 @@
-import { IHttpService } from 'core/services/webAPI'
+import { IHttpService } from '~/core/services/webAPI'
 import { injectable } from 'inversify'
-import { SocialProviderTypes } from 'core/socialProviderTypes'
+import { SocialProviderTypes } from '~/core/socialProviderTypes'
 import { inject } from 'inversify'
-import config from 'config'
+import config from '~/config'
 import axios from 'axios'
-import { IPermissionService } from 'core/services/security/IPermissionService'
-import { SocialError } from 'core/domain/common';
+import { IPermissionService } from '~/core/services/security'
+import { SocialError } from '~/core/domain/common';
 
 @injectable()
 export class HttpService implements IHttpService {
@@ -38,7 +38,6 @@ export class HttpService implements IHttpService {
             .post(`${config.settings.api}${validURL}`, payload)
         return result.data
     }
-
     
 
     /**

@@ -1,15 +1,15 @@
 // - Import react components
-import { CommentActionType } from 'constants/commentActionType';
-import { User } from 'core/domain/users';
+import { CommentActionType } from '~/constants/commentActionType';
+import { User } from '~/core/domain/users';
 import { Map } from 'immutable';
 import moment from 'moment/moment';
-import { Comment } from 'core/domain/comments';
-import { SocialError } from 'core/domain/common';
-import { ICommentService } from 'core/services/comments';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import { Comment } from '~/core/domain/comments';
+import { SocialError } from '~/core/domain/common';
+import { ICommentService } from '~/core/services/comments';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
 import { provider } from '../../socialEngine';
-import * as globalActions from 'store/actions/globalActions';
-import { userSelector } from 'store/reducers/users/userSelector';
+import * as globalActions from '~/store/actions/globalActions';
+import { userSelector } from '~/store/reducers/users/userSelector';
 
 // - Import domain
 // - Import action types

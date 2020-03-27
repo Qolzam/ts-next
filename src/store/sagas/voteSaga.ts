@@ -1,14 +1,14 @@
 
-import { VoteActionType } from 'constants/voteActionType';
-import { IVoteService } from 'core/services/votes';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import { VoteActionType } from '~/constants/voteActionType';
+import { IVoteService } from '~/core/services/votes';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
 import { Map } from 'immutable';
 import { all, call, put, select, takeLatest } from 'redux-saga/effects';
 import { provider } from '../../socialEngine';
-import { voteActions, postActions, globalActions } from 'store/actions';
+import { voteActions, postActions, globalActions } from '~/store/actions';
 import { authorizeSelector } from '../reducers/authorize/authorizeSelector';
 import moment from 'moment/moment';
-import { Vote } from 'core/domain/votes';
+import { Vote } from '~/core/domain/votes';
 import { postSelector } from '../reducers/posts/postSelector';
 
 /**

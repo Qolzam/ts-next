@@ -6,11 +6,11 @@ import ListItem from '@material-ui/core/ListItem';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import ActivityProgress from 'layouts/activityProgress';
+import ActivityProgress from '~/layouts/activityProgress';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import * as globalActions from 'store/actions/globalActions';
+import * as globalActions from '~/store/actions/globalActions';
 
 import { bountyBoxStyles } from './bountyBoxStyles';
 import { IBountyBoxComponentProps } from './IBountyBoxComponentProps';
@@ -91,6 +91,6 @@ const mapStateToProps = () => {
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(BountyBoxComponent as any)
+const translateWrapper = withTranslation('common')(BountyBoxComponent as any)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(bountyBoxStyles as any) (translateWrapper as any))

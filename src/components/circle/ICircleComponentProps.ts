@@ -1,5 +1,5 @@
-import { Comment } from 'core/domain/comments'
-import { Circle, UserTie } from 'core/domain/circles'
+import { Comment } from '~/core/domain/comments'
+import { Circle, UserTie } from '~/core/domain/circles'
 import {Map} from 'immutable'
 
 export interface ICircleComponentProps {

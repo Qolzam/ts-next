@@ -24,23 +24,23 @@ import SvgPlay from '@material-ui/icons/PlayCircleFilled';
 import SvgRemoveImage from '@material-ui/icons/RemoveCircle';
 import SvgAddVideo from '@material-ui/icons/VideoCall';
 import VideoGalleryIcon from '@material-ui/icons/VideoLibrary';
-import FileAPI from 'api/FileAPI';
-import * as PostAPI from 'api/PostAPI';
-import StringAPI from 'api/StringAPI';
+import FileAPI from '~/api/FileAPI';
+import * as PostAPI from '~/api/PostAPI';
+import StringAPI from '~/api/StringAPI';
 import classNames from 'classnames';
-import AddVideo from 'components/addVideo/AddVideoComponent';
-import AlbumDialogComponent from 'components/albumDialog/AlbumDialogComponent';
-import Img from 'components/img';
-import PostImageUploadComponent from 'components/postImageUpload';
-import UserAvatarComponent from 'components/userAvatar/UserAvatarComponent';
-import UserPermissionComponent from 'components/userPermission/UserPermissionComponent';
-import VideoGalleryComponent from 'components/videoGallery/VideoGalleryComponent';
-import { UserPermissionType } from 'core/domain/common/userPermissionType';
-import { Album } from 'core/domain/imageGallery/album';
-import { PostType } from 'core/domain/posts/postType';
+import AddVideo from '~/components/addVideo/AddVideoComponent';
+import AlbumDialogComponent from '~/components/albumDialog/AlbumDialogComponent';
+import Img from '~/components/img';
+import PostImageUploadComponent from '~/components/postImageUpload';
+import UserAvatarComponent from '~/components/userAvatar/UserAvatarComponent';
+import UserPermissionComponent from '~/components/userPermission/UserPermissionComponent';
+import VideoGalleryComponent from '~/components/videoGallery/VideoGalleryComponent';
+import { UserPermissionType } from '~/core/domain/common/userPermissionType';
+import { Album } from '~/core/domain/imageGallery/album';
+import { PostType } from '~/core/domain/posts/postType';
 import { fromJS, List as ImuList, Map } from 'immutable';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import uuid from 'uuid';
 
 import { connectPostWrite } from './connectPostWrite';
@@ -789,6 +789,6 @@ export class PostWriteComponent extends Component<IPostWriteComponentProps, IPos
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(PostWriteComponent as any)
+const translateWrapper = withTranslation('common')(PostWriteComponent as any)
 
 export default connectPostWrite(withStyles(postWriteStyles)(translateWrapper as any) as any)

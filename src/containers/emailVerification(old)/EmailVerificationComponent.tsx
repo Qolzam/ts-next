@@ -3,13 +3,13 @@ import { Grid } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
-import { push } from 'connected-react-router';
+import Router from 'next/router'
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import config from 'config';
-import * as authorizeActions from 'store/actions/authorizeActions';
+import { withRouter } from 'next/router';
+import config from '~/config';
+import * as authorizeActions from '~/store/actions/authorizeActions';
 
 import { IEmailVerificationComponentProps } from './IEmailVerificationComponentProps';
 import { IEmailVerificationComponentState } from './IEmailVerificationComponentState';
@@ -115,7 +115,7 @@ export class EmailVerificationComponent extends Component<IEmailVerificationComp
 const mapDispatchToProps = (dispatch: Function, ownProps: IEmailVerificationComponentProps) => {
   return {
     homePage: () => {
-      dispatch(push('/'))
+      Router.push('/')
     },
     sendEmailVerification: () => dispatch(authorizeActions.dbSendEmailVerfication(''))
   }
@@ -131,6 +131,6 @@ const mapStateToProps = (state: any, ownProps: IEmailVerificationComponentProps)
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(EmailVerificationComponent as any)
+const translateWrapper = withTranslation('common')(EmailVerificationComponent as any)
 
 export default withRouter<any, any>(connect(mapStateToProps, mapDispatchToProps)(withStyles(styles as any)(translateWrapper as any) as any))

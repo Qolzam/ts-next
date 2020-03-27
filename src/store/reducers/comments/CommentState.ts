@@ -1,5 +1,5 @@
 
-import { Comment } from 'core/domain/comments'
+import { Comment } from '~/core/domain/comments'
 import {Map} from 'immutable'
 /**
  * Comment state

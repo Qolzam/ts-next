@@ -1,4 +1,4 @@
-import { BaseDomain } from 'core/domain/common'
+import { BaseDomain } from '~/core/domain/common'
 import { UserSettingItem } from './userSettingItem';
 
 export class UserSetting extends BaseDomain {

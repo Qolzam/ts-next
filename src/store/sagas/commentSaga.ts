@@ -1,12 +1,12 @@
-import CommentAPI from 'api/CommentAPI';
-import { CommentActionType } from 'constants/commentActionType';
-import { ICommentService } from 'core/services/comments';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import CommentAPI from '~/api/CommentAPI';
+import { CommentActionType } from '~/constants/commentActionType';
+import { ICommentService } from '~/core/services/comments';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
 import { Map } from 'immutable';
 import { all, call, put, select, takeEvery } from 'redux-saga/effects';
 import { provider } from '../../socialEngine';
-import { commentActions, serverActions, globalActions, postActions } from 'store/actions';
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType';
+import { commentActions, serverActions, globalActions, postActions } from '~/store/actions';
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType';
 import { authorizeSelector } from '../reducers/authorize/authorizeSelector';
 import { postSelector } from '../reducers/posts/postSelector';
 

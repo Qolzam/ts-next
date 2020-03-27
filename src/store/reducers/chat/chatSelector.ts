@@ -1,9 +1,9 @@
 import { List, Map } from 'immutable';
-import { ChatMessageModel } from 'models/chat/chatMessageModel';
+import { ChatMessageModel } from '~/models/chat/chatMessageModel';
 import { createSelector } from 'reselect';
-import { User } from 'core/domain/users';
-import { authorizeSelector } from 'store/reducers/authorize';
-import { userSelector } from 'store/reducers/users/userSelector';
+import { User } from '~/core/domain/users';
+import { authorizeSelector } from '~/store/reducers/authorize';
+import { userSelector } from '~/store/reducers/users/userSelector';
 
 const getCallingUsers: (state: Map<string, any>) => Map<string, any> = (state: Map<string, any>) => {
     const callingUsers: Map<string, any> = state.getIn(['chat', 'calling'], Map({}))

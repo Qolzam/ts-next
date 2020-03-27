@@ -1,8 +1,8 @@
 import { Map } from 'immutable';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import * as userActions from 'store/actions/userActions';
-import { userSelector } from 'store/reducers/users/userSelector';
+import * as userActions from '~/store/actions/userActions';
+import { userSelector } from '~/store/reducers/users/userSelector';
 
 import { IFindPeopleComponentProps } from './IFindPeopleComponentProps';
 

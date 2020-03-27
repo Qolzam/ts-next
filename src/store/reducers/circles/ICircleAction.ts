@@ -1,5 +1,5 @@
 
-import { CircleActionType } from 'constants/circleActionType'
+import { CircleActionType } from '~/constants/circleActionType'
 
 /**
  *  Circle action interface

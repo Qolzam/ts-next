@@ -1,4 +1,4 @@
-import { SignupStepEnum } from "src/models/authorize/signupStepEnum"
+import { SignupStepEnum } from '~/models/authorize/signupStepEnum'
 
 export interface ISignupWrapperProps {
 

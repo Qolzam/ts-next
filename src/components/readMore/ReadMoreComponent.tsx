@@ -1,9 +1,9 @@
 import Collapse from '@material-ui/core/Collapse';
 import withStyles from '@material-ui/core/styles/withStyles';
-import StringAPI from 'api/StringAPI';
+import StringAPI from '~/api/StringAPI';
 import classNames from 'classnames';
-import { IReadMoreProps } from 'components/readMore/IReadMoreProps';
-import { IReadMoreState } from 'components/readMore/IReadMoreState';
+import { IReadMoreProps } from '~/components/readMore/IReadMoreProps';
+import { IReadMoreState } from '~/components/readMore/IReadMoreState';
 import React, { Component } from 'react';
 
 import { readMoreStyles } from './readMoreStyles';

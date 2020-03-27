@@ -2,10 +2,10 @@
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import config from 'config';
+import Link from '~/components/Link';
+import config from '~/config';
 
 import { footerStyles } from './footerStyles';
 import { IFooterComponentProps } from './IFooterComponentProps';
@@ -50,11 +50,11 @@ export class FooterComponent extends Component<IFooterComponentProps, IFooterCom
               <ul className={classes.list}>
 
                 <li className={classes.item}>
-                  <NavLink
-                    to={`/terms`}
+                  <Link
+                    href={`/terms`}
                   >
                     {t!('terms.privacyTitle')}
-                  </NavLink>
+                  </Link>
                 </li>
                 <li className={classes.item}>
                   <a href={`mailto:${config.settings.supportEmail}?Subject=Hola`} target='_top'>{t!('footer.supportEmail')}</a>
@@ -87,6 +87,6 @@ const mapStateToProps = () => {
   }
 }
 
-const translateWrapper = withTranslation('translations')(FooterComponent as any)
+const translateWrapper = withTranslation('common')(FooterComponent as any)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(footerStyles as any)(translateWrapper as any) as any)

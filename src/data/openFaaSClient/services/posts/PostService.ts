@@ -1,13 +1,13 @@
 // - Import react components
-import { SocialError } from 'core/domain/common';
-import { Post } from 'core/domain/posts';
-import { PostType } from 'core/domain/posts/postType';
-import { IPostService } from 'core/services/posts';
-import { IHttpService } from 'core/services/webAPI';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import { SocialError } from '~/core/domain/common';
+import { Post } from '~/core/domain/posts';
+import { PostType } from '~/core/domain/posts/postType';
+import { IPostService } from '~/core/services/posts';
+import { IHttpService } from '~/core/services/webAPI';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
 import { inject, injectable } from 'inversify';
 import {Map, fromJS} from 'immutable'
-import { PostIndex } from 'core/domain/posts/postIndex';
+import { PostIndex } from '~/core/domain/posts/postIndex';
 
 /**
  * Firbase post service

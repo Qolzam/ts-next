@@ -1,14 +1,14 @@
-import StringAPI from 'api/StringAPI';
-import { ServerRequestType } from 'constants/serverRequestType';
-import { User } from 'core/domain/users';
+import StringAPI from '~/api/StringAPI';
+import { ServerRequestType } from '~/constants/serverRequestType';
+import { User } from '~/core/domain/users';
 import { Map } from 'immutable';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { globalActions, postActions } from 'store/actions';
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType';
-import { authorizeSelector } from 'store/reducers/authorize/authorizeSelector';
-import { postSelector } from 'store/reducers/posts';
-import { serverSelector } from 'store/reducers/server/serverSelector';
+import { globalActions, postActions } from '~/store/actions';
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType';
+import { authorizeSelector } from '~/store/reducers/authorize/authorizeSelector';
+import { postSelector } from '~/store/reducers/posts';
+import { serverSelector } from '~/store/reducers/server/serverSelector';
 
 import { IStreamComponentProps } from './IStreamComponentProps';
 

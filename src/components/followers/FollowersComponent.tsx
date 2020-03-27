@@ -1,8 +1,8 @@
 // - Import react components
-import UserBoxList from 'components/userBoxList/UserBoxListComponent';
+import UserBoxList from '~/components/userBoxList/UserBoxListComponent';
 import { Map } from 'immutable';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
 
 import { IFollowersComponentProps } from './IFollowersComponentProps';
@@ -84,6 +84,6 @@ const mapStateToProps = (state: Map<string, any>) => {
 }
 
   // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(FollowersComponent as any)
+const translateWrapper = withTranslation('common')(FollowersComponent as any)
 
 export default connect(mapStateToProps,mapDispatchToProps)(translateWrapper)

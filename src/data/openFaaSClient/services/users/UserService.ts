@@ -1,11 +1,11 @@
 // - Import react components
-import { SocialError } from 'core/domain/common';
-import { User, UserProvider } from 'core/domain/users';
-import { IUserService } from 'core/services/users';
-import { IHttpService } from 'core/services/webAPI/IHttpService';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import { SocialError } from '~/core/domain/common';
+import { User, UserProvider } from '~/core/domain/users';
+import { IHttpService } from '~/core/services/webAPI';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
 import { fromJS, Map } from 'immutable';
 import { inject, injectable } from 'inversify';
+import { IUserService } from '~/core/services';
 
 /**
  * Firbase user service

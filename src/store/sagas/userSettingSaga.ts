@@ -1,14 +1,14 @@
-import { UserSettingActionType } from 'constants/userSettingActionType';
-import { IUserSettingService } from 'core/services/users';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import { UserSettingActionType } from '~/constants/userSettingActionType';
+import { IUserSettingService } from '~/core/services/users/IUserSettingService';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
 import { Map } from 'immutable';
 import { all, call, put, select, takeLatest } from 'redux-saga/effects';
-import { provider } from 'socialEngine';
-import * as globalActions from 'store/actions/globalActions';
-import * as userSettingActions from 'store/actions/userSettingActions';
-import { authorizeSelector } from 'store/reducers/authorize/authorizeSelector';
-import { UserSetting } from 'core/domain/users/userSetting';
-import { UserSettingItem } from 'core/domain/users/userSettingItem';
+import { provider } from '~/socialEngine';
+import * as globalActions from '~/store/actions/globalActions';
+import * as userSettingActions from '~/store/actions/userSettingActions';
+import { authorizeSelector } from '~/store/reducers/authorize/authorizeSelector';
+import { UserSetting } from '~/core/domain/users/userSetting';
+import { UserSettingItem } from '~/core/domain/users/userSettingItem';
 
 /**
  * Get service providers

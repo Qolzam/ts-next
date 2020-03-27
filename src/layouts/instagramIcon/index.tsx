@@ -1,5 +1,5 @@
 import React from 'react'
-import { SvgAPI } from 'api/SvgAPI'
+import { SvgAPI } from '~/api/SvgAPI'
 
 export default SvgAPI.createSvgIcon(
   <g xmlns='http://www.w3.org/2000/svg'>

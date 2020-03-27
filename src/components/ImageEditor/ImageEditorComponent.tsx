@@ -1,5 +1,4 @@
 // - Import react components
-import 'cropperjs/dist/cropper.css';
 
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -13,20 +12,20 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import SvgRotateLeft from '@material-ui/icons/RotateLeft';
 import SvgRotateRight from '@material-ui/icons/RotateRight';
-import { SocialError } from 'core/domain/common';
-import { IImageGalleryService } from 'core/services';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import { SocialError } from '~/core/domain/common';
+import { IImageGalleryService } from '~/core/services';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
 import { Map } from 'immutable';
-import { FileResult } from 'models/files';
+import { FileResult } from '~/models/files';
 import React, { Component } from 'react';
 import Cropper from 'react-cropper';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import { provider } from 'socialEngine';
-import config from 'config';
-import * as globalActions from 'store/actions/globalActions';
-import * as imageGalleryActions from 'store/actions/imageGalleryActions';
-import { authorizeSelector } from 'store/reducers/authorize';
+import { provider } from '~/socialEngine';
+import config from '~/config';
+import * as globalActions from '~/store/actions/globalActions';
+import * as imageGalleryActions from '~/store/actions/imageGalleryActions';
+import { authorizeSelector } from '~/store/reducers/authorize';
 import uuid from 'uuid';
 
 import { IImageEditorComponentProps } from './IImageEditorComponentProps';
@@ -235,6 +234,6 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IImageEditorComponen
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(ImageEditorComponent as any)
+const translateWrapper = withTranslation('common')(ImageEditorComponent as any)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles as any, {withTheme: true})(translateWrapper as any) as any)

@@ -1,12 +1,12 @@
 // - Import react components
 import { withStyles } from '@material-ui/core/styles';
-import { IAuthorizeService } from 'core/services';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import { IAuthorizeService } from '~/core/services';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
 import { Map } from 'immutable';
 import React, { Component } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { connect } from 'react-redux';
-import { provider } from 'socialEngine';
+import { provider } from '~/socialEngine';
 
 import { IRecaptchaComponentProps } from './IRecaptchaComponentProps';
 import { IRecaptchaComponentState } from './IRecaptchaComponentState';

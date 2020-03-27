@@ -1,4 +1,4 @@
-import { ServerRequestModel } from 'models/server'
+import { ServerRequestModel } from '~/models/server'
 import {Map} from 'immutable'
 
 /**

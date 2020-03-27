@@ -1,16 +1,16 @@
-import { AuthorizeActionType } from 'constants/authorizeActionType';
-import { LoginUser } from 'core/domain/authorize/loginUser';
-import { UserClaim } from 'core/domain/authorize/userClaim';
-import { IAuthorizeService } from 'core/services';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import { AuthorizeActionType } from '~/constants/authorizeActionType';
+import { LoginUser } from '~/core/domain/authorize/loginUser';
+import { UserClaim } from '~/core/domain/authorize/userClaim';
+import { IAuthorizeService } from '~/core/services';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
 import { eventChannel } from 'redux-saga';
 import { all, call,put, select, takeLatest } from 'redux-saga/effects';
-import { AuthAPI } from 'api/AuthAPI';
-import { SignupStepEnum } from 'models/authorize/signupStepEnum';
+import { AuthAPI } from '~/api/AuthAPI';
+import { SignupStepEnum } from '~/models/authorize/signupStepEnum';
 import { provider } from '../../socialEngine';
-import * as authorizeActions from 'store/actions/authorizeActions';
-import * as globalActions from 'store/actions/globalActions';
-import * as serverActions from 'store/actions/serverActions';
+import * as authorizeActions from '~/store/actions/authorizeActions';
+import * as globalActions from '~/store/actions/globalActions';
+import * as serverActions from '~/store/actions/serverActions';
 import { Map } from 'immutable';
 import { ServerRequestStatusType } from '../actions/serverRequestStatusType';
 import { authorizeSelector } from '../reducers/authorize';
@@ -132,14 +132,20 @@ function* verifyUserRegisterCode(action: any) {
 /**
  * On auth state change
  */
-function* onAuthStateChanged() {
-    const userAuth = authorizeService.getUserAuth()
+function* onAuthStateChanged(action: any) {
+    const { req } = action.payload
+    const userAuth = authorizeService.getUserAuth(req)
     if (userAuth) {
         const {claim} = userAuth
         yield call(onLoginUser, claim)
         const userProfile = Map({avatar: claim.avatar, fullName: claim.displayName, uid: claim.uid, email: claim.email})
         yield put(userActions.addUserInfo(claim.uid, userProfile))
-        yield put(globalActions.loadInitialData())
+
+        // Only on client side
+        if (!req) {
+            yield put(globalActions.loadInitialData())
+            
+        }
     } else {
         yield call(onLogoutUser)
     }

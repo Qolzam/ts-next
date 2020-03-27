@@ -1,6 +1,6 @@
-import { Notification } from 'core/domain/notifications'
+import { Notification } from '~/core/domain/notifications'
 import {Map} from 'immutable'
-import { UserTie } from 'core/domain/circles/userTie'
+import { UserTie } from '~/core/domain/circles/userTie'
 export interface IRecentChatProps {
 
   /**

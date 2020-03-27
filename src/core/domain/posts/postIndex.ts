@@ -1,7 +1,7 @@
-import { BaseDomain } from 'core/domain/common'
-import { Comment } from 'core/domain/comments'
-import { UserPermissionType } from 'core/domain/common/userPermissionType'
-import { Post } from 'core/domain/posts/post'
+import { BaseDomain } from '~/core/domain/common'
+import { Comment } from '~/core/domain/comments'
+import { UserPermissionType } from '~/core/domain/common/userPermissionType'
+import { Post } from '~/core/domain/posts/post'
 
 export class PostIndex extends BaseDomain {
   public static mapToPost(postIndexObj: PostIndex) {

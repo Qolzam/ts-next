@@ -2,7 +2,7 @@
 import SvgImage from '@material-ui/icons/Image';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
 
 import { IImgCoverComponentProps } from './IImgCoverComponentProps';
@@ -158,6 +158,6 @@ const mapStateToProps = (state: any, ownProps: IImgCoverComponentProps) => {
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(ImgCoverComponent as any)
+const translateWrapper = withTranslation('common')(ImgCoverComponent as any)
 
 export default connect(mapStateToProps, mapDispatchToProps)(translateWrapper)

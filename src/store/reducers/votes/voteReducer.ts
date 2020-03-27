@@ -1,5 +1,5 @@
 // - Import react components
-import { VoteActionType } from 'constants/voteActionType';
+import { VoteActionType } from '~/constants/voteActionType';
 import { Map } from 'immutable';
 
 import { IVoteAction } from './IVoteAction';

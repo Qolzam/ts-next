@@ -1,6 +1,6 @@
-import { Post } from 'core/domain/posts'
+import { Post } from '~/core/domain/posts'
 import {Map} from 'immutable'
-import { User} from 'core/domain/users'
+import { User} from '~/core/domain/users'
 
 export interface IPostPageProps {
 

@@ -7,12 +7,12 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import BackIcon from '@material-ui/icons/ArrowBack';
 import classNames from 'classnames';
-import { recentChatStyles } from 'components/recentChat/recentChatStyles';
-import RecentChatItem from 'components/recentChatItem';
+import { recentChatStyles } from '~/components/recentChat/recentChatStyles';
+import RecentChatItem from '~/components/recentChatItem';
 import { Map } from 'immutable';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
 
 import { IRecentChatProps } from './IRecentChatProps';
@@ -175,6 +175,6 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IRecentChatProps) =>
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(RecentChatComponent as any)
+const translateWrapper = withTranslation('common')(RecentChatComponent as any)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(recentChatStyles as any)(translateWrapper as any))

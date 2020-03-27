@@ -6,19 +6,19 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 import SvgClose from '@material-ui/icons/Clear';
-import StringAPI from 'api/StringAPI';
+import StringAPI from '~/api/StringAPI';
 import classNames from 'classnames';
-import { ServerRequestType } from 'constants/serverRequestType';
-import { Feed } from 'core/domain/common';
-import { FeedType } from 'core/domain/common/feedType';
-import { User } from 'core/domain/users';
+import { ServerRequestType } from '~/constants/serverRequestType';
+import { Feed } from '~/core/domain/common';
+import { FeedType } from '~/core/domain/common/feedType';
+import { User } from '~/core/domain/users';
 import { Map } from 'immutable';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import { globalActions } from 'store/actions';
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType';
-import { userSelector } from 'store/reducers/users/userSelector';
+import { globalActions } from '~/store/actions';
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType';
+import { userSelector } from '~/store/reducers/users/userSelector';
 
 import { ISendFeedbackComponentProps } from './ISendFeedbackComponentProps';
 import { ISendFeedbackComponentState } from './ISendFeedbackComponentState';
@@ -239,6 +239,6 @@ const mapStateToProps = (state: Map<string, any>) => {
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(SendFeedbackComponent as any)
+const translateWrapper = withTranslation('common')(SendFeedbackComponent as any)
 
 export default connect(mapStateToProps, mapDispatchToProps)((withStyles(styles as any, {withTheme: true})(translateWrapper as any)) as any)

@@ -1,6 +1,5 @@
 import {
   IAuthorizeService,
-  ICircleService,
   ICommentService,
   ICommonService,
   IImageGalleryService,
@@ -8,7 +7,8 @@ import {
   IUserService,
   IVoteService,
   IStorageService
-} from 'core/services'
+} from '~/core/services'
+import ICircleService from '../services/circles/ICircleService';
 
 export interface IServiceProvider {
 

@@ -1,11 +1,11 @@
 // - Import react components
-import MasterLoadingComponent from 'components/masterLoading/MasterLoadingComponent';
+import MasterLoadingComponent from '~/components/masterLoading/MasterLoadingComponent';
 import { Map } from 'immutable';
 import React, { Component } from 'react';
-import Loadable from 'react-loadable';
+const Loadable = require('react-loadable');
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
-import { RouteType } from 'routes/routeType';
+import { RouteType } from '~/routes/routeType';
 
 import { IRouterProps } from './IRouterProps';
 import PrivateRoute from './PrivateRoute';
@@ -15,44 +15,44 @@ import PublicRoute from './PublicRoute';
  * Loadable components
  */
 // - Async Components
-const AsyncStream = Loadable({
-  loader: () => import('containers/stream'),
-  loading: MasterLoadingComponent,
-})
+// const AsyncStream = Loadable({
+//   loader: () => import('~/pages/stream'),
+//   loading: MasterLoadingComponent,
+// })
 const AsyncProfile = Loadable({
-  loader: () => import('containers/profile'),
+  loader: () => import('~/containers/profile'),
   loading: MasterLoadingComponent,
 })
 const AsyncPostPage = Loadable({
-  loader: () => import('containers/postPage'),
+  loader: () => import('~/containers/postPage'),
   loading: MasterLoadingComponent,
 })
 const AsyncPeople = Loadable({
-  loader: () => import('containers/people'),
+  loader: () => import('~/containers/people'),
   loading: MasterLoadingComponent,
 })
 const AsyncSearchUser = Loadable({
-  loader: () => import('containers/searchUser'),
+  loader: () => import('~/containers/searchUser'),
   loading: MasterLoadingComponent,
 })
 const AsyncSearchPost = Loadable({
-  loader: () => import('containers/searchPost'),
+  loader: () => import('~/containers/searchPost'),
   loading: MasterLoadingComponent,
 })
 const AsyncSearch = Loadable({
-  loader: () => import('containers/search'),
+  loader: () => import('~/containers/search'),
   loading: MasterLoadingComponent,
 })
 const AsyncPhotoMaster = Loadable({
-  loader: () => import('containers/photoMaster'),
+  loader: () => import('~/containers/photoMaster'),
   loading: MasterLoadingComponent,
 })
 const AsyncCompany = Loadable({
-  loader: () => import('containers/company'),
+  loader: () => import('~/containers/company'),
   loading: MasterLoadingComponent,
 })
 const AsyncHelp = Loadable({
-  loader: () => import('containers/help'),
+  loader: () => import('~/containers/help'),
   loading: MasterLoadingComponent,
 })
 
@@ -65,11 +65,11 @@ const routes = [
     component: AsyncPeople,
     privateAuth: true
   },
-  {
-    path: '/tag/:tag',
-    component: AsyncStream,
-    privateAuth: true
-  },
+  // {
+  //   path: '/tag/:tag',
+  //   component: AsyncStream,
+  //   privateAuth: true
+  // },
   {
     path: '/:userId/posts/:postId/:tag?',
     component: AsyncPostPage
@@ -102,11 +102,11 @@ const routes = [
     path: '/:userId',
     component: AsyncProfile
   },
-  {
-    path: '/',
-    component: AsyncStream,
-    privateAuth: true
-  }
+  // {
+  //   path: '/',
+  //   component: AsyncStream,
+  //   privateAuth: true
+  // }
 ]
 
 /**

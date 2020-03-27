@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import SvgImage from '@material-ui/icons/Image';
 import { Map } from 'immutable';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
 
 import { IImgComponentProps } from './IImgComponentProps';
@@ -132,6 +132,6 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IImgComponentProps) 
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(ImgComponent as any)
+const translateWrapper = withTranslation('common')(ImgComponent as any)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles as any)(translateWrapper as any)as any)

@@ -1,8 +1,8 @@
 import { List, Map, Seq } from 'immutable'
-import StringAPI from 'api/StringAPI'
-import { ServerRequestType } from 'constants/serverRequestType'
-import { ServerRequestModel } from 'models/server'
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType'
+import StringAPI from '~/api/StringAPI'
+import { ServerRequestType } from '~/constants/serverRequestType'
+import { ServerRequestModel } from '~/models/server'
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType'
 
 // Get tags from post content
 export const detectTags: (content: string, character: string) => string[] = (content: string, character: string) => {

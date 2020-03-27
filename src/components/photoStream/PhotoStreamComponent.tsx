@@ -1,13 +1,13 @@
 // - Import react components
 import withStyles from '@material-ui/core/styles/withStyles';
-import { Media } from 'core/domain/imageGallery/media';
-import PhotoGridComponent from 'layouts/photoGrid';
+import { Media } from '~/core/domain/imageGallery/media';
+import PhotoGridComponent from '~/layouts/photoGrid';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Measure from 'react-measure';
-import { withRouter } from 'react-router';
-import LoadMoreProgressComponent from 'layouts/loadMoreProgress';
+import { withRouter } from 'next/router';
+import LoadMoreProgressComponent from '~/layouts/loadMoreProgress';
 
 import { connectPhotoStream } from './connectPhotoStream';
 import { IPhotoStreamProps } from './IPhotoStreamProps';
@@ -121,6 +121,6 @@ export class PhotoStreamComponent extends Component<IPhotoStreamProps, IPhotoStr
 }
 
 // - Connect component to redux store
-const translateWrraper = withTranslation('translations')(PhotoStreamComponent as any)
+const translateWrraper = withTranslation('common')(PhotoStreamComponent as any)
 const routerWrapper = withRouter<any, any>(connectPhotoStream(withStyles(photoStreamStyles as any)(translateWrraper as any) as any)) as any
 export default routerWrapper as typeof PhotoStreamComponent

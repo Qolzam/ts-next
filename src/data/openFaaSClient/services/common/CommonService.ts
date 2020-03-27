@@ -1,10 +1,10 @@
 // - Import react components
 
 import { injectable, inject } from 'inversify';
-import { IHttpService } from 'core/services/webAPI/IHttpService';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
-import { ICommonService } from 'core/services/common/ICommonService';
-import { Feed } from 'core/domain/common/feed';
+import { IHttpService } from '~/core/services/webAPI';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
+import { ICommonService } from '~/core/services/common';
+import { Feed } from '~/core/domain/common/feed';
 
 /**
  * Firbase comment service

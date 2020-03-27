@@ -1,4 +1,4 @@
-import { User } from 'core/domain/users'
+import { User } from '~/core/domain/users'
 
 export interface IUserActivityComponentProps {
 

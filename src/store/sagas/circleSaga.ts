@@ -1,15 +1,15 @@
-import { CircleActionType } from 'constants/circleActionType';
-import { Circle } from 'core/domain/circles/circle';
-import { ICircleService } from 'core/services/circles/ICircleService';
-import { IUserTieService } from 'core/services/circles/IUserTieService';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import { CircleActionType } from '~/constants/circleActionType';
+import { Circle } from '~/core/domain/circles/circle';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
 import { Map } from 'immutable';
 import { all, call, put, select, takeLatest } from 'redux-saga/effects';
-import { provider } from 'socialEngine';
-import * as circleActions from 'store/actions/circleActions';
-import * as globalActions from 'store/actions/globalActions';
-import * as userActions from 'store/actions/userActions';
-import { authorizeSelector } from 'store/reducers/authorize';
+import { provider } from '~/socialEngine';
+import * as circleActions from '~/store/actions/circleActions';
+import * as globalActions from '~/store/actions/globalActions';
+import * as userActions from '~/store/actions/userActions';
+import { authorizeSelector } from '~/store/reducers/authorize';
+import ICircleService from '~/core/services/circles/ICircleService';
+import { IUserTieService } from '~/core/services/circles/IUserTieService';
 
 /**
  * Get service providers

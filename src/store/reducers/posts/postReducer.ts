@@ -1,5 +1,5 @@
 // - Import react components
-import { PostActionType } from 'constants/postActionType';
+import { PostActionType } from '~/constants/postActionType';
 import { Map } from 'immutable';
 
 import { IPostAction } from './IPostAction';

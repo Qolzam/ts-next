@@ -5,19 +5,20 @@ import Divider from '@material-ui/core/Divider';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import { push } from 'connected-react-router';
+import Router from 'next/router'
 import { Map } from 'immutable';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import { NavLink, withRouter } from 'react-router-dom';
-import StringAPI from 'api/StringAPI';
-import RecaptchaComponent from 'components/recaptcha';
-import { ServerRequestType } from 'constants/serverRequestType';
-import { UserRegisterModel } from 'models/users/userRegisterModel';
-import * as authorizeActions from 'store/actions/authorizeActions';
-import * as globalActions from 'store/actions/globalActions';
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType';
+import Link from '~/components/Link';
+import { withRouter } from 'next/router';
+import StringAPI from '~/api/StringAPI';
+import RecaptchaComponent from '~/components/recaptcha';
+import { ServerRequestType } from '~/constants/serverRequestType';
+import { UserRegisterModel } from '~/models/users/userRegisterModel';
+import * as authorizeActions from '~/store/actions/authorizeActions';
+import * as globalActions from '~/store/actions/globalActions';
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType';
 
 import { ISignupComponentProps } from './ISignupComponentProps';
 import { ISignupComponentState } from './ISignupComponentState';
@@ -267,11 +268,11 @@ export class SignupComponent extends Component<ISignupComponentProps, ISignupCom
             </div>
         </div>
         <Typography className={classes.caption} variant='caption' component='p'>
-          {t!('signup.termCaption')} <NavLink to='/terms'> {t!('signup.termCaptionLink')} </NavLink>
+          {t!('signup.termCaption')} <Link href='/terms'> {t!('signup.termCaptionLink')} </Link>
         </Typography>
         <Divider />
           <div >
-            <span className={classes.bottomPaper}>{t!('login.loginText')} <NavLink to='/login' className={classes.link}>{t!('login.loginButton')}</NavLink></span>
+            <span className={classes.bottomPaper}>{t!('login.loginText')} <Link href='/login'>{t!('login.loginButton')}</Link></span>
           </div>
 
       </div>
@@ -292,7 +293,7 @@ const mapDispatchToProps = (dispatch: any, ownProps: ISignupComponentProps) => {
       dispatch(authorizeActions.fetchUserRegisterToken(userRegister, captchaVerifier))
     },
     loginPage: () => {
-      dispatch(push('/login'))
+      Router.push('/login')
     }
   }
 }
@@ -308,6 +309,6 @@ const mapStateToProps = (state: Map<string, any>, ownProps: ISignupComponentProp
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(SignupComponent as any)
+const translateWrapper = withTranslation('common')(SignupComponent as any)
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withStyles(signupStyles as any)(translateWrapper as any) as any) as any)

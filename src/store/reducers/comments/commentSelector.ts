@@ -1,4 +1,4 @@
-import { PostAPI } from 'api/PostAPI';
+import { PostAPI } from '~/api/PostAPI';
 import { List, Map } from 'immutable';
 import { createSelector } from 'reselect';
 

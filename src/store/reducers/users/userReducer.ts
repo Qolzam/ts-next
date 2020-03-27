@@ -1,5 +1,5 @@
 // - Import action types
-import { UserActionType } from 'constants/userActionType';
+import { UserActionType } from '~/constants/userActionType';
 import { Map } from 'immutable';
 import { DEFAULT_KEY, generateCacheTTL } from '../../../utils/redux-cache';
 import { IUserAction } from './IUserAction';

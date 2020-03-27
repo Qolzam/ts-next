@@ -1,4 +1,4 @@
-import { Circle, UserTie } from 'core/domain/circles'
+import { Circle, UserTie } from '~/core/domain/circles'
 import {Map} from 'immutable'
 
 /**

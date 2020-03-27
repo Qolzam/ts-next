@@ -1,5 +1,5 @@
 // - Import react components
-import UserBox from 'components/userBox/UserBoxComponent';
+import UserBox from '~/components/userBox/UserBoxComponent';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';

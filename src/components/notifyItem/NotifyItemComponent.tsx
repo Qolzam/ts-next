@@ -4,13 +4,13 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import { withStyles } from '@material-ui/core/styles';
 import SvgClose from '@material-ui/icons/Close';
-import UserAvatar from 'components/userAvatar/UserAvatarComponent';
-import { push } from 'connected-react-router';
+import UserAvatar from '~/components/userAvatar/UserAvatarComponent';
+import Router from 'next/router'
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import * as notifyActions from 'store/actions/notifyActions';
+import Link from '~/components/Link';
+import * as notifyActions from '~/store/actions/notifyActions';
 
 import { INotifyItemComponentProps } from './INotifyItemComponentProps';
 import { INotifyItemComponentState } from './INotifyItemComponentState';
@@ -144,24 +144,30 @@ export class NotifyItemComponent extends Component<INotifyItemComponentProps,INo
     return (
 
         <ListItem key={notifierUserId} classes={{gutters: classes.itemGutter}} dense button className={classes.listItem} style={isSeen ? { opacity: 0.6 } : {}}>
-              <NavLink
-                        to={`/${notifierUserId}`}
+              <Link
+                        href={`/${notifierUserId}`}
+                    >
+                        <UserAvatar 
                         onClick={(evt) => {
                           evt.preventDefault()
                           closeNotify!()
                           goTo!(`/${notifierUserId}`)
                         }}
-                    >
-                        <UserAvatar fullName={fullName} size={40} fileName={avatar} />
-                    </NavLink>
-              <ListItemText className={classes.itemText} primary={<NavLink to={url} onClick={this.handleSeenNotify}>
+                        fullName={fullName} 
+                        size={40} 
+                        fileName={avatar} />
+                    </Link>
+              <ListItemText className={classes.itemText} primary={<Link href={url}>
+                <span onClick={this.handleSeenNotify}>
                         <div className={classes.userName}>
                             {fullName}
                         </div>
                         <div className={classes.description}>
                             {description}
                         </div>
-                    </NavLink>} />
+
+                </span>
+                    </Link>} />
               <ListItemSecondaryAction className={classes.closeButton}>
               <div onClick={() => deleteNotiy!(id)}>
                     <SvgClose className={classes.closeIcon} style={{ cursor: 'pointer' }} />
@@ -178,7 +184,7 @@ export class NotifyItemComponent extends Component<INotifyItemComponentProps,INo
  */
 const mapDispatchToProps = (dispatch: any, ownProps: INotifyItemComponentProps) => {
   return {
-    goTo: (url: string) => dispatch(push(url)),
+    goTo: (url: string) => Router.push(url),
     seenNotify: (id: string) => dispatch(notifyActions.dbSeenNotification(id)),
     deleteNotiy: (id: string) => dispatch(notifyActions.dbDeleteNotification(id))
   }

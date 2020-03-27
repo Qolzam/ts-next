@@ -15,16 +15,16 @@ import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationIcon from '@material-ui/icons/Notifications';
 import classNames from 'classnames';
-import { push } from 'connected-react-router';
+import Router from 'next/router'
 import { Map } from 'immutable';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import config from 'config';
-import { OAuthType } from 'core/domain/authorize';
-import * as authorizeActions from 'store/actions/authorizeActions';
-import * as userSettingActions from 'store/actions/userSettingActions';
+import { withRouter } from 'next/router';
+import config from '~/config';
+import { OAuthType } from '~/core/domain/authorize';
+import * as authorizeActions from '~/store/actions/authorizeActions';
+import * as userSettingActions from '~/store/actions/userSettingActions';
 
 import NotificationSettingComponent from '../notificationSetting';
 import { ConfigComponentType } from './configComponentType';
@@ -73,17 +73,17 @@ export class ConfigComponent extends Component<IConfigProps, IConfigState> {
     const { classes, t, homePage, theme, userSetting } = this.props
     const menuList = (
       <div>
-        <ListItem button onClick={() => this.handleChange(ConfigComponentType.Notification, t!('config.notificationLabel'))}>
+        <ListItem button onClick={() => this.handleChange(ConfigComponentType.Notification, t!('~/config.notificationLabel'))}>
           <ListItemIcon>
             <NotificationIcon />
           </ListItemIcon>
-          <ListItemText primary={t!('config.notificationLabel')} />
+          <ListItemText primary={t!('~/config.notificationLabel')} />
         </ListItem>
         <ListItem button onClick={() => { homePage!() }} >
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
-          <ListItemText primary={t!('config.homeLabel')} />
+          <ListItemText primary={t!('~/config.homeLabel')} />
         </ListItem>
       </div>
     )
@@ -118,7 +118,7 @@ export class ConfigComponent extends Component<IConfigProps, IConfigState> {
               <MenuIcon />
             </IconButton>
             <Typography variant='h6' color='inherit' noWrap>
-                {selectedItem === ConfigComponentType.ChangePassword ? t!('config.changePasswordLabel') : selectedText}
+                {selectedItem === ConfigComponentType.ChangePassword ? t!('~/config.changePasswordLabel') : selectedText}
               </Typography>
           </Toolbar>
         </AppBar>
@@ -174,7 +174,7 @@ const mapDispatchToProps = (dispatch: any, ownProps: IConfigProps) => {
     getUserSetting: () => dispatch(userSettingActions.dbFetchUserSetting()),
     loginWithOAuth: (type: OAuthType) => dispatch(authorizeActions.dbLoginWithOAuth(type)),
     homePage: () => {
-      dispatch(push('/'))
+      Router.push('/')
     }
   }
 }
@@ -190,6 +190,6 @@ const mapStateToProps = (state: Map<string, any>) => {
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(ConfigComponent as any)
+const translateWrapper = withTranslation('common')(ConfigComponent as any)
 
 export default withRouter<any, any>(connect(mapStateToProps, mapDispatchToProps)(withStyles(configStyles as any, { withTheme: true })(translateWrapper as any) as any))

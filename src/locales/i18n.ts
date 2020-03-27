@@ -1,29 +1,23 @@
-import i18n from 'i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
-import Backend from 'i18next-xhr-backend';
-import { initReactI18next } from 'react-i18next';
-const localePath = process.env.NODE_ENV === 'production' ? 'locales' : 'locales'
-i18n
-  .use(Backend)
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    fallbackLng: 'en',
-    // have a common namespace used around the full app
-    ns: ['translations'],
-    defaultNS: 'translations',
-    preload: ['en', 'zh', 'vi'],
-    backend: {
-      loadPath: `${localePath}/{{ns}}/enjson_{{lng}}.json`,
-    },
-    debug: false,
-    interpolation: {
-      escapeValue: false, // not needed for react!!
-    },
-    react: {
-      wait: true,
-      useSuspense: false
-    }
-  })
+import NextI18Next from 'next-i18next'
 
-export default i18n
+const NextI18NextInstance = new NextI18Next({
+  defaultLanguage: 'en',
+  otherLanguages: ['en', 'zh', 'vi'],
+  fallbackLng: 'en',
+  // have a common namespace used around the full app
+  ns: ['common'],
+  defaultNS: 'common',
+  preload: ['en', 'zh', 'vi'],
+  debug: false,
+  interpolation: {
+    escapeValue: false, // not needed for react!!
+  },
+})
+
+export default NextI18NextInstance
+
+/* Optionally, export class methods as named exports */
+export const {
+  appWithTranslation,
+  withTranslation,
+} = NextI18NextInstance

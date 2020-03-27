@@ -13,31 +13,31 @@ import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import SvgCamera from '@material-ui/icons/PhotoCamera';
-import ImageEditor from 'components/ImageEditor';
-import ImageGallery from 'components/imageGallery';
-import ImgCover from 'components/imgCover';
-import UserAvatarComponent from 'components/userAvatar/UserAvatarComponent';
-import { UserPermissionType } from 'core/domain/common/userPermissionType';
-import { User } from 'core/domain/users';
+import ImageEditor from '~/components/ImageEditor';
+import ImageGallery from '~/components/imageGallery';
+import ImgCover from '~/components/imgCover';
+import UserAvatarComponent from '~/components/userAvatar/UserAvatarComponent';
+import { UserPermissionType } from '~/core/domain/common/userPermissionType';
+import { User } from '~/core/domain/users';
 import { Map } from 'immutable';
-import AppInput from 'layouts/appInput';
-import AppDialogTitle from 'layouts/dialogTitle/DialogTitleComponent';
+import AppInput from '~/layouts/appInput';
+import AppDialogTitle from '~/layouts/dialogTitle/DialogTitleComponent';
 import moment from 'moment/moment';
 import React, { Component } from 'react';
-import DayPickerInput from 'react-day-picker/DayPickerInput';
-import MomentLocaleUtils, { formatDate, parseDate } from 'react-day-picker/moment';
+const DayPickerInput = require('react-day-picker/DayPickerInput');
+const MomentLocaleUtils = require('react-day-picker/moment');
 import EventListener from 'react-event-listener';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import config from 'config';
-import * as imageGalleryActions from 'store/actions/imageGalleryActions';
-import * as userActions from 'store/actions/userActions';
-import { authorizeSelector } from 'store/reducers/authorize/authorizeSelector';
-import { gallerySelector } from 'store/reducers/imageGallery/gallerySelector';
+import config from '~/config';
+import * as imageGalleryActions from '~/store/actions/imageGalleryActions';
+import * as userActions from '~/store/actions/userActions';
+import { authorizeSelector } from '~/store/reducers/authorize/authorizeSelector';
+import { gallerySelector } from '~/store/reducers/imageGallery/gallerySelector';
 
 import { IEditProfileComponentProps } from './IEditProfileComponentProps';
 import { IEditProfileComponentState } from './IEditProfileComponentState';
-
+const { formatDate, parseDate } = MomentLocaleUtils
 // - Import app components
 // - Import API
 // - Import actions
@@ -653,6 +653,6 @@ const makeMapStateToProps = () => {
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(EditProfileComponent as any)
+const translateWrapper = withTranslation('common')(EditProfileComponent as any)
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(withStyles(styles as any)(translateWrapper as any) as any)

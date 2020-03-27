@@ -48,10 +48,10 @@ const constraintImage = (file: File,fileName: string, maxWidth?: number, maxHeig
         // Load the image
     let reader = new FileReader()
     reader.onload = (readerEvent: any) => {
-      let image = new Image()
+      let image = new window.Image()
       image.onload = (imageEvent: Event) => {
 
-                // Resize the image
+        // Resize the image
         let canvas: HTMLCanvasElement = document.createElement('canvas')
         let maxSize: number = 986// TODO : pull max size from a site config
         let width: number = image.width

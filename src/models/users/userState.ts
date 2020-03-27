@@ -1,7 +1,7 @@
 
 import {Map} from 'immutable'
-import { UserSearchState } from 'models/users/userSearchState'
-import { FindPeopleState } from 'models/users/findPeopleState'
+import { UserSearchState } from '~/models/users/userSearchState'
+import { FindPeopleState } from '~/models/users/findPeopleState'
 
 export class UserState {
     constructor(

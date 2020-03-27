@@ -21,5 +21,6 @@ yarn-debug.log*
 yarn-error.log*
 
 .vscode/
+.next/
 src/data/awsClient
 src/components/AWS.tsx

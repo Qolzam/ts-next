@@ -7,20 +7,20 @@ import { withStyles } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
 import AddVideoIcon from '@material-ui/icons/AddToQueue';
 import SvgDelete from '@material-ui/icons/Delete';
-import FileAPI from 'api/FileAPI';
+import FileAPI from '~/api/FileAPI';
 import classNames from 'classnames';
-import Img from 'components/img';
-import { VideoFile } from 'core/domain/imageGallery';
-import { User } from 'core/domain/users';
+import Img from '~/components/img';
+import { VideoFile } from '~/core/domain/imageGallery';
+import { User } from '~/core/domain/users';
 import { Map } from 'immutable';
 import PropTypes from 'prop-types';
 import React, { Component, RefObject } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import config from 'config';
-import * as globalActions from 'store/actions/globalActions';
-import * as imageGalleryActions from 'store/actions/imageGalleryActions';
-import { userSelector } from 'store/reducers/users/userSelector';
+import config from '~/config';
+import * as globalActions from '~/store/actions/globalActions';
+import * as imageGalleryActions from '~/store/actions/imageGalleryActions';
+import { userSelector } from '~/store/reducers/users/userSelector';
 import uuid from 'uuid';
 
 import { IVideoGalleryProps } from './IVideoGalleryProps';
@@ -314,6 +314,6 @@ const mapStateToProps = (state: Map<string, any>) => {
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(VideoGalleryComponent as any)
+const translateWrapper = withTranslation('common')(VideoGalleryComponent as any)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(videoGalleryStyles as any)(translateWrapper as any) as any)

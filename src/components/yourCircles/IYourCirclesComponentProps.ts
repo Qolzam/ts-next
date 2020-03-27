@@ -1,4 +1,4 @@
-import { Circle } from 'core/domain/circles'
+import { Circle } from '~/core/domain/circles'
 import {Map} from 'immutable'
 export interface IYourCirclesComponentProps {
 

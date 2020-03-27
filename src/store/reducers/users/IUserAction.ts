@@ -1,4 +1,4 @@
-import { UserActionType } from 'constants/userActionType'
+import { UserActionType } from '~/constants/userActionType'
 
 /**
  *  User action interface

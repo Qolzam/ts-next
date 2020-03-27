@@ -7,24 +7,24 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import { withStyles } from '@material-ui/core/styles';
 import SvgAddImage from '@material-ui/icons/AddAPhoto';
 import SvgDelete from '@material-ui/icons/Delete';
-import FileAPI from 'api/FileAPI';
-import Img from 'components/img';
-import { User } from 'core/domain/users';
+import FileAPI from '~/api/FileAPI';
+import Img from '~/components/img';
+import { User } from '~/core/domain/users';
 import { Map } from 'immutable';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
 import moment from 'moment/moment';
-import * as globalActions from 'store/actions/globalActions';
-import * as imageGalleryActions from 'store/actions/imageGalleryActions';
-import { userSelector } from 'store/reducers/users/userSelector';
-import { globalSelector } from 'store/reducers/global/globalSelector';
+import * as globalActions from '~/store/actions/globalActions';
+import * as imageGalleryActions from '~/store/actions/imageGalleryActions';
+import { userSelector } from '~/store/reducers/users/userSelector';
+import { globalSelector } from '~/store/reducers/global/globalSelector';
 import uuid from 'uuid';
 import { fromJS } from 'immutable';
-import { UserPermissionType } from 'core/domain/common/userPermissionType';
-import { Media } from 'core/domain/imageGallery/media';
-import config from 'config';
+import { UserPermissionType } from '~/core/domain/common/userPermissionType';
+import { Media } from '~/core/domain/imageGallery/media';
+import config from '~/config';
 
 import { IImageGalleryComponentProps } from './IImageGalleryComponentProps';
 import { IImageGalleryComponentState } from './IImageGalleryComponentState';
@@ -157,7 +157,9 @@ export class ImageGalleryComponent extends Component<IImageGalleryComponentProps
     const file = event.target.files[0]
     const extension = FileAPI.getExtension(event.target.files[0].name)
     let fileName = (`${uuid()}.${extension}`)
-    FileAPI.constraintImage(event.target.files[0], fileName)
+    if (typeof window !== 'undefined') {
+      FileAPI.constraintImage(event.target.files[0], fileName)
+    }
     isPhotoSelected = true
     const parsedFiles: { file: any, fileName: string }[] = []
     parsedFiles.push({ file: URL.createObjectURL(file), fileName })
@@ -311,6 +313,6 @@ const mapStateToProps = (state: Map<string, any>) => {
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(ImageGalleryComponent as any)
+const translateWrapper = withTranslation('common')(ImageGalleryComponent as any)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles as any)(translateWrapper as any) as any)

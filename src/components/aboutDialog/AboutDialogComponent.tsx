@@ -8,15 +8,15 @@ import { withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import BackIcon from '@material-ui/icons/ArrowBack';
-import StringAPI from 'api/StringAPI';
-import UserAvatarComponent from 'components/userAvatar/UserAvatarComponent';
-import { User } from 'core/domain/users';
+import StringAPI from '~/api/StringAPI';
+import UserAvatarComponent from '~/components/userAvatar/UserAvatarComponent';
+import { User } from '~/core/domain/users';
 import { Map } from 'immutable';
 import moment from 'moment/moment';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import { authorizeSelector } from 'store/reducers/authorize/authorizeSelector';
+import { authorizeSelector } from '~/store/reducers/authorize/authorizeSelector';
 
 import { aboutDialogStyles } from './aboutDialogStyles';
 import { IAboutDialogProps } from './IAboutDialogProps';
@@ -189,6 +189,6 @@ const makeMapStateToProps = () => {
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(AboutDialogComponent as any)
+const translateWrapper = withTranslation('common')(AboutDialogComponent as any)
 const componentWithStyles: any = withStyles(aboutDialogStyles as any, { withTheme: true })(translateWrapper as any)
 export default connect(makeMapStateToProps, mapDispatchToProps)(componentWithStyles)

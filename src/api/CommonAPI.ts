@@ -1,6 +1,6 @@
 import moment from 'moment/moment'
 import {Map, List} from 'immutable'
-import { RegexPattern } from 'constants/RegexPattern'
+import { RegexPattern } from '~/constants/RegexPattern'
 import * as R from 'ramda'
 /**
  * Log the data

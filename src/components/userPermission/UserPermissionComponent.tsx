@@ -10,14 +10,14 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import BackIcon from '@material-ui/icons/ArrowBack';
-import { userPermissionStyles } from 'components/userPermission/userPermissionStyles';
-import { UserPermissionType } from 'core/domain/common/userPermissionType';
+import { userPermissionStyles } from '~/components/userPermission/userPermissionStyles';
+import { UserPermissionType } from '~/core/domain/common/userPermissionType';
 import { Map } from 'immutable';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import { authorizeSelector } from 'store/reducers/authorize';
-import { circleSelector } from 'store/reducers/circles/circleSelector';
+import { authorizeSelector } from '~/store/reducers/authorize';
+import { circleSelector } from '~/store/reducers/circles/circleSelector';
 
 import { IUserPermissionProps } from './IUserPermissionProps';
 import { IUserPermissionState } from './IUserPermissionState';
@@ -169,6 +169,6 @@ const makeMapStateToProps = () => {
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(UserPermissionComponent as any)
+const translateWrapper = withTranslation('common')(UserPermissionComponent as any)
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(withStyles(userPermissionStyles as any)(translateWrapper as any) as any)

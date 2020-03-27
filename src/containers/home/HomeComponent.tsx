@@ -1,4 +1,5 @@
 // - Import react components
+import Link from '~/components/Link';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
@@ -6,34 +7,28 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 import classNames from 'classnames';
-import ChatComponent from 'components/chat/ChatComponent';
-import { push } from 'connected-react-router';
+import ChatComponent from '~/components/chat/ChatComponent';
+import Router from 'next/router'
 import { Map } from 'immutable';
 import React, { Component } from 'react';
-import CookieConsent from 'react-cookie-consent';
-import { withTranslation } from 'react-i18next';
-import IdleTimer from 'react-idle-timer';
+const CookieConsent = require('react-cookie-consent');
+import { withTranslation } from '~/locales/i18n';
+import IdleTimer from 'react-idle-timer'
 import { connect } from 'react-redux';
-import TelarTextLogo from 'layouts/telarTextLogo';
-import { NavLink, withRouter } from 'react-router-dom';
-import { HomeRouter } from 'routes';
-import HomeHeader from 'components/homeHeader/HomeHeaderComponent';
-import config from 'config';
-import * as chatActions from 'store/actions/chatActions';
-import * as globalActions from 'store/actions/globalActions';
+import TelarTextLogo from '~/layouts/telarTextLogo';
+import { withRouter } from 'next/router';
+import HomeHeader from '~/components/homeHeader/HomeHeaderComponent';
+import * as chatActions from '~/store/actions/chatActions';
+import * as globalActions from '~/store/actions/globalActions';
 
 import { homeStyles } from './homeStyles';
 import { IHomeComponentProps } from './IHomeComponentProps';
 import { IHomeComponentState } from './IHomeComponentState';
 import { menuItems } from './menuItems';
 
-// - Import app components
-// - Import API
 
-// - Import Actions
-// - Create Home component class
 export class HomeComponent extends Component<IHomeComponentProps, IHomeComponentState> {
 
   idleTimer: any
@@ -92,23 +87,22 @@ export class HomeComponent extends Component<IHomeComponentProps, IHomeComponent
    * Render DOM component
    */
   render() {
-    const HR = HomeRouter
     const { loaded, authed, showSendFeedback, t, classes, theme, isChatOpen } = this.props
     const { drawerOpen } = this.state
 
     const drawer = (
       <div>
         {
-          menuItems(this.props.uid!, t!, showSendFeedback!).map((item: any, index) => {
+          menuItems(this.props.uid!, showSendFeedback!).map((item: any, index) => {
             if (item.path) {
-              return (<NavLink key={`home-menu-${index}`} to={item.path}>
+              return (<Link key={`home-menu-${index}`} href={item.path}>
                 <MenuItem style={{color: 'rgb(117, 117, 117)'}}>
                   <ListItemIcon>
                     {item.icon!}
                   </ListItemIcon>
                   <ListItemText key={`home-menu-${index}`} primary={item.label} />
                 </MenuItem>
-              </NavLink>)
+              </Link>)
             } else if (item.onClick) {
               return (
                 <MenuItem key={`home-menu-${index}`} onClick={item.onClick} style={{ color: 'rgb(117, 117, 117)' }}>
@@ -176,12 +170,12 @@ export class HomeComponent extends Component<IHomeComponentProps, IHomeComponent
               [classes[`contentShift-${anchor}`]]: drawerOpen,
             })}
           >
-            {loaded && authed ? <HR /> : ''}
+            {this.props.children}
           </main>
         </div>
 
         <ChatComponent open={isChatOpen!} onToggle={this.toggleChat} />
-        <CookieConsent
+        {/* <CookieConsent
           location='bottom'
           buttonText={t!('home.cookieConsentButton')}
           cookieName='social-consent'
@@ -190,14 +184,13 @@ export class HomeComponent extends Component<IHomeComponentProps, IHomeComponent
           expires={150}
         >
           {t!('home.cookieConsentText')}{' '}
-        </CookieConsent>
+        </CookieConsent> */}
 
       </div>
     )
     return (
       <IdleTimer
         ref={this.idleTimer}
-        element={document}
         onActive={this.onActive}
         onIdle={this.onIdle}
         timeout={1000 * 6}>
@@ -222,7 +215,7 @@ const mapDispatchToProps = (dispatch: any, ownProps: IHomeComponentProps) => {
     defaultDataEnable: () => {
       dispatch(globalActions.defaultDataEnable())
     },
-    goTo: (url: string) => dispatch(push(url)),
+    goTo: (url: string) => Router.push(url),
     showSendFeedback: () => dispatch(globalActions.showSendFeedback()),
     hideSendFeedback: () => dispatch(globalActions.hideSendFeedback())
   }
@@ -247,6 +240,6 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IHomeComponentProps)
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(HomeComponent as any)
+const translateWrapper = withTranslation('common')(HomeComponent as any)
 
 export default withRouter<any, any>(connect(mapStateToProps, mapDispatchToProps)(withStyles(homeStyles as any, { withTheme: true })(translateWrapper as any) as any))

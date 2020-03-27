@@ -1,7 +1,7 @@
 // - Import react components
 import { withStyles } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
-import { userAvatarStyles } from 'components/userAvatar/userAvatarStyles';
+import { userAvatarStyles } from '~/components/userAvatar/userAvatarStyles';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';

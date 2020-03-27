@@ -1,7 +1,7 @@
-import { User } from 'core/domain/users'
-import { Comment } from 'core/domain/comments'
-import { ServerRequestModel } from 'models/server'
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType'
+import { User } from '~/core/domain/users'
+import { Comment } from '~/core/domain/comments'
+import { ServerRequestModel } from '~/models/server'
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType'
 import {Map} from 'immutable'
 export interface ICommentGroupComponentProps {
 

@@ -1,5 +1,5 @@
 import {Map} from 'immutable'
-import { UserClaim } from 'core/domain/authorize/userClaim'
+import { UserClaim } from '~/core/domain/authorize/userClaim'
 export interface IMasterProps {
     /**
      * Close gloal message

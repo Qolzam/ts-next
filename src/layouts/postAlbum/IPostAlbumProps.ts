@@ -1,5 +1,5 @@
-import { Media } from 'core/domain/imageGallery/media'
-import { Post } from 'core/domain/posts'
+import { Media } from '~/core/domain/imageGallery/media'
+import { Post } from '~/core/domain/posts'
 import {List} from 'immutable'
 
 export interface IPostAlbumProps {

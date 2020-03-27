@@ -1,21 +1,22 @@
 // - Import domain
-import { CircleActionType } from 'constants/circleActionType';
-import { ServerRequestType } from 'constants/serverRequestType';
+import { CircleActionType } from '~/constants/circleActionType';
+import { ServerRequestType } from '~/constants/serverRequestType';
 import { List, Map } from 'immutable';
 import moment from 'moment/moment';
-import StringAPI from 'api/StringAPI';
-import { Circle, UserTie } from 'core/domain/circles';
-import { SocialError } from 'core/domain/common';
-import { User } from 'core/domain/users';
-import { ICircleService, IUserTieService } from 'core/services/circles';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
-import { ServerRequestModel } from 'models/server/serverRequestModel';
+import StringAPI from '~/api/StringAPI';
+import { Circle, UserTie } from '~/core/domain/circles';
+import { SocialError } from '~/core/domain/common';
+import { User } from '~/core/domain/users';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
+import { ServerRequestModel } from '~/models/server/serverRequestModel';
 import { provider } from '../../socialEngine';
-import * as globalActions from 'store/actions/globalActions';
-import * as serverActions from 'store/actions/serverActions';
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType';
-import * as userActions from 'store/actions/userActions';
-import { userSelector } from 'store/reducers/users/userSelector';
+import * as globalActions from '~/store/actions/globalActions';
+import * as serverActions from '~/store/actions/serverActions';
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType';
+import * as userActions from '~/store/actions/userActions';
+import { userSelector } from '~/store/reducers/users/userSelector';
+import ICircleService from '~/core/services/circles/ICircleService';
+import { IUserTieService } from '~/core/services/circles/IUserTieService';
 
 // - Import action types
 // - Import actions

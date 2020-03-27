@@ -2,16 +2,16 @@
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-import FollowDialogComponent from 'components/followDialog/FollowDialogComponent';
-import UserAvatar from 'components/userAvatar/UserAvatarComponent';
-import { push } from 'connected-react-router';
-import { User } from 'core/domain/users';
+import FollowDialogComponent from '~/components/followDialog/FollowDialogComponent';
+import UserAvatar from '~/components/userAvatar/UserAvatarComponent';
+import Router from 'next/router'
+import { User } from '~/core/domain/users';
 import { Map } from 'immutable';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import { userSelector } from 'store/reducers/users/userSelector';
+import { userSelector } from '~/store/reducers/users/userSelector';
 
 import { IUserBoxComponentProps } from './IUserBoxComponentProps';
 import { IUserBoxComponentState } from './IUserBoxComponentState';
@@ -165,7 +165,7 @@ export class UserBoxComponent extends Component<IUserBoxComponentProps, IUserBox
  */
 const mapDispatchToProps = (dispatch: Function, ownProps: IUserBoxComponentProps) => {
   return {
-    goTo: (url: string) => dispatch(push(url))
+    goTo: (url: string) => Router.push(url)
 
   }
 }
@@ -185,6 +185,6 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IUserBoxComponentPro
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(UserBoxComponent as any)
+const translateWrapper = withTranslation('common')(UserBoxComponent as any)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles as any)(translateWrapper as any))

@@ -1,13 +1,13 @@
-import { User } from 'core/domain/users';
+import { User } from '~/core/domain/users';
 import { Map } from 'immutable';
-import { DialogType } from 'models/common/dialogType';
+import { DialogType } from '~/models/common/dialogType';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import * as globalActions from 'store/actions/globalActions';
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType';
-import { authorizeSelector } from 'store/reducers/authorize/authorizeSelector';
-import { globalSelector } from 'store/reducers/global/globalSelector';
-import { serverSelector } from 'store/reducers/server/serverSelector';
+import * as globalActions from '~/store/actions/globalActions';
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType';
+import { authorizeSelector } from '~/store/reducers/authorize/authorizeSelector';
+import { globalSelector } from '~/store/reducers/global/globalSelector';
+import { serverSelector } from '~/store/reducers/server/serverSelector';
 
 import { IPostStreamProps } from './IPostStreamProps';
 

@@ -1,8 +1,8 @@
 // - Import react components
-import { ServerActionType } from 'constants/serverActionType';
+import { ServerActionType } from '~/constants/serverActionType';
 import { Map } from 'immutable';
-import { ServerRequestModel } from 'models/server/serverRequestModel';
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType';
+import { ServerRequestModel } from '~/models/server/serverRequestModel';
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType';
 
 import { IServerAction } from './IServerAction';
 import { ServerState } from './ServerState';

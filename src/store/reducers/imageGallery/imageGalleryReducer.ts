@@ -1,5 +1,5 @@
 // - Import react components
-import { ImageGalleryActionType } from 'constants/imageGalleryActionType';
+import { ImageGalleryActionType } from '~/constants/imageGalleryActionType';
 import { List, Map } from 'immutable';
 
 import { IImageGalleryAction } from './IImageGalleryAction';

@@ -17,38 +17,44 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SvgPlay from '@material-ui/icons/PlayCircleFilled';
 import SvgShare from '@material-ui/icons/Share';
 import classNames from 'classnames';
-import CommentGroup from 'components/commentGroup/CommentGroupComponent';
-import Img from 'components/img';
-import PostWrite from 'components/postWrite';
-import ReadMoreComponent from 'components/readMore';
-import ShareDialog from 'components/shareDialog';
-import UserAvatar from 'components/userAvatar/UserAvatarComponent';
+import CommentGroup from '~/components/commentGroup/CommentGroupComponent';
+import Img from '~/components/img';
+import PostWrite from '~/components/postWrite';
+import ReadMoreComponent from '~/components/readMore';
+import ShareDialog from '~/components/shareDialog';
+import UserAvatar from '~/components/userAvatar/UserAvatarComponent';
 import copy from 'copy-to-clipboard';
-import { UserPermissionType } from 'core/domain/common/userPermissionType';
-import { Post } from 'core/domain/posts';
-import { PostType } from 'core/domain/posts/postType';
-import PostAlbumComponent from 'layouts/postAlbum';
+import { UserPermissionType } from '~/core/domain/common/userPermissionType';
+import { Post } from '~/core/domain/posts';
+import { PostType } from '~/core/domain/posts/postType';
+import PostAlbumComponent from '~/layouts/postAlbum';
 import moment from 'moment/moment';
 import * as R from 'ramda';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import Linkify from 'react-linkify';
 import ReactPlayer from 'react-player';
-import { NavLink } from 'react-router-dom';
-import reactStringReplace from 'react-string-replace';
-import config from 'config';
+import Link from '~/components/Link';
+const reactStringReplace =  require('react-string-replace');
+import config from '~/config';
 
 import { connectPost } from './connectPost';
 import { IPostComponentProps } from './IPostComponentProps';
 import { IPostComponentState } from './IPostComponentState';
 import { postStyles } from './postStyles';
 
-// - Material UI
-// - Import app components
-// - Import actions
-// - Create component class
-export class PostComponent extends Component<IPostComponentProps, IPostComponentState> {
+const componentDecorator = (href: any, text: any, key: any) => (
+  <a href={href} key={key} target="_blank" rel="noopener noreferrer" style={{color: 'blue' }} onClick={(event:  React.MouseEvent<HTMLAnchorElement>) => event.stopPropagation()}>
+      {text}
+  </a>
+);
 
+export class PostComponent extends Component<IPostComponentProps, IPostComponentState> {
+  static async getInitialProps() {
+    return {
+      namespacesRequired: ['common'],
+    }
+  }
   styles = {
     dialog: {
       width: '',
@@ -346,7 +352,7 @@ getAlbum() {
   const id = post.get('id')
   const postTypeId = post.get('postTypeId')
 
-    if(album && album.get('photos')  && (postTypeId === PostType.Album || postTypeId === PostType.PhotoGallery)){
+    if(album && album.get('photos') && (postTypeId === PostType.Album || postTypeId === PostType.PhotoGallery)){
       return <PostAlbumComponent 
       key={`post-album-grid-${id}`}
       currentAlbum={post}
@@ -383,11 +389,11 @@ getAlbum() {
     return (
       <Card key={id + 'post-card'} className='animate-top'>
         <CardHeader
-          title={<NavLink to={`/${ownerUserId}`}>{ownerDisplayName}</NavLink>}
+          title={<Link href={`/${ownerUserId}`}>{ownerDisplayName}</Link>}
           subheader={creationDate ? (version === config.dataFormat.postVersion
              ? moment(creationDate).local().fromNow()
              : moment(creationDate!).local().fromNow()) + ` | ${this.getPermissionLabel()}` : <LinearProgress color='primary' />}
-          avatar={<NavLink to={`/${ownerUserId}`}><UserAvatar fullName={ownerDisplayName!} fileName={ownerAvatar!} size={36} /></NavLink>}
+          avatar={<Link href={`/${ownerUserId}`}><UserAvatar fullName={ownerDisplayName!} fileName={ownerAvatar!} size={36} /></Link>}
           action={isPostOwner ? this.rightIconMenu() : ''}
         >
         </CardHeader>
@@ -422,22 +428,25 @@ getAlbum() {
 
         <CardContent className={classes.postBody}>
         <ReadMoreComponent body={body!} >
-          <Linkify properties={{ target: '_blank', style: { color: 'blue' }, onClick: (event:  React.MouseEvent<HTMLAnchorElement>) => event.stopPropagation()}}>
+          <Linkify componentDecorator={componentDecorator}>
             {reactStringReplace(body, /#(\w+)/g, (match: string, i: number) => (
-              <NavLink
-                style={{ color: 'green' }}
+              <Link
                 key={match + i}
-                to={`/tag/${match}`}
-                onClick={evt => {
+                href={`/tag/${match}`}
+              >
+                <span
+                onClick={(evt: any) => {
                   evt.preventDefault()
                   evt.stopPropagation()
                   goTo!(`/tag/${match}`)
                   setHomeTitle!(`#${match}`)
                 }}
-              >
+                >
                 #{match}
 
-              </NavLink>
+                </span>
+
+              </Link>
 
             ))}
           </Linkify>
@@ -502,6 +511,6 @@ getAlbum() {
   }
 }
 
-const translateWrapper = withTranslation('translations')(PostComponent as any)
+const translateWrapper = withTranslation('common')(PostComponent as any)
 
-export default connectPost(withStyles(postStyles as any)(translateWrapper as any) as any)
+export default connectPost(withStyles(postStyles as any)(translateWrapper as any) as any) as any

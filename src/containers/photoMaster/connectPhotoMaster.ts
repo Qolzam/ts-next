@@ -1,18 +1,18 @@
-import StringAPI from 'api/StringAPI';
-import { ServerRequestType } from 'constants/serverRequestType';
-import { Post } from 'core/domain/posts';
-import { User } from 'core/domain/users';
+import StringAPI from '~/api/StringAPI';
+import { ServerRequestType } from '~/constants/serverRequestType';
+import { Post } from '~/core/domain/posts';
+import { User } from '~/core/domain/users';
 import { Map } from 'immutable';
-import { DialogType } from 'models/common/dialogType';
+import { DialogType } from '~/models/common/dialogType';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { globalActions, imageGalleryActions, postActions } from 'store/actions';
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType';
-import { authorizeSelector } from 'store/reducers/authorize/authorizeSelector';
-import { globalSelector } from 'store/reducers/global/globalSelector';
-import { gallerySelector } from 'store/reducers/imageGallery/gallerySelector';
-import { postSelector } from 'store/reducers/posts';
-import { serverSelector } from 'store/reducers/server/serverSelector';
+import { globalActions, imageGalleryActions, postActions } from '~/store/actions';
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType';
+import { authorizeSelector } from '~/store/reducers/authorize/authorizeSelector';
+import { globalSelector } from '~/store/reducers/global/globalSelector';
+import { gallerySelector } from '~/store/reducers/imageGallery/gallerySelector';
+import { postSelector } from '~/store/reducers/posts';
+import { serverSelector } from '~/store/reducers/server/serverSelector';
 
 import { IPhotoMasterProps } from './IPhotoMasterProps';
 

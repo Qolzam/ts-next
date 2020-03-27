@@ -1,4 +1,4 @@
-import { VideoFile } from 'core/domain/imageGallery'
+import { VideoFile } from '~/core/domain/imageGallery'
 import { Map, Collection, List } from 'immutable'
 
 export interface IVideoGalleryProps {

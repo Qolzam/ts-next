@@ -1,8 +1,8 @@
 // - Import react components
 import withStyles from '@material-ui/core/styles/withStyles';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
-import { withRouter } from 'react-router-dom';
+import { withTranslation } from '~/locales/i18n';
+import { withRouter } from 'next/router';
 
 import { connectHelp } from './connectHelp';
 import { helpStyles } from './helpStyles';
@@ -53,6 +53,6 @@ export class HelpComponent extends Component<IHelpProps, IHelpState> {
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(HelpComponent as any)
+const translateWrapper = withTranslation('common')(HelpComponent as any)
 
 export default withRouter<any, any>(connectHelp(withStyles(helpStyles as any)(translateWrapper as any) as any))

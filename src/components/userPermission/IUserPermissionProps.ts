@@ -1,5 +1,5 @@
-import { UserPermissionType } from 'core/domain/common/userPermissionType'
-import { User } from 'core/domain/users'
+import { UserPermissionType } from '~/core/domain/common/userPermissionType'
+import { User } from '~/core/domain/users'
 
 export interface IUserPermissionProps {
 

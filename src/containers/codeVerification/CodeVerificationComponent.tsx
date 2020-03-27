@@ -1,31 +1,32 @@
 // - Import react components
 import React, { Component } from 'react'
+import Link from '~/components/Link';
 import { connect } from 'react-redux'
 import {Map} from 'immutable'
-import { push } from 'connected-react-router'
-import { NavLink, withRouter } from 'react-router-dom'
+import Router from 'next/router'
+import { withRouter } from 'next/router'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core/styles'
 
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
-import { withTranslation } from 'react-i18next'
+import { withTranslation } from '~/locales/i18n';
 
 // - Components
 
 // - Import actions
-import * as authorizeActions from 'store/actions/authorizeActions'
-import * as globalActions from 'store/actions/globalActions'
+import * as authorizeActions from '~/store/actions/authorizeActions'
+import * as globalActions from '~/store/actions/globalActions'
 
 // - Import app API
-import StringAPI from 'api/StringAPI'
+import StringAPI from '~/api/StringAPI'
 
 import { ICodeVerificationProps } from './ICodeVerificationProps'
 import { ICodeVerificationState } from './ICodeVerificationState'
 import CircularProgress from '@material-ui/core/CircularProgress'
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType'
-import { ServerRequestType } from 'constants/serverRequestType'
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType'
+import { ServerRequestType } from '~/constants/serverRequestType'
 import { codeVerificationStyles } from './codeVerificationStyles'
 
 // - Create Signup component class
@@ -127,11 +128,11 @@ export class CodeVerificationComponent extends Component<ICodeVerificationProps,
             </div>
         </div>
         <Typography className={classes.caption} variant='caption' component='p'>
-          {t!('signup.termCaption')} <NavLink to='/terms'> {t!('signup.termCaptionLink')} </NavLink>
+          {t!('signup.termCaption')} <Link href='/terms'> {t!('signup.termCaptionLink')} </Link>
         </Typography>
         <Divider />
           <div >
-            <span className={classes.bottomPaper}>{t!('login.loginText')} <NavLink to='/login' className={classes.link}>{t!('login.loginButton')}</NavLink></span>
+            <span className={classes.bottomPaper}>{t!('login.loginText')} <Link href='/login'>{t!('login.loginButton')}</Link></span>
           </div>
 
       </div>
@@ -152,7 +153,7 @@ const mapDispatchToProps = (dispatch: any, ownProps: ICodeVerificationProps) => 
       dispatch(authorizeActions.asyncVerifyUserRegisterCode(code))
     },
     loginPage: () => {
-      dispatch(push('/login'))
+      Router.push('/login')
     }
   }
 }
@@ -168,6 +169,6 @@ const mapStateToProps = (state: Map<string, any>, ownProps: ICodeVerificationPro
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(CodeVerificationComponent as any)
+const translateWrapper = withTranslation('common')(CodeVerificationComponent as any)
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withStyles(codeVerificationStyles as any)(translateWrapper as any) as any) as any)

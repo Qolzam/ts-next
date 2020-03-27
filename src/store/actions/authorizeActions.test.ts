@@ -1,7 +1,7 @@
-import 'reflect-metadata'
+
 import * as authorizeActions from './authorizeActions'
-import { AuthorizeActionType } from 'constants/authorizeActionType'
-import { LoginUser } from 'core/domain/authorize'
+import { AuthorizeActionType } from '~/constants/authorizeActionType'
+import { LoginUser } from '~/core/domain/authorize'
 import {Map} from 'immutable'
 
 describe('Authorize Acitons', () => {

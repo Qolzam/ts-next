@@ -1,8 +1,8 @@
-import { User } from 'core/domain/users'
+import { User } from '~/core/domain/users'
 import {Map} from 'immutable'
-import { Message } from 'core/domain/chat/message'
-import { ChatRoom } from 'core/domain/chat/chatRoom'
-import { ChatMessageModel } from 'models/chat/chatMessageModel'
+import { Message } from '~/core/domain/chat/message'
+import { ChatRoom } from '~/core/domain/chat/chatRoom'
+import { ChatMessageModel } from '~/models/chat/chatMessageModel'
 
 export interface IChatBodyProps {
 

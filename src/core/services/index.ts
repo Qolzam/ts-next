@@ -1,23 +1,11 @@
-import { IAuthorizeService } from './authorize'
-import { ICircleService } from './circles'
-import { ICommentService } from './comments'
-import { ICommonService } from './common'
-import { IImageGalleryService } from './imageGallery'
-import { INotificationService } from './notifications'
-import { IPostService } from './posts'
-import { IUserService } from './users'
-import { IVoteService } from './votes'
-import { IStorageService } from './files'
+export * from './authorize'
+export * from './comments'
+export * from './common'
+export * from './imageGallery'
+export * from './notifications'
+export * from './posts'
+export * from './votes'
+export * from './files'
+export * from './users/IUserService'
+export * from './circles/ICircleService'
 
-export {
-    IAuthorizeService,
-    ICircleService,
-    ICommentService,
-    ICommonService,
-    IImageGalleryService,
-    INotificationService,
-    IPostService,
-    IUserService,
-    IVoteService,
-    IStorageService
-}

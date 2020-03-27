@@ -6,22 +6,22 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
 import withStyles from '@material-ui/core/styles/withStyles';
 import SvgCamera from '@material-ui/icons/PhotoCamera';
-import { ArrayAPI } from 'api/ArrayAPI';
-import StringAPI from 'api/StringAPI';
+import { ArrayAPI } from '~/api/ArrayAPI';
+import StringAPI from '~/api/StringAPI';
 import classNames from 'classnames';
-import { PostType } from 'core/domain/posts/postType';
+import { PostType } from '~/core/domain/posts/postType';
 import { Map } from 'immutable';
 import debounce from 'lodash/debounce';
 import React, { Component, Fragment } from 'react';
 import EventListener from 'react-event-listener';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { withRouter } from 'react-router-dom';
-import PostComponent from 'components/post';
-import PostWriteComponent from 'components/postWrite';
-import UserAvatarComponent from 'components/userAvatar/UserAvatarComponent';
-import LoadMoreProgressComponent from 'layouts/loadMoreProgress';
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType';
+import { withRouter } from 'next/router';
+import PostComponent from '~/components/post';
+import PostWriteComponent from '~/components/postWrite';
+import UserAvatarComponent from '~/components/userAvatar/UserAvatarComponent';
+import LoadMoreProgressComponent from '~/layouts/loadMoreProgress';
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType';
 
 import { connectPostStream } from './connectPostStream';
 import { IPostStreamProps } from './IPostStreamProps';
@@ -74,7 +74,11 @@ const creatColumn = (numberOfCoulmn: number, posts: Map<string, any>) => {
 
 // - Create StreamComponent component class
 export class PostStreamComponent extends Component<IPostStreamProps, IPostStreamState> {
-
+  static async getInitialProps() {
+    return {
+      namespacesRequired: ['common'],
+    }
+  }
   /**
    * Feilds
    */
@@ -299,6 +303,6 @@ export class PostStreamComponent extends Component<IPostStreamProps, IPostStream
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(PostStreamComponent as any)
+const translateWrapper = withTranslation('common')(PostStreamComponent as any)
 
 export default withRouter<any, any>(connectPostStream(withStyles(postStreamStyles as any)(translateWrapper as any) as any))

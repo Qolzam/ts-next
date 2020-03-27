@@ -3,9 +3,9 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { Map } from 'immutable';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PostComponent from 'components/post';
-import * as postActions from 'store/actions/postActions';
-import * as userActions from 'store/actions/userActions';
+import PostComponent from '~/components/post';
+import * as postActions from '~/store/actions/postActions';
+import * as userActions from '~/store/actions/userActions';
 
 import { IPostPageProps } from './IPostPageProps';
 import { IPostPageState } from './IPostPageState';

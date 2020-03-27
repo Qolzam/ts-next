@@ -1,4 +1,4 @@
-import { LoginUser } from 'core/domain/authorize'
+import { LoginUser } from '~/core/domain/authorize'
 
 export interface ISmsVerificationComponentProps {
 

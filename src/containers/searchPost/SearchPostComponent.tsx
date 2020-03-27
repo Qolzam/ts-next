@@ -4,8 +4,8 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import classNames from 'classnames';
 import queryString from 'query-string';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
-import { withRouter } from 'react-router';
+import { withTranslation } from '~/locales/i18n';
+import { withRouter } from 'next/router';
 
 import PostStreamComponent from '../postStream';
 import SearchComponent from '../search';
@@ -106,6 +106,6 @@ export class SearchPostComponent extends Component<ISearchPostProps, ISearchPost
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(SearchPostComponent as any)
+const translateWrapper = withTranslation('common')(SearchPostComponent as any)
 
 export default withRouter<any, any>(connectSearchPost(withStyles(searchPostStyles as any)(translateWrapper as any) as any))

@@ -1,17 +1,17 @@
-import { GlobalActionType } from 'constants/globalActionType';
-import { ICommonService } from 'core/services';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import { GlobalActionType } from '~/constants/globalActionType';
+import { ICommonService } from '~/core/services';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
-import { provider } from 'socialEngine';
-import * as circleActions from 'store/actions/circleActions';
-import * as commentActions from 'store/actions/commentActions';
-import * as globalActions from 'store/actions/globalActions';
-import * as imageGalleryActions from 'store/actions/imageGalleryActions';
-import * as notifyActions from 'store/actions/notifyActions';
-import * as postActions from 'store/actions/postActions';
-import * as userActions from 'store/actions/userActions';
-import * as userSettingActions from 'store/actions/userSettingActions';
-import * as voteActions from 'store/actions/voteActions';
+import { provider } from '~/socialEngine';
+import * as circleActions from '~/store/actions/circleActions';
+import * as commentActions from '~/store/actions/commentActions';
+import * as globalActions from '~/store/actions/globalActions';
+import * as imageGalleryActions from '~/store/actions/imageGalleryActions';
+import * as notifyActions from '~/store/actions/notifyActions';
+import * as postActions from '~/store/actions/postActions';
+import * as userActions from '~/store/actions/userActions';
+import * as userSettingActions from '~/store/actions/userSettingActions';
+import * as voteActions from '~/store/actions/voteActions';
 import { authorizeActions, chatActions } from '../actions';
 
 /**

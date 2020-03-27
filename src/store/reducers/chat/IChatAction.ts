@@ -1,4 +1,4 @@
-import { ChatActionType } from 'constants/chatActionType'
+import { ChatActionType } from '~/constants/chatActionType'
 
 /**
  *  Chat action interface

@@ -1,9 +1,9 @@
 // - Import react components
 import List from '@material-ui/core/List';
 import { withStyles } from '@material-ui/core/styles';
-import * as PostAPI from 'api/PostAPI';
-import CommentComponent from 'components/comment/CommentComponent';
-import { Comment } from 'core/domain/comments';
+import * as PostAPI from '~/api/PostAPI';
+import CommentComponent from '~/components/comment/CommentComponent';
+import { Comment } from '~/core/domain/comments';
 import { Map } from 'immutable';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';

@@ -1,5 +1,5 @@
 // - Import react components
-import { NotificationActionType } from 'constants/notificationActionType';
+import { NotificationActionType } from '~/constants/notificationActionType';
 import { Map, fromJS } from 'immutable';
 
 import { INotificationAction } from './INotificationAction';

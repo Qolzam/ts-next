@@ -1,4 +1,4 @@
-import { Graph } from 'core/domain/graphs';
+import { Graph } from '~/core/domain/graphs';
 
 /**
  * Graph service interface

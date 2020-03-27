@@ -1,14 +1,15 @@
 // - Import react components
+import Link from '~/components/Link'
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { Map } from 'immutable';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import { NavLink, withRouter } from 'react-router-dom';
-import { SignupStepEnum } from 'models/authorize/signupStepEnum';
-import * as authorizeActions from 'store/actions/authorizeActions';
+import { withRouter } from 'next/router';
+import { SignupStepEnum } from '~/models/authorize/signupStepEnum';
+import * as authorizeActions from '~/store/actions/authorizeActions';
 
 import { ISignupMessageProps } from './ISignupMessageProps';
 import { ISignupMessageState } from './ISignupMessageState';
@@ -50,7 +51,7 @@ export class SignupMessageComponent extends Component<ISignupMessageProps, ISign
       <div className={classes.root}>
       
         <Typography className={classes.caption} variant='caption' component='p'>
-            {t!('signup.termCaption')} <NavLink to='/terms'> {t!('signup.termCaptionLink')} </NavLink>
+            {t!('signup.termCaption')} <Link href='/terms'> {t!('signup.termCaptionLink')} </Link>
         </Typography>
         <Button
                 variant='contained'
@@ -87,6 +88,6 @@ const mapStateToProps = (state: Map<string, any>, ownProps: ISignupMessageProps)
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(SignupMessageComponent as any)
+const translateWrapper = withTranslation('common')(SignupMessageComponent as any)
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withStyles(signupMessageStyles as any)(translateWrapper as any) as any) as any)

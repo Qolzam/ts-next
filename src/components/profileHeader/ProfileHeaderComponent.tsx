@@ -1,16 +1,16 @@
 // - Import react components
 import Button from '@material-ui/core/Button';
-import EditProfile from 'components/editProfile/EditProfileComponent';
-import ImgCover from 'components/imgCover';
-import UserAvatar from 'components/userAvatar/UserAvatarComponent';
+import EditProfile from '~/components/editProfile/EditProfileComponent';
+import ImgCover from '~/components/imgCover';
+import UserAvatar from '~/components/userAvatar/UserAvatarComponent';
 import { Map } from 'immutable';
 import React, { Component } from 'react';
 import EventListener from 'react-event-listener';
-import { withTranslation } from 'react-i18next';
-import { Background, Parallax } from 'react-parallax';
+import { withTranslation } from '~/locales/i18n';
+const { Background, Parallax } =  require('react-parallax');
 import { connect } from 'react-redux';
-import config from 'config';
-import * as userActions from 'store/actions/userActions';
+import config from '~/config';
+import * as userActions from '~/store/actions/userActions';
 
 import { IProfileHeaderComponentProps } from './IProfileHeaderComponentProps';
 import { IProfileHeaderComponentState } from './IProfileHeaderComponentState';
@@ -183,6 +183,6 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IProfileHeaderCompon
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(ProfileHeaderComponent as any)
+const translateWrapper = withTranslation('common')(ProfileHeaderComponent as any)
 
 export default connect(mapStateToProps, mapDispatchToProps)(translateWrapper as any)

@@ -1,10 +1,10 @@
 // - Import react components
-import MasterLoadingComponent from 'components/masterLoading/MasterLoadingComponent';
+import MasterLoadingComponent from '~/components/masterLoading/MasterLoadingComponent';
 import React, { Component } from 'react';
-import Loadable from 'react-loadable';
+const Loadable = require('react-loadable');
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
-import { RouteType } from 'routes/routeType';
+import { RouteType } from '~/routes/routeType';
 
 import { IRouterProps } from './IRouterProps';
 import PrivateRoute from './PrivateRoute';
@@ -12,39 +12,39 @@ import PublicRoute from './PublicRoute';
 
 // - Async Components
 const AsyncHome: any = Loadable({
-  loader: () => import('containers/home'),
+  loader: () => import('~/containers/home'),
   loading: MasterLoadingComponent
 })
 const AsyncSignup = Loadable({
-  loader: () => import('containers/signupWrapper'),
+  loader: () => import('~/containers/signupWrapper'),
   loading: MasterLoadingComponent,
 })
 const AsyncEmailVerification = Loadable({
-  loader: () => import('containers/emailVerification'),
+  loader: () => import('~/containers/emailVerification'),
   loading: MasterLoadingComponent,
 })
 const AsyncResetPassword = Loadable({
-  loader: () => import('containers/resetPassword'),
+  loader: () => import('~/containers/resetPassword'),
   loading: MasterLoadingComponent,
 })
 const AsyncLogin = Loadable({
-  loader: () => import('containers/loginWrapper'),
+  loader: () => import('~/containers/loginWrapper'),
   loading: MasterLoadingComponent,
 })
 const AsyncSetting = Loadable({
-  loader: () => import('containers/config'),
+  loader: () => import('~/containers/config'),
   loading: MasterLoadingComponent,
 })
 const AsyncTerms = Loadable({
-  loader: () => import('containers/terms'),
+  loader: () => import('~/containers/terms'),
   loading: MasterLoadingComponent,
 })
 const AsyncSmsVerification = Loadable({
-  loader: () => import('containers/smsVerification'),
+  loader: () => import('~/containers/smsVerification'),
   loading: MasterLoadingComponent,
 })
 const AsyncNewPassword = Loadable({
-  loader: () => import('containers/newPassword'),
+  loader: () => import('~/containers/newPassword'),
   loading: MasterLoadingComponent,
 })
 

@@ -1,5 +1,5 @@
-import { Comment } from 'core/domain/comments'
-import { User } from 'core/domain/users'
+import { Comment } from '~/core/domain/comments'
+import { User } from '~/core/domain/users'
 import {Map} from 'immutable'
 export interface ICommentComponentProps {
 

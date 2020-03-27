@@ -1,8 +1,8 @@
 // - Import react components
 import withStyles from '@material-ui/core/styles/withStyles';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
-import { withRouter } from 'react-router-dom';
+import { withTranslation } from '~/locales/i18n';
+import { withRouter } from 'next/router';
 
 import { connectSponser } from './connectSponser';
 import { ISponserProps } from './ISponserProps';
@@ -54,6 +54,6 @@ export class SponserComponent extends Component<ISponserProps, ISponserState> {
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(SponserComponent as any)
+const translateWrapper = withTranslation('common')(SponserComponent as any)
 
 export default withRouter<any, any>(connectSponser(withStyles(sponserStyles as any)(translateWrapper as any) as any))

@@ -2,13 +2,13 @@
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import classNames from 'classnames';
-import UserBoxList from 'components/userBoxList/UserBoxListComponent';
-import LoadMoreProgressComponent from 'layouts/loadMoreProgress';
+import UserBoxList from '~/components/userBoxList/UserBoxListComponent';
+import LoadMoreProgressComponent from '~/layouts/loadMoreProgress';
 import queryString from 'query-string';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'next/router';
 
 import SearchComponent from '../search';
 import { connectSearchUser } from './connectSearchUser';
@@ -113,6 +113,6 @@ export class SearchUserComponent extends Component<ISearchUserProps, ISearchUser
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(SearchUserComponent as any)
+const translateWrapper = withTranslation('common')(SearchUserComponent as any)
 
 export default withRouter<any, any>(connectSearchUser(withStyles(searchUserStyles as any)(translateWrapper as any) as any))

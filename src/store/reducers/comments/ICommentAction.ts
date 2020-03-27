@@ -1,5 +1,5 @@
 
-import {CommentActionType} from 'constants/commentActionType'
+import {CommentActionType} from '~/constants/commentActionType'
 
 /**
  *  Comment action interface

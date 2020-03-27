@@ -1,5 +1,5 @@
-import { Comment } from 'core/domain/comments'
-import { Post } from 'core/domain/posts/post'
+import { Comment } from '~/core/domain/comments'
+import { Post } from '~/core/domain/posts/post'
 import {Map} from 'immutable'
 export interface IPostComponentProps {
 
@@ -82,6 +82,11 @@ export interface IPostComponentProps {
    * Styles
    */
   classes?: any
+
+  /**
+   * Router
+   */
+  router?: any
 
   /**
    * Translate to locale string

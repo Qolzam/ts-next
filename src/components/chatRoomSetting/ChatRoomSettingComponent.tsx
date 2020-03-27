@@ -13,9 +13,9 @@ import classNames from 'classnames';
 import { Map } from 'immutable';
 import * as Ramda from 'ramda';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import * as chatActions from 'store/actions/chatActions';
+import * as chatActions from '~/store/actions/chatActions';
 
 import { chatRoomSettingStyles } from './chatRoomSettingStyles';
 import { IChatRoomSettingProps } from './IChatRoomSettingProps';
@@ -25,7 +25,7 @@ import { IChatRoomSettingState } from './IChatRoomSettingState';
 // - Import app components
 // - Import API
 // - Import actions
-const languages = require('locales/languages.json')
+const languages = require('~/locales/languages.json')
 
 /**
  * React component class
@@ -252,6 +252,6 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IChatRoomSettingProp
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(ChatRoomSettingComponent as any)
+const translateWrapper = withTranslation('common')(ChatRoomSettingComponent as any)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(chatRoomSettingStyles as any)(translateWrapper as any) as any)

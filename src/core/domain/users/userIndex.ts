@@ -1,6 +1,6 @@
 import { BaseDomain } from '../common'
 import { User } from './user'
-import { UserPermissionType } from 'core/domain/common/userPermissionType'
+import { UserPermissionType } from '~/core/domain/common/userPermissionType'
 
 export class UserIndex extends BaseDomain {
 

@@ -4,7 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import red from '@material-ui/core/colors/red';
 import Grid from '@material-ui/core/Grid/Grid';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
 
 import { IMasterLoadingComponentProps } from './IMasterLoadingComponentProps';
@@ -117,7 +117,7 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IMasterLoadingCompon
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(MasterLoadingComponent as any)
+const translateWrapper = withTranslation('common')(MasterLoadingComponent as any)
 
 const stylesWrappedComponent = withStyles(masterLoadingStyles, {withTheme: true})(translateWrapper as any) as any
 export default connect(mapStateToProps, mapDispatchToProps)(stylesWrappedComponent)

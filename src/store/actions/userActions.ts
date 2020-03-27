@@ -1,13 +1,13 @@
 // - Import react components
-import { UserActionType } from 'constants/userActionType';
+import { UserActionType } from '~/constants/userActionType';
 import { Map } from 'immutable';
-import { SocialError } from 'core/domain/common';
-import { User } from 'core/domain/users';
-import { IUserService } from 'core/services/users';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import { SocialError } from '~/core/domain/common';
+import { User } from '~/core/domain/users';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
 import { provider } from '../../socialEngine';
-import * as globalActions from 'store/actions/globalActions';
-import { userSelector } from 'store/reducers/users/userSelector';
+import * as globalActions from '~/store/actions/globalActions';
+import { userSelector } from '~/store/reducers/users/userSelector';
+import { IUserService } from '~/core/services';
 
 // - Import domain
 // - Import action types

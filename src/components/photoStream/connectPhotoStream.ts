@@ -1,20 +1,20 @@
 import { connect } from 'react-redux'
-import { postSelector } from 'store/reducers/posts'
+import { postSelector } from '~/store/reducers/posts'
 
-import { authorizeSelector } from 'store/reducers/authorize/authorizeSelector'
+import { authorizeSelector } from '~/store/reducers/authorize/authorizeSelector'
 import { Map } from 'immutable'
 import { IPhotoStreamProps } from './IPhotoStreamProps'
-import config from 'config'
+import config from '~/config'
 
 // - Import actions
-import * as imageGalleryActions from 'store/actions/imageGalleryActions'
-import * as globalActions from 'store/actions/globalActions'
-import StringAPI from 'api/StringAPI'
-import { ServerRequestType } from 'constants/serverRequestType'
-import { User } from 'core/domain/users'
-import { serverSelector } from 'store/reducers/server/serverSelector'
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType'
-import { gallerySelector } from 'store/reducers/imageGallery/gallerySelector'
+import * as imageGalleryActions from '~/store/actions/imageGalleryActions'
+import * as globalActions from '~/store/actions/globalActions'
+import StringAPI from '~/api/StringAPI'
+import { ServerRequestType } from '~/constants/serverRequestType'
+import { User } from '~/core/domain/users'
+import { serverSelector } from '~/store/reducers/server/serverSelector'
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType'
+import { gallerySelector } from '~/store/reducers/imageGallery/gallerySelector'
 import { Component } from 'react'
 
 /**

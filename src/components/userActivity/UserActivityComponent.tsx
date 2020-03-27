@@ -13,31 +13,31 @@ import GroupAdd from '@material-ui/icons/GroupAdd';
 import MailIcon from '@material-ui/icons/Mail';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
 import SvgShare from '@material-ui/icons/Share';
-import StringAPI from 'api/StringAPI';
+import StringAPI from '~/api/StringAPI';
 import classNames from 'classnames';
-import AboutDialogComponent from 'components/aboutDialog/AboutDialogComponent';
-import BountiesDialog from 'components/bountiesDialog/BountiesDialogComponent';
-import EditProfile from 'components/editProfile/EditProfileComponent';
-import FollowDialogComponent from 'components/followDialog/FollowDialogComponent';
-import UserAvatar from 'components/userAvatar/UserAvatarComponent';
+import AboutDialogComponent from '~/components/aboutDialog/AboutDialogComponent';
+import BountiesDialog from '~/components/bountiesDialog/BountiesDialogComponent';
+import EditProfile from '~/components/editProfile/EditProfileComponent';
+import FollowDialogComponent from '~/components/followDialog/FollowDialogComponent';
+import UserAvatar from '~/components/userAvatar/UserAvatarComponent';
 import { Map } from 'immutable';
-import CircleActivity from 'layouts/circleActivity';
-import TimelineComponent from 'layouts/timeline';
+import CircleActivity from '~/layouts/circleActivity';
+import TimelineComponent from '~/layouts/timeline';
 import debounce from 'lodash/debounce';
 import numbro from 'numbro';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
 import ReactResizeDetector from 'react-resize-detector';
-import config from 'config';
-import PictureDialogComponent from 'layouts/pictureDialog';
-import * as globalActions from 'store/actions/globalActions';
-import * as userActions from 'store/actions/userActions';
+import config from '~/config';
+import PictureDialogComponent from '~/layouts/pictureDialog';
+import * as globalActions from '~/store/actions/globalActions';
+import * as userActions from '~/store/actions/userActions';
 
 import { IUserActivityComponentProps } from './IUserActivityComponentProps';
 import { IUserActivityComponentState } from './IUserActivityComponentState';
 import { userActivityStyles } from './userActivityStyles';
-import { chatActions } from 'store/actions';
+import { chatActions } from '~/store/actions';
 
 // - Material-UI
 // - Import app components
@@ -479,6 +479,6 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IUserActivityCompone
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(UserActivityComponent as any)
+const translateWrapper = withTranslation('common')(UserActivityComponent as any)
 const connectWrapper = connect(mapStateToProps, mapDispatchToProps)(withStyles(userActivityStyles as any)(translateWrapper as any) as any) as any
 export default connectWrapper as typeof UserActivityComponent

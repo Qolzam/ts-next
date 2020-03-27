@@ -3,14 +3,14 @@ import Snackbar from '@material-ui/core/Snackbar';
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
-import MasterLoading from 'components/masterLoading';
-import SendFeedback from 'components/sendFeedback';
-import config from 'config';
-import MasterRouter from 'routes/MasterRouter';
+import MasterLoading from '~/components/masterLoading';
+import SendFeedback from '~/components/sendFeedback';
+import config from '~/config';
+import MasterRouter from '~/routes/MasterRouter';
 
 import { IMasterProps } from './IMasterProps';
 import { IMasterState } from './IMasterState';
-import CallSnackComponent from 'components/callSnack';
+import CallSnackComponent from '~/components/callSnack';
 import { connectMaster } from './connectMaster';
 
 // - Create Master component class
@@ -91,7 +91,7 @@ export class MasterComponent extends Component<IMasterProps, IMasterState> {
   componentDidMount() {
     const {authed} = this.props
     if (!authed) {
-      window.location.href = config.settings.gateway+'/auth/login'
+      window.location.href = '/login'
 
     }
   }

@@ -1,7 +1,7 @@
 // - Import react components
-import { CircleActionType } from 'constants/circleActionType';
+import { CircleActionType } from '~/constants/circleActionType';
 import { List, Map } from 'immutable';
-import { UserTie } from 'core/domain/circles';
+import { UserTie } from '~/core/domain/circles';
 
 import { CircleState } from './CircleState';
 import { ICircleAction } from './ICircleAction';

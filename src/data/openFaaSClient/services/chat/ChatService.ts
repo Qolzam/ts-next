@@ -1,8 +1,8 @@
 // - Import react components
-import { ChatRoom } from 'core/domain/chat/chatRoom';
-import { Message } from 'core/domain/chat/message';
-import { SocialError } from 'core/domain/common';
-import { IChatService } from 'core/services/chat';
+import { ChatRoom } from '~/core/domain/chat/chatRoom';
+import { Message } from '~/core/domain/chat/message';
+import { SocialError } from '~/core/domain/common';
+import { IChatService } from '~/core/services/chat';
 import { fromJS, Map } from 'immutable';
 import { injectable } from 'inversify';
 import io from 'socket.io-client';

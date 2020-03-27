@@ -1,4 +1,5 @@
 // - Import react components
+import Router from 'next/router'
 import Button from '@material-ui/core/Button';
 import Collapse from '@material-ui/core/Collapse';
 import Dialog from '@material-ui/core/Dialog';
@@ -19,14 +20,13 @@ import TextField from '@material-ui/core/TextField';
 import SvgClose from '@material-ui/icons/Close';
 import SvgGroup from '@material-ui/icons/GroupWork';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import UserAvatar from 'components/userAvatar/UserAvatarComponent';
-import { push } from 'connected-react-router';
-import { Circle } from 'core/domain/circles';
+import UserAvatar from '~/components/userAvatar/UserAvatarComponent';
+import { Circle } from '~/core/domain/circles';
 import { List as ImuList, Map } from 'immutable';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import * as circleActions from 'store/actions/circleActions';
+import * as circleActions from '~/store/actions/circleActions';
 
 import { ICircleComponentProps } from './ICircleComponentProps';
 import { ICircleComponentState } from './ICircleComponentState';
@@ -341,7 +341,7 @@ const mapDispatchToProps = (dispatch: any, ownProps: ICircleComponentProps) => {
     updateCircle: (circle: Circle) => dispatch(circleActions.dbUpdateCircle(circle)),
     closeCircleSettings: () => dispatch(circleActions.closeCircleSettings(ownProps.id)),
     openCircleSettings: () => dispatch(circleActions.openCircleSettings(ownProps.id)),
-    goTo: (url: string) => dispatch(push(url))
+    goTo: (url: string) => Router.push(url)
 
   }
 }
@@ -369,6 +369,6 @@ const mapStateToProps = (state: Map<string, any>, ownProps: ICircleComponentProp
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(CircleComponent as any)
+const translateWrapper = withTranslation('common')(CircleComponent as any)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles as any)(translateWrapper as any) as any)

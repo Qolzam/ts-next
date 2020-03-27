@@ -1,5 +1,5 @@
-import { ServerRequestType } from 'constants/serverRequestType'
-import { RegexPattern } from 'constants/RegexPattern'
+import { ServerRequestType } from '~/constants/serverRequestType'
+import { RegexPattern } from '~/constants/RegexPattern'
 
 // - Import actions
 

@@ -1,20 +1,20 @@
-import { PostAPI } from 'api/PostAPI';
-import { PostActionType } from 'constants/postActionType';
-import { UserActionType } from 'constants/userActionType';
-import { IPostService } from 'core/services/posts/IPostService';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import { PostAPI } from '~/api/PostAPI';
+import { PostActionType } from '~/constants/postActionType';
+import { UserActionType } from '~/constants/userActionType';
+import { IPostService } from '~/core/services/posts';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
 import { Map } from 'immutable';
 import { all, call, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
-import { provider } from 'socialEngine';
-import * as globalActions from 'store/actions/globalActions';
-import * as postActions from 'store/actions/postActions';
-import * as serverActions from 'store/actions/serverActions';
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType';
-import * as userActions from 'store/actions/userActions';
-import { authorizeSelector } from 'store/reducers/authorize';
-import { circleSelector } from 'store/reducers/circles/circleSelector';
-import { postSelector } from 'store/reducers/posts';
-import { userSelector } from 'store/reducers/users/userSelector';
+import { provider } from '~/socialEngine';
+import * as globalActions from '~/store/actions/globalActions';
+import * as postActions from '~/store/actions/postActions';
+import * as serverActions from '~/store/actions/serverActions';
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType';
+import * as userActions from '~/store/actions/userActions';
+import { authorizeSelector } from '~/store/reducers/authorize';
+import { circleSelector } from '~/store/reducers/circles/circleSelector';
+import { postSelector } from '~/store/reducers/posts';
+import { userSelector } from '~/store/reducers/users/userSelector';
 
 /**
  * Get service providers
@@ -27,12 +27,13 @@ const postService: IPostService = provider.get<IPostService>(SocialProviderTypes
  * Fetch posts for stream
  */
 function* dbFetchPostStream(userId: string, lastPostId: string, page: number, limit: number, searchKey: string) {
+  
   const followingUsers: Map<string, any> = yield select(circleSelector.getFollowingUsers)
   const followingIds = followingUsers.keySeq()
   .map((key) => `${key}`)
   .toArray()
   followingIds.push(`${userId}`)
-
+  
   const postResult: { posts: Map<string, any>, ids: Map<string, boolean>, newLastPostId: string, hasMore: boolean } = yield call(postService.searchPosts, '', followingIds.join(), lastPostId, page, limit, searchKey)
 
   if (!postResult.hasMore) {
@@ -158,7 +159,9 @@ function* getPostSearchKey() {
  * Fetch posts from server
  */
 function* watchFetchPostStream(action: { type: PostActionType, payload: any }) {
+
   let authedUser: Map<string, any> = yield select(authorizeSelector.getAuthedUser)
+
   const streamServerRequest = PostAPI.createFetchStreamRequest(authedUser.get('uid'))
   yield put(serverActions.sendRequest(streamServerRequest))
   const { payload } = action
@@ -166,7 +169,7 @@ function* watchFetchPostStream(action: { type: PostActionType, payload: any }) {
   const uid = authedUser.get('uid')
   try {
     const searchKey = yield getSearchKey()
-    yield select(postSelector.getStreamPage)
+    
     const lastPostId = yield select(postSelector.getStreamLastPostId)
 
     if (uid) {
@@ -214,6 +217,7 @@ function* watchSearchPost(action: { type: PostActionType, payload: any }) {
  */
 function* watchFetchPostByUserId(action: { type: PostActionType, payload: any }) {
   let authedUser: Map<string, any> = yield select(authorizeSelector.getAuthedUser)
+  console.log('watchFetchPostByUserId ', authedUser)
   const profilePostsRequest = PostAPI.createFetchPostUserRequest(authedUser.get('uid'))
   yield put(serverActions.sendRequest(profilePostsRequest))
 
@@ -225,6 +229,7 @@ function* watchFetchPostByUserId(action: { type: PostActionType, payload: any })
     const lastPostId = yield select(postSelector.getProfileLatPostId, { userId })
 
     const uid = authedUser.get('uid')
+    console.log('uid')
     if (uid) {
       yield call(dbFetchPostByUserId, userId, lastPostId, page, limit, searchKey)
     }

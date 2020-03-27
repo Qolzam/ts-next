@@ -11,10 +11,10 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import CommentListComponent from 'components/commentList/CommentListComponent';
-import UserAvatar from 'components/userAvatar/UserAvatarComponent';
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType';
-import {Comment} from 'core/domain/comments'
+import CommentListComponent from '~/components/commentList/CommentListComponent';
+import UserAvatar from '~/components/userAvatar/UserAvatarComponent';
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType';
+import {Comment} from '~/core/domain/comments'
 import { ICommentGroupComponentProps } from './ICommentGroupComponentProps';
 import { ICommentGroupComponentState } from './ICommentGroupComponentState';
 import { connectCommentGroup } from './connectCommentGroup';

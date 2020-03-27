@@ -1,8 +1,8 @@
-import { IStorageService } from 'core/services/files'
-import { FileResult } from 'models/files/fileResult'
+import { IStorageService } from '~/core/services/files'
+import { FileResult } from '~/models/files/fileResult'
 import { injectable, inject } from 'inversify'
-import { IHttpService } from 'core/services/webAPI/IHttpService';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import { IHttpService } from '~/core/services/webAPI';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
 
 @injectable()
 export class StorageService implements IStorageService {

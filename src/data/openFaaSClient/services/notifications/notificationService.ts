@@ -1,10 +1,10 @@
 // - Import react components
-import { SocialError } from 'core/domain/common';
-import { Notification } from 'core/domain/notifications';
-import { INotificationService } from 'core/services/notifications';
+import { SocialError } from '~/core/domain/common';
+import { Notification } from '~/core/domain/notifications';
+import { INotificationService } from '~/core/services/notifications';
 import { injectable, inject } from 'inversify';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
-import { IHttpService } from 'core/services/webAPI/IHttpService';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
+import { IHttpService } from '~/core/services/webAPI';
 import { Map } from 'immutable'
 
 /**
@@ -20,23 +20,23 @@ export class NotificationService implements INotificationService {
 
   }
 
-  public getNotifications = (userId: string, callback: (resultNotifications: Map<string,Map<string, any>>) => void) => {
+  public getNotifications = async (userId: string) => {
 
-    this._httpService.get(`notifications?page=1`).then((result) => {
+    try {
+      const result = await this._httpService.get(`notifications?page=1`)
+
       let parsedData: Map<string, Map<string, any>> = Map({})
       if (result && result.length && result.length > 0) {
         result.forEach((notification: any) => {
           parsedData = parsedData.set(notification.objectId, Map(notification))
         })
-        callback(parsedData)
-        
       }
-    }).catch((error) => {
+      return parsedData
+
+    } catch (error) {
+
       throw new SocialError(error.code, error.message)
-
-    })
-
-
+    }
 
   }
 

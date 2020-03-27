@@ -1,4 +1,4 @@
-import { AuthorizeActionType } from 'constants/authorizeActionType';
+import { AuthorizeActionType } from '~/constants/authorizeActionType';
 import { Map } from 'immutable';
 
 import { AuthorizeState } from './AuthorizeState';

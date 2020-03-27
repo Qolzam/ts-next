@@ -1,6 +1,6 @@
 import { Map, List } from 'immutable'
 import { createSelector } from 'reselect'
-import { PostAPI } from 'api/PostAPI'
+import { PostAPI } from '~/api/PostAPI'
 
 const getUserProfileById: (state: Map<string, any>, {userId}: {userId: string}) => Map<string, any> = (state: Map<string, any>, {userId}: {userId: string}) => {
     let userProfile: Map<string, any> = state.getIn(['user', 'entities', userId], Map({}))

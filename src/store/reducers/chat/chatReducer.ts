@@ -1,5 +1,5 @@
 // - Import react components
-import { ChatActionType } from 'constants/chatActionType';
+import { ChatActionType } from '~/constants/chatActionType';
 import { Map } from 'immutable';
 
 import { IChatAction } from './IChatAction';

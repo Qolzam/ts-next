@@ -1,8 +1,8 @@
 // - Import react components
-import UserBoxList from 'components/userBoxList/UserBoxListComponent';
-import LoadMoreProgressComponent from 'layouts/loadMoreProgress';
+import UserBoxList from '~/components/userBoxList/UserBoxListComponent';
+import LoadMoreProgressComponent from '~/layouts/loadMoreProgress';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { connectFindPeople } from './connectFindPeople';
@@ -91,6 +91,6 @@ export class FindPeopleComponent extends Component<IFindPeopleComponentProps, IF
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(FindPeopleComponent as any)
+const translateWrapper = withTranslation('common')(FindPeopleComponent as any)
 
 export default connectFindPeople(translateWrapper as any)

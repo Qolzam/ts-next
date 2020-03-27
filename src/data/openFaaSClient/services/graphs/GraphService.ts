@@ -1,5 +1,5 @@
 // - Import react components
-import { Graph } from 'core/domain/graphs';
+import { Graph } from '~/core/domain/graphs';
 import { injectable } from 'inversify';
 
 import { IGraphService } from './IGraphService';

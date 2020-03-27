@@ -1,16 +1,16 @@
 // - Import external components
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-import { push } from 'connected-react-router';
+import Router from 'next/router'
 import { Map } from 'immutable';
-import Footer from 'layouts/footer';
+import Footer from '~/layouts/footer';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import VerifySignupComponent from 'components/verifySignup/VerifySignupComponent';
-import config from 'config';
-import { authorizeSelector } from 'store/reducers/authorize/authorizeSelector';
+import { withRouter } from 'next/router';
+import VerifySignupComponent from '~/components/verifySignup/VerifySignupComponent';
+import config from '~/config';
+import { authorizeSelector } from '~/store/reducers/authorize/authorizeSelector';
 
 import SignupComponent from '../signup';
 import { ISignupWrapperProps } from './ISignupWrapperProps';
@@ -71,7 +71,7 @@ export class SignupWrapperComponent extends Component<ISignupWrapperProps, ISign
 const mapDispatchToProps = (dispatch: any, ownProps: ISignupWrapperProps) => {
   return {
     loginPage: () => {
-      dispatch(push('/login'))
+      Router.push('/login')
     }
   }
 }
@@ -89,6 +89,6 @@ const makeMapStateToProps = () => {
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(SignupWrapperComponent as any)
+const translateWrapper = withTranslation('common')(SignupWrapperComponent as any)
 
 export default withRouter<any, any>(connect(makeMapStateToProps, mapDispatchToProps)(withStyles(signupWrapperStyles as any, { withTheme: true })(translateWrapper as any) as any))

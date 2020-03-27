@@ -1,0 +1,5 @@
+{
+    "websocket": {
+        "url": "wss://red-gold-socket.herokuapp.com"
+    }
+}

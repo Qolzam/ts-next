@@ -1,5 +1,5 @@
 // - Import action types
-import { GlobalActionType } from 'constants/globalActionType'
+import { GlobalActionType } from '~/constants/globalActionType'
 
 import { GlobalState } from './GlobalState'
 import { IGlobalAction } from './IGlobalAction'

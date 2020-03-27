@@ -1,4 +1,4 @@
-import { VoteActionType } from 'constants/voteActionType'
+import { VoteActionType } from '~/constants/voteActionType'
 
 /**
  *  Vote action interface

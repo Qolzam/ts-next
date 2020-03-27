@@ -5,9 +5,9 @@ import SvgLink from '@material-ui/icons/Link';
 import classNames from 'classnames';
 import { List } from 'immutable';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import {
+const {
   FacebookIcon,
   FacebookShareButton,
   GooglePlusIcon,
@@ -16,7 +16,7 @@ import {
   LinkedinShareButton,
   TwitterIcon,
   TwitterShareButton,
-} from 'react-share';
+} = require('react-share');
 
 import { IShareDialogComponentProps } from './IShareDialogComponentProps';
 import { IShareDialogComponentState } from './IShareDialogComponentState';
@@ -200,6 +200,6 @@ const mapStateToProps = (state: any, ownProps: IShareDialogComponentProps) => {
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(ShareDialogComponent as any)
+const translateWrapper = withTranslation('common')(ShareDialogComponent as any)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles as any)(translateWrapper as any) as any)

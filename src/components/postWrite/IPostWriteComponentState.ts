@@ -1,6 +1,6 @@
-import { PostType } from 'core/domain/posts/postType'
-import { UserPermissionType } from 'core/domain/common/userPermissionType'
-import { Album } from 'core/domain/imageGallery/album'
+import { PostType } from '~/core/domain/posts/postType'
+import { UserPermissionType } from '~/core/domain/common/userPermissionType'
+import { Album } from '~/core/domain/imageGallery/album'
 import {Map} from 'immutable'
 
 export interface IPostWriteComponentState {

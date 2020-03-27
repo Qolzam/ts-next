@@ -1,16 +1,16 @@
-import { SocialError } from 'core/domain/common';
-import { Media as Media } from 'core/domain/imageGallery/media';
-import { Post } from 'core/domain/posts/post';
-import { IStorageService } from 'core/services/files';
-import { IImageGalleryService } from 'core/services/imageGallery';
+import { SocialError } from '~/core/domain/common';
+import { Media as Media } from '~/core/domain/imageGallery/media';
+import { Post } from '~/core/domain/posts/post';
+import { IStorageService } from '~/core/services/files';
+import { IImageGalleryService } from '~/core/services/imageGallery';
 import { fromJS, Map } from 'immutable';
 import { injectable, inject } from 'inversify';
-import { FileResult } from 'models/files/fileResult';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
-import { IHttpService } from 'core/services/webAPI/IHttpService';
-import { PhotoModel } from 'models/gallery/photoModel';
+import { FileResult } from '~/models/files/fileResult';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
+import { IHttpService } from '~/core/services/webAPI';
+import { PhotoModel } from '~/models/gallery/photoModel';
 import uuid from 'uuid';
-import { IPostService } from 'core/services/posts/IPostService';
+import { IPostService } from '~/core/services/posts';
 
 // - Import react components
 /**

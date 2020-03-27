@@ -1,18 +1,18 @@
-import { ChatActionType } from 'constants/chatActionType';
-import { ChatRoom } from 'core/domain/chat/chatRoom';
-import { ChatRoomType } from 'core/domain/chat/ChatRoomType';
-import { IChatService } from 'core/services/chat';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import { ChatActionType } from '~/constants/chatActionType';
+import { ChatRoom } from '~/core/domain/chat/chatRoom';
+import { ChatRoomType } from '~/core/domain/chat/ChatRoomType';
+import { IChatService } from '~/core/services/chat';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
 import { Map } from 'immutable';
 import { Channel, eventChannel } from 'redux-saga';
 import { all, call, cancelled, fork, put, select, take, takeLatest } from 'redux-saga/effects';
-import { provider } from 'socialEngine';
-import * as chatActions from 'store/actions/chatActions';
-import * as globalActions from 'store/actions/globalActions';
-import { authorizeSelector } from 'store/reducers/authorize/authorizeSelector';
-import { chatSelector } from 'store/reducers/chat/chatSelector';
-import config from 'config'
-import { IAuthorizeService } from 'core/services/authorize/IAuthorizeService';
+import { provider } from '~/socialEngine';
+import * as chatActions from '~/store/actions/chatActions';
+import * as globalActions from '~/store/actions/globalActions';
+import { authorizeSelector } from '~/store/reducers/authorize/authorizeSelector';
+import { chatSelector } from '~/store/reducers/chat/chatSelector';
+import config from '~/config'
+import { IAuthorizeService } from '~/core/services/authorize';
 
 /**
  * Get service providers

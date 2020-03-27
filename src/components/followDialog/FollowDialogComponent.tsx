@@ -15,20 +15,20 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 import SvgAdd from '@material-ui/icons/Add';
-import StringAPI from 'api/StringAPI';
-import { followDialogStyles } from 'components/followDialog/followDialogStyles';
-import { push } from 'connected-react-router';
-import { ServerRequestType } from 'constants/serverRequestType';
-import { UserTie } from 'core/domain/circles';
-import { User } from 'core/domain/users';
+import StringAPI from '~/api/StringAPI';
+import { followDialogStyles } from '~/components/followDialog/followDialogStyles';
+import Router from 'next/router'
+import { ServerRequestType } from '~/constants/serverRequestType';
+import { UserTie } from '~/core/domain/circles';
+import { User } from '~/core/domain/users';
 import { List as ImuList, Map } from 'immutable';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import * as circleActions from 'store/actions/circleActions';
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType';
-import { userSelector } from 'store/reducers/users/userSelector';
+import * as circleActions from '~/store/actions/circleActions';
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType';
+import { userSelector } from '~/store/reducers/users/userSelector';
 
 import { IFollowDialogProps } from './IFollowDialogProps';
 import { IFollowDialogState } from './IFollowDialogState';
@@ -344,7 +344,7 @@ const mapDispatchToProps = (dispatch: Function) => {
     removeSelectedCircles: (userId: string) => dispatch(circleActions.removeSelectedCircles(userId)),
     openSelectCircles: (userId: string) => dispatch(circleActions.openSelectCircleBox(userId)),
     closeSelectCircles: (userId: string) => dispatch(circleActions.closeSelectCircleBox(userId)),
-    goTo: (url: string) => dispatch(push(url))
+    goTo: (url: string) => Router.push(url)
 
   }
 }
@@ -385,6 +385,6 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IFollowDialogProps) 
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(FollowDialogComponent as any)
+const translateWrapper = withTranslation('common')(FollowDialogComponent as any)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(followDialogStyles as any)(translateWrapper as any))

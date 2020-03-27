@@ -17,17 +17,17 @@ import SendIcon from '@material-ui/icons/Autorenew';
 import CookieIcon from '@material-ui/icons/Fingerprint';
 import PrivacyIcon from '@material-ui/icons/Https';
 import MenuIcon from '@material-ui/icons/Menu';
-import { push } from 'connected-react-router';
+import Router from 'next/router'
 import { Map } from 'immutable';
-import { localeDocs } from 'locales/localeDocs';
+import { localeDocs } from '~/locales/localeDocs';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import ReactMarkdown from 'react-markdown';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import config from 'config';
-import { OAuthType } from 'core/domain/authorize';
-import * as authorizeActions from 'store/actions/authorizeActions';
+import { withRouter } from 'next/router';
+import config from '~/config';
+import { OAuthType } from '~/core/domain/authorize';
+import * as authorizeActions from '~/store/actions/authorizeActions';
 
 import { ITermsProps } from './ITermsProps';
 import { ITermsState } from './ITermsState';
@@ -184,7 +184,7 @@ const mapDispatchToProps = (dispatch: any, ownProps: ITermsProps) => {
     },
     loginWithOAuth: (type: OAuthType) => dispatch(authorizeActions.dbLoginWithOAuth(type)),
     signupPage: () => {
-      dispatch(push('/signup'))
+      Router.push('/signup')
     }
   }
 }
@@ -199,6 +199,6 @@ const mapStateToProps = (state: Map<string, any>, ownProps: ITermsProps) => {
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(TermsComponent as any)
+const translateWrapper = withTranslation('common')(TermsComponent as any)
 
 export default withRouter<any, any>(connect(mapStateToProps, mapDispatchToProps)(withStyles(termsStyles as any, {withTheme: true})(translateWrapper as any) as any))

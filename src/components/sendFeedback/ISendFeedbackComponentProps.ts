@@ -1,7 +1,7 @@
-import { Feed } from 'core/domain/common/feed'
-import { ServerRequestModel } from 'models/server/serverRequestModel'
-import { User } from 'core/domain/users'
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType'
+import { Feed } from '~/core/domain/common/feed'
+import { ServerRequestModel } from '~/models/server/serverRequestModel'
+import { User } from '~/core/domain/users'
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType'
 
 export interface ISendFeedbackComponentProps {
   /**

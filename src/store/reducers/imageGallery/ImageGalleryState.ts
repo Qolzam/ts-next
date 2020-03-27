@@ -1,5 +1,5 @@
 import { List } from 'immutable';
-import { Image } from 'core/domain/imageGallery';
+import { Image } from '~/core/domain/imageGallery';
 
 /**
  * ImageGallery state

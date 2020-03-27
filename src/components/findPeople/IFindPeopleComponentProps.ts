@@ -1,4 +1,4 @@
-import { UserTie } from 'core/domain/circles'
+import { UserTie } from '~/core/domain/circles'
 import {Map, List} from 'immutable'
 
 export interface IFindPeopleComponentProps {

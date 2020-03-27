@@ -1,11 +1,11 @@
 // - Import react components
-import { Circle } from 'core/domain/circles';
-import { SocialError } from 'core/domain/common';
-import { ICircleService } from 'core/services/circles';
+import { Circle } from '~/core/domain/circles';
+import { SocialError } from '~/core/domain/common';
 import { Map } from 'immutable'
 import { injectable, inject } from 'inversify';
-import { IHttpService } from 'core/services/webAPI/IHttpService';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
+import ICircleService from '~/core/services/circles/ICircleService';
+import { IHttpService } from '~/core/services/webAPI';
 
 /**
  * Firbase circle service

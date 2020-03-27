@@ -1,4 +1,4 @@
-import { ServerActionType } from 'constants/serverActionType'
+import { ServerActionType } from '~/constants/serverActionType'
 
 /**
  *  Server action interface

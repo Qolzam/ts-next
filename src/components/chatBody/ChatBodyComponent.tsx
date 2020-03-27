@@ -1,9 +1,9 @@
 // - Import react components
 import { withStyles } from '@material-ui/core/styles';
-import ChatMessageComponent from 'components/chatMessage/ChatMessageComponent';
+import ChatMessageComponent from '~/components/chatMessage/ChatMessageComponent';
 import { Map } from 'immutable';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
 
 import { chatBodyStyles } from './chatBodyStyles';
@@ -104,6 +104,6 @@ const makeMapStateToProps = () => {
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(ChatBodyComponent as any)
+const translateWrapper = withTranslation('common')(ChatBodyComponent as any)
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(withStyles(chatBodyStyles as any)(translateWrapper as any) as any)

@@ -10,13 +10,13 @@ import Toolbar from '@material-ui/core/Toolbar/Toolbar';
 import Typography from '@material-ui/core/Typography/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import classNames from 'classnames';
-import BountyBox from 'components/bountyBox/BountyBoxComponent';
+import BountyBox from '~/components/bountyBox/BountyBoxComponent';
 import { Map } from 'immutable';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import * as globalActions from 'store/actions/globalActions';
+import { withRouter } from 'next/router';
+import * as globalActions from '~/store/actions/globalActions';
 
 import { bountiesDialogStyles } from './bountiesDialogStyles';
 import { IBountiesDialogComponentProps } from './IBountiesDialogComponentProps';
@@ -168,6 +168,6 @@ export class BountiesDialogComponent extends Component<IBountiesDialogComponentP
 
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(BountiesDialogComponent as any)
+const translateWrapper = withTranslation('common')(BountiesDialogComponent as any)
 const routerWrapper = withStyles(bountiesDialogStyles as any)(translateWrapper as any)
 export default routerWrapper as typeof BountiesDialogComponent

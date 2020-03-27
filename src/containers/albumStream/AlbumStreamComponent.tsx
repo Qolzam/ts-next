@@ -4,21 +4,21 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import withStyles from '@material-ui/core/styles/withStyles';
 import NoAlbumIcon from '@material-ui/icons/SettingsSystemDaydream';
-import StringAPI from 'api/StringAPI';
+import StringAPI from '~/api/StringAPI';
 import classNames from 'classnames';
-import { push } from 'connected-react-router';
-import { User } from 'core/domain/users';
+import Router from 'next/router'
+import { User } from '~/core/domain/users';
 import { Map } from 'immutable';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import LoadMoreProgressComponent from 'layouts/loadMoreProgress';
-import PictureDialogComponent from 'layouts/pictureDialog';
-import * as globalActions from 'store/actions/globalActions';
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType';
-import { userSelector } from 'store/reducers/users/userSelector';
+import { withRouter } from 'next/router';
+import LoadMoreProgressComponent from '~/layouts/loadMoreProgress';
+import PictureDialogComponent from '~/layouts/pictureDialog';
+import * as globalActions from '~/store/actions/globalActions';
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType';
+import { userSelector } from '~/store/reducers/users/userSelector';
 
 import { albumStreamStyles } from './albumStreamStyles';
 import { IAlbumStreamProps } from './IAlbumStreamProps';
@@ -225,7 +225,7 @@ const mapDispatchToProps = (dispatch: any, ownProps: IAlbumStreamProps) => {
   return {
     showTopLoading: () => dispatch(globalActions.showTopLoading()),
     hideTopLoading: () => dispatch(globalActions.hideTopLoading()),
-    goTo: (url: string) => dispatch(push(url))
+    goTo: (url: string) => Router.push(url)
 
   }
 }
@@ -247,6 +247,6 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IAlbumStreamProps) =
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(AlbumStreamComponent as any)
+const translateWrapper = withTranslation('common')(AlbumStreamComponent as any)
 
 export default withRouter<any, any>(connect<any>(mapStateToProps as any, mapDispatchToProps)(withStyles(albumStreamStyles as any)(translateWrapper as any)))

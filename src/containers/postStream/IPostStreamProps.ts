@@ -1,6 +1,6 @@
-import { Post } from 'core/domain/posts'
+import { Post } from '~/core/domain/posts'
 import {Map} from 'immutable'
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType'
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType'
 
 export interface IPostStreamProps {
 

@@ -1,18 +1,18 @@
-import { AuthAPI } from 'api/AuthAPI';
-import { push } from 'connected-react-router';
-import { AuthorizeActionType } from 'constants/authorizeActionType';
-import { LoginUser, OAuthType } from 'core/domain/authorize';
-import { SocialError } from 'core/domain/common';
-import { IAuthorizeService } from 'core/services/authorize';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import { AuthAPI } from '~/api/AuthAPI';
+import Router from 'next/router';
+import { AuthorizeActionType } from '~/constants/authorizeActionType';
+import { LoginUser, OAuthType } from '~/core/domain/authorize';
+import { SocialError } from '~/core/domain/common';
+import { IAuthorizeService } from '~/core/services/authorize';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
 import { Map } from 'immutable';
-import { UserRegisterModel } from 'models/users/userRegisterModel';
-import { SignupStepEnum } from 'models/authorize/signupStepEnum';
+import { UserRegisterModel } from '~/models/users/userRegisterModel';
+import { SignupStepEnum } from '~/models/authorize/signupStepEnum';
 import { provider } from '../../socialEngine';
-import * as globalActions from 'store/actions/globalActions';
-import * as serverActions from 'store/actions/serverActions';
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType';
-import config from 'config';
+import * as globalActions from '~/store/actions/globalActions';
+import * as serverActions from '~/store/actions/serverActions';
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType';
+import config from '~/config';
 
 
 // - Import react components
@@ -141,8 +141,8 @@ export const setSignupStep = (step: SignupStepEnum ) => {
 /**
  * Subscribe authorize state change
  */
-export const subcribeAuthorizeStateChange = () => {
-  return { type: AuthorizeActionType.SUBSCRIBE_AUTH_STATE_CHANGE}
+export const subcribeAuthorizeStateChange = (req?: any) => {
+  return { type: AuthorizeActionType.SUBSCRIBE_AUTH_STATE_CHANGE, payload: {req}}
 }
 
 /**
@@ -173,8 +173,8 @@ export const dbLogin = (email: string, password: string) => {
       dispatch(serverActions.sendRequest(loginRequest))
 
       dispatch(globalActions.showNotificationSuccess())
-      dispatch(login(result!))
-      dispatch(push('/'))
+      dispatch(subcribeAuthorizeStateChange())
+      Router.push('/')
     }, (error: SocialError) => {
       loginRequest.status = ServerRequestStatusType.Error
       dispatch(serverActions.sendRequest(loginRequest))
@@ -189,9 +189,9 @@ export const dbLogin = (email: string, password: string) => {
 export const dbLogout = () => {
   return (dispatch: any, getState: any) => {
       authorizeService.logout()
-      localStorage.removeItem('red-gold.scure.token')
+      window.localStorage.removeItem('red-gold.scure.token')
       dispatch(logout())
-      window.location.href = config.settings.gateway+'/auth/login'
+      window.location.href = '/login'
 
   }
 
@@ -207,7 +207,7 @@ export const dbSendEmailVerfication = (value: any) => {
     return authorizeService.sendEmailVerification(value).then(() => {
       // Send email verification successful.
       dispatch(globalActions.showNotificationSuccess())
-      dispatch(push('/'))
+      Router.push('/')
     })
       .catch((error: SocialError) => {
         // An error happened.
@@ -258,7 +258,7 @@ export const dbResetPassword = (email: string) => {
 
       // Reset password successful.
       dispatch(globalActions.showNotificationSuccess())
-      dispatch(push('/login'))
+      dispatch(Router.push('/login'))
     })
       .catch((error: SocialError) => {
         // An error happened.
@@ -279,7 +279,7 @@ export const dbLoginWithOAuth = (type: OAuthType) => {
       // Send email verification successful.
       dispatch(globalActions.showNotificationSuccess())
       dispatch(login(result))
-      dispatch(push('/'))
+      Router.push('/')
     })
       .catch((error: SocialError) => {
         // An error happened.

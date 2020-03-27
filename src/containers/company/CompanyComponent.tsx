@@ -1,8 +1,8 @@
 // - Import react components
 import withStyles from '@material-ui/core/styles/withStyles';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
-import { withRouter } from 'react-router-dom';
+import { withTranslation } from '~/locales/i18n';
+import { withRouter } from 'next/router';
 
 import { companyStyles } from './companyStyles';
 import { connectCompany } from './connectCompany';
@@ -53,5 +53,5 @@ export class CompanyComponent extends Component<ICompanyProps, ICompanyState> {
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(CompanyComponent as any)
+const translateWrapper = withTranslation('common')(CompanyComponent as any)
 export default withRouter<any, any>(connectCompany(withStyles(companyStyles as any)(translateWrapper as any) as any))

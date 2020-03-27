@@ -1,5 +1,5 @@
 // - Import action types
-import { AuthorizeActionType } from 'constants/authorizeActionType'
+import { AuthorizeActionType } from '~/constants/authorizeActionType'
 
 /**
  *  Authorize action interface

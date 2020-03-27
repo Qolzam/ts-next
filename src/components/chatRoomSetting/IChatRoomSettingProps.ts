@@ -1,5 +1,5 @@
-import { ChatRoom } from 'core/domain/chat/chatRoom'
-import { User } from 'core/domain/users'
+import { ChatRoom } from '~/core/domain/chat/chatRoom'
+import { User } from '~/core/domain/users'
 
 export interface IChatRoomSettingProps {
 

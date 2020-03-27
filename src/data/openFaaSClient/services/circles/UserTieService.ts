@@ -1,15 +1,14 @@
 // - Import react components
-import { UserTie } from 'core/domain/circles';
-import { SocialError } from 'core/domain/common';
-import { Graph } from 'core/domain/graphs';
-import { IUserTieService } from 'core/services/circles';
+import { UserTie } from '~/core/domain/circles';
+import { SocialError } from '~/core/domain/common';
 import { List, Map } from 'immutable';
 import { inject, injectable } from 'inversify';
 
 import { OpenFaaSClient } from '../../openFaaSClientTypes';
 import { IGraphService } from '../graphs/IGraphService';
-import { IHttpService } from 'core/services/webAPI/IHttpService';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import { IHttpService } from '~/core/services/webAPI';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
+import { IUserTieService } from '~/core/services/circles/IUserTieService';
 
 
 /**

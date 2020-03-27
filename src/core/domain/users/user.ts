@@ -1,5 +1,5 @@
-import { BaseDomain } from 'core/domain/common'
-import { UserPermissionType } from 'core/domain/common/userPermissionType'
+import { BaseDomain } from '~/core/domain/common'
+import { UserPermissionType } from '~/core/domain/common/userPermissionType'
 
 export class User extends BaseDomain {
 

@@ -1,10 +1,10 @@
 // - Import react components
-import { SocialError } from 'core/domain/common';
-import { Vote } from 'core/domain/votes';
-import { IVoteService } from 'core/services/votes';
+import { SocialError } from '~/core/domain/common';
+import { Vote } from '~/core/domain/votes';
+import { IVoteService } from '~/core/services/votes';
 import { injectable, inject } from 'inversify';
-import { IHttpService } from 'core/services/webAPI/IHttpService';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import { IHttpService } from '~/core/services/webAPI';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
 import { Map } from 'immutable'
 
 /**

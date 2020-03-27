@@ -1,18 +1,18 @@
 import { connect } from 'react-redux'
 
-import { authorizeSelector } from 'store/reducers/authorize/authorizeSelector'
+import { authorizeSelector } from '~/store/reducers/authorize/authorizeSelector'
 import { Map } from 'immutable'
 import { IMasterProps } from './IMasterProps'
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'next/router'
 
 // - Import actions
 import {
   globalActions, chatActions,
-} from 'store/actions'
+} from '~/store/actions'
 import { Component } from 'react'
-import { globalSelector } from 'store/reducers/global/globalSelector';
-import { chatSelector } from 'store/reducers/chat/chatSelector';
-import { userSelector } from 'store/reducers/users/userSelector';
+import { globalSelector } from '~/store/reducers/global/globalSelector';
+import { chatSelector } from '~/store/reducers/chat/chatSelector';
+import { userSelector } from '~/store/reducers/users/userSelector';
 
 
 // - Map dispatch to props

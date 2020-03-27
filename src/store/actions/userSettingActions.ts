@@ -1,7 +1,7 @@
 import {Map} from 'immutable'
 
 // - Import action types
-import { UserSettingActionType } from 'constants/userSettingActionType'
+import { UserSettingActionType } from '~/constants/userSettingActionType'
 
 // - Import domain
 

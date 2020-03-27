@@ -1,4 +1,4 @@
-import { Image } from 'core/domain/imageGallery'
+import { Image } from '~/core/domain/imageGallery'
 import {Map, Collection, List} from 'immutable'
 
 export interface IImageGalleryComponentProps {

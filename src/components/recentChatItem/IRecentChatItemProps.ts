@@ -1,4 +1,4 @@
-import { UserTie } from 'core/domain/circles/userTie'
+import { UserTie } from '~/core/domain/circles/userTie'
 import {Map} from 'immutable'
 
 export interface IRecentChatItemProps {

@@ -1,4 +1,4 @@
-import { Post } from 'core/domain/posts'
+import { Post } from '~/core/domain/posts'
 import {Map} from 'immutable'
 
 export interface IShareDialogComponentProps {

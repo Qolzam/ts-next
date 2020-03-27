@@ -1,18 +1,17 @@
 // - Import react componetns
-import { ImageGalleryActionType } from 'constants/imageGalleryActionType';
-import { Media } from 'core/domain/imageGallery/media';
-import { Post } from 'core/domain/posts';
+import { ImageGalleryActionType } from '~/constants/imageGalleryActionType';
+import { Media } from '~/core/domain/imageGallery/media';
+import { Post } from '~/core/domain/posts';
 import { Map } from 'immutable';
 import moment from 'moment/moment';
-import config from 'config';
-import { SocialError } from 'core/domain/common';
-import { Image } from 'core/domain/imageGallery';
-import { IImageGalleryService } from 'core/services/imageGallery';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import config from '~/config';
+import { SocialError } from '~/core/domain/common';
+import { IImageGalleryService } from '~/core/services/imageGallery';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
 import { provider } from '../../socialEngine';
-import * as globalActions from 'store/actions/globalActions';
+import * as globalActions from '~/store/actions/globalActions';
 import uuid from 'uuid';
-import { UserPermissionType } from 'core/domain/common/userPermissionType';
+import { UserPermissionType } from '~/core/domain/common/userPermissionType';
 
 
 // - Import domain

@@ -1,18 +1,18 @@
 // - Import domain
-import { PostActionType } from 'constants/postActionType';
-import { UserPermissionType } from 'core/domain/common/userPermissionType';
-import { User } from 'core/domain/users';
+import { PostActionType } from '~/constants/postActionType';
+import { UserPermissionType } from '~/core/domain/common/userPermissionType';
+import { User } from '~/core/domain/users';
 import { fromJS, Map } from 'immutable';
 import moment from 'moment/moment';
-import config from 'config';
-import { SocialError } from 'core/domain/common';
-import { Post } from 'core/domain/posts';
-import { IPostService } from 'core/services/posts';
-import { SocialProviderTypes } from 'core/socialProviderTypes';
+import config from '~/config';
+import { SocialError } from '~/core/domain/common';
+import { Post } from '~/core/domain/posts';
+import { IPostService } from '~/core/services/posts';
+import { SocialProviderTypes } from '~/core/socialProviderTypes';
 import { provider } from '../../socialEngine';
-import * as globalActions from 'store/actions/globalActions';
-import * as userActions from 'store/actions/userActions';
-import { userSelector } from 'store/reducers/users/userSelector';
+import * as globalActions from '~/store/actions/globalActions';
+import * as userActions from '~/store/actions/userActions';
+import { userSelector } from '~/store/reducers/users/userSelector';
 
 // - Import utility components
 // - Import action types

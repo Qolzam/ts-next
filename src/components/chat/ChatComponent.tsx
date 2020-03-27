@@ -19,12 +19,12 @@ import SearchIcon from '@material-ui/icons/Search';
 import SendIcon from '@material-ui/icons/Send';
 import EmojiIcon from '@material-ui/icons/SentimentSatisfied';
 import classNames from 'classnames';
-import ChatBodyComponent from 'components/chatBody/ChatBodyComponent';
-import ChatRoomSettingComponent from 'components/chatRoomSetting/ChatRoomSettingComponent';
-import UserAvatar from 'components/userAvatar/UserAvatarComponent';
-import { Message } from 'core/domain/chat/message';
-import { MessageType } from 'core/domain/chat/MessageType';
-import { User } from 'core/domain/users';
+import ChatBodyComponent from '~/components/chatBody/ChatBodyComponent';
+import ChatRoomSettingComponent from '~/components/chatRoomSetting/ChatRoomSettingComponent';
+import UserAvatar from '~/components/userAvatar/UserAvatarComponent';
+import { Message } from '~/core/domain/chat/message';
+import { MessageType } from '~/core/domain/chat/MessageType';
+import { User } from '~/core/domain/users';
 import { Picker } from 'emoji-mart';
 import { Map } from 'immutable';
 import debounce from 'lodash/debounce';
@@ -32,18 +32,18 @@ import moment from 'moment/moment';
 import * as Ramda from 'ramda';
 import React, { Component } from 'react';
 import EventListener from 'react-event-listener';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import * as chatActions from 'store/actions/chatActions';
-import { authorizeSelector } from 'store/reducers/authorize';
-import { chatSelector } from 'store/reducers/chat/chatSelector';
+import * as chatActions from '~/store/actions/chatActions';
+import { authorizeSelector } from '~/store/reducers/authorize';
+import { chatSelector } from '~/store/reducers/chat/chatSelector';
 import uuid from 'uuid';
 
 import { chatStyles } from './chatStyles';
 import { IChatProps } from './IChatProps';
 import { IChatState } from './IChatState';
-import { userSelector } from 'store/reducers/users/userSelector';
-import { ChatRoom } from 'core/domain/chat/chatRoom';
+import { userSelector } from '~/store/reducers/users/userSelector';
+import { ChatRoom } from '~/core/domain/chat/chatRoom';
 
 // - Material-UI
 // - Import app components
@@ -558,6 +558,6 @@ const makeMapStateToProps = () => {
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(ChatComponent as any)
+const translateWrapper = withTranslation('common')(ChatComponent as any)
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(withWidth({ resizeInterval: 200 })(withStyles(chatStyles as any)(translateWrapper as any) as any) as any)

@@ -1,9 +1,9 @@
 // - Import react components
 import List from '@material-ui/core/List';
-import CircleComponent from 'components/circle/CircleComponent';
+import CircleComponent from '~/components/circle/CircleComponent';
 import { Map } from 'immutable';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
 
 import { IYourCirclesComponentProps } from './IYourCirclesComponentProps';
@@ -101,6 +101,6 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IYourCirclesComponen
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(YourCirclesComponent as any)
+const translateWrapper = withTranslation('common')(YourCirclesComponent as any)
 
 export default connect(mapStateToProps, mapDispatchToProps)(translateWrapper as any)

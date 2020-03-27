@@ -1,21 +1,22 @@
 // - Import react components
+import Link from '~/components/Link'
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Divider from '@material-ui/core/Divider';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import { push } from 'connected-react-router';
+import Router from 'next/router'
 import { Map } from 'immutable';
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
-import { NavLink, withRouter } from 'react-router-dom';
-import StringAPI from 'api/StringAPI';
-import { ServerRequestType } from 'constants/serverRequestType';
-import * as authorizeActions from 'store/actions/authorizeActions';
-import * as globalActions from 'store/actions/globalActions';
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType';
+import { withRouter } from 'next/router';
+import StringAPI from '~/api/StringAPI';
+import { ServerRequestType } from '~/constants/serverRequestType';
+import * as authorizeActions from '~/store/actions/authorizeActions';
+import * as globalActions from '~/store/actions/globalActions';
+import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType';
 
 import { IVerifySignupProps } from './IVerifySignupProps';
 import { IVerifySignupState } from './IVerifySignupState';
@@ -140,11 +141,11 @@ export class VerifySignupComponent extends Component<IVerifySignupProps, IVerify
             </div>
         </div>
         <Typography className={classes.caption} variant='caption' component='p'>
-          {t!('signup.termCaption')} <NavLink to='/terms'> {t!('signup.termCaptionLink')} </NavLink>
+          {t!('signup.termCaption')} <Link href='/terms'> {t!('signup.termCaptionLink')} </Link>
         </Typography>
         <Divider />
           <div >
-            <span className={classes.bottomPaper}>{t!('login.loginText')} <NavLink to='/login' className={classes.link}>{t!('login.loginButton')}</NavLink></span>
+            <span className={classes.bottomPaper}>{t!('login.loginText')} <Link href='/login'>{t!('login.loginButton')}</Link></span>
           </div>
 
       </div>
@@ -165,7 +166,7 @@ const mapDispatchToProps = (dispatch: any, ownProps: IVerifySignupProps) => {
       dispatch(authorizeActions.asyncVerifyUserRegisterCode(code))
     },
     loginPage: () => {
-      dispatch(push('/login'))
+      Router.push('/login')
     }
   }
 }
@@ -181,6 +182,6 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IVerifySignupProps) 
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(VerifySignupComponent as any)
+const translateWrapper = withTranslation('common')(VerifySignupComponent as any)
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withStyles(verifySignupStyles as any)(translateWrapper as any) as any) as any)

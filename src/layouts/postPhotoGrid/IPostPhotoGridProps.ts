@@ -1,4 +1,4 @@
-import { Media } from 'core/domain/imageGallery/media'
+import { Media } from '~/core/domain/imageGallery/media'
 
 export interface IPostPhotoGridProps {
     classes?: any

@@ -9,12 +9,12 @@ import Popover from '@material-ui/core/Popover';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize'
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import classNames from 'classnames';
-import UserAvatar from 'components/userAvatar/UserAvatarComponent';
+import UserAvatar from '~/components/userAvatar/UserAvatarComponent';
 import moment from 'moment/moment';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
-import { NavLink } from 'react-router-dom';
+import Link from '~/components/Link';
 
 import { ICommentComponentProps } from './ICommentComponentProps';
 import { ICommentComponentState } from './ICommentComponentState';
@@ -276,7 +276,7 @@ export class CommentComponent extends Component<ICommentComponentProps, IComment
 
     const Author = () => (
       <div>
-        <NavLink to={`/${userId}`}> <span style={this.styles.author as any}>{comment.get('ownerDisplayName', 'Loading...')}</span></NavLink><span style={{
+        <Link href={`/${userId}`}> <span style={this.styles.author as any}>{comment.get('ownerDisplayName', 'Loading...')}</span></Link><span style={{
           fontWeight: 400,
           fontSize: '8px'
         }}>{moment(comment.get('creationDate', 0)).local().fromNow()}</span>
@@ -311,7 +311,7 @@ export class CommentComponent extends Component<ICommentComponentProps, IComment
             className={classes.header}
               title={editorStatus ? '' : <Author />}
               subheader={commentBody}
-              avatar={<NavLink to={`/${userId}`}><UserAvatar fullName={comment.get('ownerDisplayName', '')!} fileName={comment.get('ownerAvatar', '')} size={24} /></NavLink>}
+              avatar={<Link href={`/${userId}`}><UserAvatar fullName={comment.get('ownerDisplayName', '')!} fileName={comment.get('ownerAvatar', '')} size={24} /></Link>}
               action={(!this.props.isCommentOwner && !this.props.isPostOwner && this.props.disableComments) || editorStatus ? '' : rightIconMenu}
             >
             </CardHeader>

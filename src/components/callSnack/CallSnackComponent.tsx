@@ -8,7 +8,7 @@ import red from '@material-ui/core/colors/red';
 import IconButton from '@material-ui/core/IconButton';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Snackbar from '@material-ui/core/Snackbar';
-import UserAvatar from 'components/userAvatar/UserAvatarComponent';
+import UserAvatar from '~/components/userAvatar/UserAvatarComponent';
 import classNames from 'classnames';
 import CallEndIcon from '@material-ui/icons/CallEnd';
 import { ICallSnackProps } from './ICallSnackProps';

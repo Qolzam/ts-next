@@ -1,6 +1,6 @@
-import { Post } from 'core/domain/posts'
+import { Post } from '~/core/domain/posts'
 import {Map} from 'immutable'
-import { Album } from 'core/domain/imageGallery/album'
+import { Album } from '~/core/domain/imageGallery/album'
 
 export interface IPostWriteComponentProps {
 

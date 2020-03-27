@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import {Map} from 'immutable'
-import config from 'config'
-import { withTranslation } from 'react-i18next'
+import config from '~/config'
+import { withTranslation } from '~/locales/i18n';
 
 // - Material UI
 import Button from '@material-ui/core/Button'
@@ -19,7 +19,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 // - Import app components
 
 // - Import API
-import StringAPI from 'api/StringAPI'
+import StringAPI from '~/api/StringAPI'
 
 // - Import actions
 import { IAddVideoComponentProps } from './IAddVideoComponentProps'
@@ -190,5 +190,5 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IAddVideoComponentPr
 }
 
 // - Connect component to redux store
-const translateWrapper = withTranslation('translations')(AddVideoComponent as any)
+const translateWrapper = withTranslation('common')(AddVideoComponent as any)
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles as any)(translateWrapper as any) as any)

@@ -1,7 +1,7 @@
-import { IHttpService } from 'core/services/webAPI'
-import { SocialProviderTypes } from 'core/socialProviderTypes'
+import { IHttpService } from '~/core/services/webAPI'
+import { SocialProviderTypes } from '~/core/socialProviderTypes'
 import { Container } from 'inversify/dts/container/container'
-import { HttpService } from 'data/webAPI/services/httpService'
+import { HttpService } from '~/data/webAPI/services/httpService'
 
 /**
  * Register http service dependecies

@@ -2,14 +2,14 @@
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { withStyles } from '@material-ui/core/styles';
-import { recentChatItemStyles } from 'components/recentChatItem/recentChatItemStyles';
-import UserAvatar from 'components/userAvatar/UserAvatarComponent';
-import { push } from 'connected-react-router';
+import { recentChatItemStyles } from '~/components/recentChatItem/recentChatItemStyles';
+import UserAvatar from '~/components/userAvatar/UserAvatarComponent';
+import Router from 'next/router'
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import * as chatActions from 'store/actions/chatActions';
+import Link from '~/components/Link';
+import * as chatActions from '~/store/actions/chatActions';
 
 import { IRecentChatItemProps } from './IRecentChatItemProps';
 import { IRecentChatItemState } from './IRecentChatItemState';
@@ -106,16 +106,18 @@ export class RecentChatItemComponent extends Component<IRecentChatItemProps, IRe
     return (
 
       <ListItem key={followerId} dense button className={classes.listItem} onClick={this.handleSetCurrentChat} style={isSeen ? { opacity: 0.6 } : {}}>
-        <NavLink
-          to={`/${followerId}`}
+        <Link
+          href={`/${followerId}`}
+        >
+          <UserAvatar 
           onClick={(evt) => {
             evt.preventDefault()
             closeRecentChat!()
             goTo!(`/${followerId}`)
-          }}
-        >
-          <UserAvatar fullName={fullName} fileName={avatar} />
-        </NavLink>
+          }} 
+          fullName={fullName} 
+          fileName={avatar} />
+        </Link>
         <ListItemText primary={<div>
           <div className='user-name'>
             {fullName}
@@ -136,7 +138,7 @@ export class RecentChatItemComponent extends Component<IRecentChatItemProps, IRe
  */
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    goTo: (url: string) => dispatch(push(url)),
+    goTo: (url: string) => Router.push(url),
     setCurrentChat: (userId: string) => dispatch(chatActions.activePeerChatRoom(userId)),
     getChatOnce: (chatRoomId: string) => dispatch(chatActions.dbFetchChatMessageOnce(chatRoomId)),
     subscribeChat: (chatRoomId: string) => dispatch(chatActions.dbSubscribeChatMessage(chatRoomId)),

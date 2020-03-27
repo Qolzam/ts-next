@@ -1,5 +1,5 @@
-import { VoteActionType } from 'constants/voteActionType';
-import { Vote } from 'core/domain/votes';
+import { VoteActionType } from '~/constants/voteActionType';
+import { Vote } from '~/core/domain/votes';
 import {Map} from 'immutable'
 // - Import action types
 // - Import domain

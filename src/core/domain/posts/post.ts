@@ -1,8 +1,8 @@
-import { BaseDomain } from 'core/domain/common'
-import { Comment } from 'core/domain/comments'
-import { PostType } from 'core/domain/posts/postType'
-import { UserPermissionType } from 'core/domain/common/userPermissionType'
-import { Album } from 'core/domain/imageGallery/album'
+import { BaseDomain } from '~/core/domain/common'
+import { Comment } from '~/core/domain/comments'
+import { PostType } from '~/core/domain/posts/postType'
+import { UserPermissionType } from '~/core/domain/common/userPermissionType'
+import { Album } from '~/core/domain/imageGallery/album'
 export class Post extends BaseDomain {
   constructor(
     /**

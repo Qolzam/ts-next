@@ -37,7 +37,8 @@ function* clearLoadedData() {
 /**
  * Clear loaded data
  */
-function* loadInitialData() {
+function* loadInitialData(action: any) {
+  const {isServer} = action.payload
   yield put(imageGalleryActions.dbGetImageGallery())
   yield put(userActions.dbGetUserInfo())
   yield put(notifyActions.dbGetNotifications())
@@ -46,7 +47,10 @@ function* loadInitialData() {
   yield put(circleActions.dbGetFollowers())
   yield put(userSettingActions.dbFetchUserSetting())
   yield put(authorizeActions.fetchAccessToken())
-  yield put(chatActions.wsConnect())
+  if (!isServer) {
+    yield put(chatActions.wsConnect())
+    
+  }
 
 }
 

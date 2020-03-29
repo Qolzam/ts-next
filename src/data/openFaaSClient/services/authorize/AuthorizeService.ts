@@ -85,8 +85,8 @@ export class AuthorizeService implements IAuthorizeService {
   /**
    * Logs out the user
    */
-  public logout = () => {
-    AuthAPI.eraseCookie('pa')
+  public logout = (req?: any) => {
+    AuthAPI.eraseCookie('pa', req)
   
   }
 

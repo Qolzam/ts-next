@@ -51,7 +51,7 @@ export const environment = {
     logoHead: require('~/assets/images/logo-head.png'),
     androidAppLink: 'https://github.com/Qolzam/react-mobile-social',
     iosAppLink: 'https://github.com/Qolzam/react-mobile-social',
-    api: '/api/',
+    api: 'http://www.app.localhost:3000/api/',
     gateway: 'http://www.app.localhost:31112/function',
     prettyURL: false,
     maxVideoFileSize: 20,

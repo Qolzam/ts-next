@@ -4,7 +4,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
-import withStyles from '@material-ui/core/styles/withStyles';
+import withStyles from '@material-ui/styles/withStyles/withStyles';
 import SvgCamera from '@material-ui/icons/PhotoCamera';
 import { ArrayAPI } from '~/api/ArrayAPI';
 import StringAPI from '~/api/StringAPI';
@@ -73,7 +73,7 @@ const creatColumn = (numberOfCoulmn: number, posts: Map<string, any>) => {
 }
 
 // - Create StreamComponent component class
-export class PostStreamComponent extends Component<IPostStreamProps, IPostStreamState> {
+class PostStreamComponent extends Component<IPostStreamProps, IPostStreamState> {
   static async getInitialProps() {
     return {
       namespacesRequired: ['common'],
@@ -293,6 +293,7 @@ export class PostStreamComponent extends Component<IPostStreamProps, IPostStream
           ? this.writePostElement()
           : ''
         }
+        <div className={classes.root}></div>
         <div className={classes.container}>
         {posts && (posts.count() > 0) && this.getpostList()}
         </div>

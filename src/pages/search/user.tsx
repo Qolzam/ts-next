@@ -10,27 +10,28 @@ import { withTranslation } from '~/locales/i18n';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { withRouter } from 'next/router';
 
-import SearchComponent from '../search';
-import { connectSearchUser } from './connectSearchUser';
-import { ISearchUserProps } from './ISearchUserProps';
-import { ISearchUserState } from './ISearchUserState';
-import { searchUserStyles } from './searchUserStyles';
+import SearchComponent from '~/containers/search';
+import { connectSearchUser } from '~/containers/searchUser/connectSearchUser';
+import { ISearchUserProps } from '~/containers/searchUser/ISearchUserProps';
+import { ISearchUserState } from '~/containers/searchUser/ISearchUserState';
+import { searchUserStyles } from '~/containers/searchUser/searchUserStyles';
+import HomeComponent from '~/containers/home';
 
-// - Material UI
-// - Import app components
-// - Import API
-
-// - Import actions
 /**
  * Create component class
  */
 export class SearchUserComponent extends Component<ISearchUserProps, ISearchUserState> {
+  static async getInitialProps() {
+    return {
+      namespacesRequired: ['common'],
+    }
+  }
+
 
   /**
    * Fields
    */
-  unlisten: any
-  nextPage = 0
+  currentPage = 0
 
   /**
    * Component constructor
@@ -44,37 +45,49 @@ export class SearchUserComponent extends Component<ISearchUserProps, ISearchUser
 
     }
 
+    // Binding functions to `this`
+    this.searchQuery = this.searchQuery.bind(this)
+    this.executeSearch = this.executeSearch.bind(this)
+    this.searchParam = this.searchParam.bind(this)
+    this.handleRouteChange = this.handleRouteChange.bind(this)
+
   }
 
   searchQuery() {
-    const { location } = this.props
-    this.executeSearch(location)
+   this.executeSearch()
   }
 
-  executeSearch(location: any) {
-    const { search } = this.props
-    const params: { q: string } = queryString.parse(location.search) as any
-    search!(params.q, this.nextPage, 10)
-    this.nextPage++
+  executeSearch() {
+    const {search} = this.props
+    const searchQuery = this.props.router.query.q || ''
+    search!(searchQuery, this.currentPage, 10)
+    this.currentPage++
   }
 
   searchParam = () => {
-    const params: { q: string } = queryString.parse(window.location.search) as any
-    return params.q
+    const searchQuery = this.props.router.query.q || ''
+    return searchQuery
   }
 
+  handleRouteChange = (url: string) => {
+    
+    this.currentPage = 0
+    this.executeSearch()
+  }
+  
+
+  
   componentDidMount() {
-    const { history } = this.props
-    const scope = this
-    this.unlisten = history.listen((location: any, action: any) => {
-      scope.nextPage = 0
-      this.executeSearch(location)
-    })
+    const {router} = this.props
+
+    router.events.on('routeChangeStart', this.handleRouteChange)
     this.searchQuery()
   }
 
   componentWillUnmount() {
-    this.unlisten()
+    const {router} = this.props
+
+    router.events.off('routeChangeStart', this.handleRouteChange)
   }
 
   /**
@@ -114,5 +127,8 @@ export class SearchUserComponent extends Component<ISearchUserProps, ISearchUser
 
 // - Connect component to redux store
 const translateWrapper = withTranslation('common')(SearchUserComponent as any)
-
-export default withRouter<any, any>(connectSearchUser(withStyles(searchUserStyles as any)(translateWrapper as any) as any))
+const withRouterComponent = withRouter<any, any>(connectSearchUser(withStyles(searchUserStyles as any)(translateWrapper as any) as any));
+(withRouterComponent as any).getLayout = (page: Component) => {
+  return <HomeComponent>{page}</HomeComponent>
+}
+export default withRouterComponent

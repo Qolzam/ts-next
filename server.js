@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+const cookieParser = require('cookie-parser');
 const express = require('express')
 const next = require('next')
 
@@ -25,7 +26,7 @@ app
   .prepare()
   .then(() => {
     server = express()
-
+   server.use(cookieParser());
     // Set up the proxy.
     if (dev && devProxy) {
       const proxyMiddleware = require('http-proxy-middleware')

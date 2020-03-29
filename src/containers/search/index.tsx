@@ -20,14 +20,7 @@ import { searchStyles } from '~/containers/search/searchStyles';
  * Create component class
  */
 export class SearchComponent extends Component<ISearchProps, ISearchState> {
-  static async getInitialProps() {
-    return {
-      namespacesRequired: ['common'],
-    }
-  }
-  static propTypes = {
-
-  }
+  
 
   /**
    * Component constructor
@@ -49,40 +42,27 @@ export class SearchComponent extends Component<ISearchProps, ISearchState> {
    * Hadle on tab change
    */
   handleChangeTab = (event: any, value: any) => {
-    const { goTo, setHeaderTitle, t, location } = this.props
+    const { goTo, setHeaderTitle, t } = this.props
+    const searchQuery = this.props.router.query.q || ''
     this.setState({ tabIndex: value })
     switch (value) {
       case 0:
-        goTo!(`/search/post${location.search}`)
-        setHeaderTitle!(t!('header.peopleCaption'))
+        goTo!(`/search/post?q=${searchQuery}`)
+        setHeaderTitle!(t!('header.searchPosts'))
         break
       case 1:
-        goTo!(`/search/user${location.search}`)
-        setHeaderTitle!(t!('header.circlesCaption'))
+        goTo!(`/search/user?q=${searchQuery}`)
+        setHeaderTitle!(t!('header.searchPeople'))
         break
       default:
         break
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { setHeaderTitle, t } = this.props
-    const { tab } = this.props.match.params
-    switch (tab) {
-      case undefined:
-      case '':
-        setHeaderTitle!(t!('header.peopleCaption'))
-        break
-      case 'circles':
-        setHeaderTitle!(t!('header.circlesCaption'))
-        break
-      case 'followers':
-        setHeaderTitle!(t!('header.followersCaption'))
-        break
-      default:
-        break
-    }
-
+    setHeaderTitle!(t!('header.search'))
+    
   }
 
   /**
@@ -111,7 +91,6 @@ export class SearchComponent extends Component<ISearchProps, ISearchState> {
     const {  t, children, classes } = this.props
     const { tabIndex } = this.state
     return (
-      <HomeComponent>
       <div style={styles.people}>
         <AppBar position='static' color='default'>
           <Tabs indicatorColor={'secondary'}
@@ -127,7 +106,6 @@ export class SearchComponent extends Component<ISearchProps, ISearchState> {
         {children}
         </div>
       </div>
-      </HomeComponent>
     )
   }
 

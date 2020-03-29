@@ -19,10 +19,7 @@ import HomeComponent from '~/containers/home/HomeComponent';
 import { IPeopleComponentProps } from '~/containers/people/IPeopleComponentProps';
 import { IPeopleComponentState } from '~/containers/people/IPeopleComponentState';
 
-// - Import app components
-// - Import API
 
-// - Import actions
 const TabContainer = (props: any) => {
   return (
     <Typography component='div' style={{ padding: 8 * 3 }}>
@@ -42,9 +39,6 @@ export class PeopleComponent extends Component<IPeopleComponentProps,IPeopleComp
     }
   }
 
-  static propTypes = {
-
-  }
 
   /**
    * Component constructor
@@ -52,7 +46,7 @@ export class PeopleComponent extends Component<IPeopleComponentProps,IPeopleComp
    */
   constructor (props: IPeopleComponentProps) {
     super(props)
-    const {tab} = this.props.match.params
+    const {tab} = this.props.router.query
     // Defaul state
     this.state = {
       tabIndex: this.getTabIndexByNav(tab)
@@ -70,7 +64,7 @@ export class PeopleComponent extends Component<IPeopleComponentProps,IPeopleComp
     this.setState({ tabIndex: value })
     switch (value) {
       case 0:
-        goTo!('/people')
+        goTo!('/people/find')
         setHeaderTitle!(t!('header.peopleCaption'))
         break
       case 1:
@@ -89,10 +83,10 @@ export class PeopleComponent extends Component<IPeopleComponentProps,IPeopleComp
 
   componentDidMount () {
     const { setHeaderTitle, t} = this.props
-    const {tab} = this.props.match.params
+    const {tab} = this.props.router.query
     switch (tab) {
       case undefined:
-      case '':
+      case 'find':
         setHeaderTitle!(t!('header.peopleCaption'))
         break
       case 'circles':
@@ -199,5 +193,8 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IPeopleComponentProp
 
 // - Connect component to redux store
 const translateWrapper = withTranslation('common')(PeopleComponent as any)
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translateWrapper as any) as any)
+const withRouterComponent = withRouter(connect(mapStateToProps, mapDispatchToProps)(translateWrapper as any) as any);
+(withRouterComponent as any).getLayout = (page: Component) => {
+  return <HomeComponent>{page}</HomeComponent>
+}
+export default withRouterComponent

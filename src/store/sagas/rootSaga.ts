@@ -2,7 +2,7 @@ import { all } from 'redux-saga/effects';
 
 import authorizeSaga from './authorizeSaga';
 import chatSaga from './chatSaga';
-import circleSaga from './circleSaga';
+import circleSaga, {initCircleSaga} from './circleSaga';
 import commentSaga from './commentSaga';
 import voteSaga from './voteSaga';
 import commonSaga from './commonSaga';
@@ -17,6 +17,7 @@ export default function* root() {
     yield all([
       authorizeSaga(),
       localeSaga(),
+      initCircleSaga(),
       commentSaga(),
       voteSaga(),
       userSaga(),

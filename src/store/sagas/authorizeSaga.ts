@@ -55,8 +55,8 @@ function* onLoginUser(userClaim: UserClaim) {
 /**
  * On logout user
  */
-function* onLogoutUser() {
-    yield call(authorizeService.logout)
+function* onLogoutUser(req?: any) {
+    yield call(authorizeService.logout, req)
     yield put(authorizeActions.logout())
     yield put(globalActions.clearLoadedData())
 }
@@ -147,7 +147,7 @@ function* onAuthStateChanged(action: any) {
             
         }
     } else {
-        yield call(onLogoutUser)
+        yield call(onLogoutUser, req)
     }
     yield put(globalActions.defaultDataEnable())
 }

@@ -23,6 +23,11 @@ export interface IHomeComponentProps {
   isChatOpen?: boolean
 
   /**
+   * Whether sidebar is open
+   */
+  sidebarOpen?: boolean
+
+  /**
    * Merged all users posts to show in stream
    */
   mergedPosts?: {[postId: string]: Post}
@@ -82,6 +87,11 @@ export interface IHomeComponentProps {
    * Hide send feedback form
    */
   hideSendFeedback?: () => any
+
+  /**
+   * Toggle sidebar
+   */
+  toggleSidebar?: () => any
 
   /**
    * Translate locale to string

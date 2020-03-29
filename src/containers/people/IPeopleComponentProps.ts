@@ -7,6 +7,11 @@ export interface IPeopleComponentProps {
    * @memberof IPeopleComponentProps
    */
   match?: any
+  
+  /**
+   * Router
+   */
+  router?: any
 
   /**
    * Circles loaded {true} or not {false}

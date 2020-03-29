@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import MasterLoading from '~/components/masterLoading';
 import SendFeedback from '~/components/sendFeedback';
 import config from '~/config';
-import MasterRouter from '~/routes/MasterRouter';
 
 import { IMasterProps } from './IMasterProps';
 import { IMasterState } from './IMasterState';
@@ -89,11 +88,7 @@ export class MasterComponent extends Component<IMasterProps, IMasterState> {
   }
 
   componentDidMount() {
-    const {authed} = this.props
-    if (!authed) {
-      window.location.href = '/login'
-
-    }
+  
   }
 
   /**
@@ -127,7 +122,7 @@ export class MasterComponent extends Component<IMasterProps, IMasterState> {
           <div className='title'>Loading ... </div>
         </div>
         {progress.visible ? <MasterLoading /> : ''}
-        <MasterRouter data={{ uid }} />
+        {this.props.children}
         {this.getCallingUsersElms()}
         {this.getChatRequestsElms()}
         <Snackbar

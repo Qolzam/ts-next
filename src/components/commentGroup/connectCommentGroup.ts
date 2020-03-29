@@ -54,7 +54,7 @@ const makeMapStateToProps = () => {
 // - Connect component to redux store
 export const connectCommentGroup =
     (component: Component<ICommentGroupComponentProps>) => {
-        const translateWrapper = withTranslation('translations')(component as any)
+        const translateWrapper = withTranslation('common')(component as any)
         return connect(makeMapStateToProps, mapDispatchToProps)(withStyles(commentGroupStyles as any)(translateWrapper as any))
 
     }

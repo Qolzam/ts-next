@@ -3,7 +3,7 @@ import { fromJS, Map } from 'immutable';
 import jwtDecode from 'jwt-decode';
 import { applyMiddleware, createStore, Store, compose } from 'redux';
 import { createLogger } from 'redux-logger';
-import createSagaMiddleware, { END } from 'redux-saga';
+import createSagaMiddleware, { END, runSaga } from 'redux-saga';
 import thunk from 'redux-thunk';
 import { rootReducer } from '~/store/reducers';
 import { cacheEnhancer } from '../utils/redux-cache'
@@ -40,10 +40,12 @@ if (token) {
 //   }
 // }
 
-let store: Store<any> = createStore(rootReducer(), fromJS(initialState), compose(
+let store: any = createStore(rootReducer(), fromJS(initialState), compose(
   applyMiddleware(thunk, sagaMiddleware), cacheEnhancer()
 ))
-sagaMiddleware.run(rootSaga);
+
+store.sagaTask = sagaMiddleware.run(rootSaga)
+
 
 return store
 

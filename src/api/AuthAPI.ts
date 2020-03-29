@@ -2,6 +2,7 @@ import StringAPI from '~/api/StringAPI';
 import { ServerRequestType } from '~/constants/serverRequestType';
 import { ServerRequestModel } from '~/models/server';
 import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType';
+import Cookies from 'js-cookie'
 
 /**
  * Create login server request
@@ -49,8 +50,8 @@ const createCookie = (name: string,value: string,days: number) => {
 		date.setTime(date.getTime()+(days*24*60*60*1000));
 		var expires = "; expires="+date.toUTCString();
 	}
-	else var expires = "";
-	document.cookie = name+"="+value+expires+"; path=/";
+  else var expires = "";
+  Cookies.set(name, value, { expires: Date.parse(expires), path: '/' })
 }
 
 const readCookie = (name: string, cookie?: any) => {
@@ -69,8 +70,15 @@ const readCookie = (name: string, cookie?: any) => {
 	return null;
 }
 
-const eraseCookie = (name: string) => {
-  document.cookie = name +`=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;Domain=.${document.domain.split('.').splice(1).join('.')}`;
+const eraseCookie = (name: string, req?: any) => {
+  let domain =''
+  if (req) {
+    domain = req.get('origin')
+  } else {
+    domain = `.${document.domain.split('.').splice(1).join('.')}`
+  }
+  Cookies.remove(name, { path: '/', domain})
+  // document.cookie = name +`=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;Domain=.${document.domain.split('.').splice(1).join('.')}`;
 }
 
 export const AuthAPI = {

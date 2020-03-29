@@ -297,7 +297,7 @@ export class UserActivityComponent extends Component<IUserActivityComponentProps
                         </Paper>
                     </div>
 
-                    <AboutDialogComponent targetUser={profile} open={aboutOpen} onClose={this.handleCloseAbout} />
+                    {aboutOpen && <AboutDialogComponent targetUser={profile} open={aboutOpen} onClose={this.handleCloseAbout} />}
 
                     {/* <div className={classes.card} style={boxesStyle ? boxesStyle[1] : {}}>
                         <Paper className={classes.paperContainer}>
@@ -442,12 +442,13 @@ export class UserActivityComponent extends Component<IUserActivityComponentProps
                     </div>
 
                 </div>
-                <TimelineComponent
+                {privilegeOpen && <TimelineComponent
                     title={t!('userActivity.privileges')}
                     open={privilegeOpen!}
                     onClose={this.handleClosePrivileges}
-                />
-                <PictureDialogComponent open={picutreDialogOpen} onClose={this.closePictureDialog} images={[pictureDialogURL]} />
+                />}
+                
+                {picutreDialogOpen && <PictureDialogComponent open={picutreDialogOpen} onClose={this.closePictureDialog} images={[pictureDialogURL]} />}
             </>
         )
     }

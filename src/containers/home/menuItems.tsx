@@ -12,12 +12,12 @@ export const menuItems = (userId: string, onFeedback: () => void) => [
     },
     {
       label: i18n.i18n.t('sidebar.profile'),
-      path: `/${userId}`,
+      path: `/u/${userId}`,
       icon: <SvgAccountCircle />
     },
     {
       label: i18n.i18n.t('sidebar.people'),
-      path: `/people`,
+      path: `/people/find`,
       icon: <SvgPeople />
     },
     // {

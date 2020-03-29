@@ -45,12 +45,6 @@ import { IChatState } from './IChatState';
 import { userSelector } from '~/store/reducers/users/userSelector';
 import { ChatRoom } from '~/core/domain/chat/chatRoom';
 
-// - Material-UI
-// - Import app components
-// - Import API
-
-// - Import actions
-
 /**
  * Create component class
  */

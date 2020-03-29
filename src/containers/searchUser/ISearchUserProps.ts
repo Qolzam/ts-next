@@ -38,4 +38,10 @@ export interface ISearchUserProps {
    */
   t?: (state: any, params?: any) => any
 
+  
+  /**
+   * Router
+   */
+  router?: any
+
 }

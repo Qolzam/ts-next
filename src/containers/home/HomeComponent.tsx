@@ -42,10 +42,6 @@ export class HomeComponent extends Component<IHomeComponentProps, IHomeComponent
     super(props)
     this.idleTimer = React.createRef()
 
-    // Default state
-    this.state = {
-      drawerOpen: false
-    }
 
     // Binding function to `this`
     this.toggleChat = this.toggleChat.bind(this)
@@ -57,7 +53,9 @@ export class HomeComponent extends Component<IHomeComponentProps, IHomeComponent
    * Handle drawer toggle
    */
   handleDrawerToggle = () => {
-    this.setState({ drawerOpen: !this.state.drawerOpen })
+    const {toggleSidebar} = this.props
+    toggleSidebar!()
+    
   }
 
   componentDidMount() {
@@ -87,8 +85,7 @@ export class HomeComponent extends Component<IHomeComponentProps, IHomeComponent
    * Render DOM component
    */
   render() {
-    const { loaded, authed, showSendFeedback, t, classes, theme, isChatOpen } = this.props
-    const { drawerOpen } = this.state
+    const { sidebarOpen, showSendFeedback, t, classes, theme, isChatOpen } = this.props
 
     const drawer = (
       <div>
@@ -125,11 +122,11 @@ export class HomeComponent extends Component<IHomeComponentProps, IHomeComponent
     const mainElement = (
       <div className={classes.root}>
         <div className={classes.appFrame}>
-          <HomeHeader onToggleDrawer={this.handleDrawerToggle} drawerStatus={this.state.drawerOpen} />
+          <HomeHeader onToggleDrawer={this.handleDrawerToggle} drawerStatus={sidebarOpen!} />
           <Hidden mdUp>
             <Drawer
               variant='temporary'
-              open={this.state.drawerOpen}
+              open={sidebarOpen!}
               classes={{
                 paper: classes.drawerPaper,
               }}
@@ -152,7 +149,7 @@ export class HomeComponent extends Component<IHomeComponentProps, IHomeComponent
           <Hidden smDown implementation='js'>
             <Drawer
               variant='persistent'
-              open={this.state.drawerOpen}
+              open={sidebarOpen!}
               classes={{
                 paper: classes.drawerPaperLarge,
               }}
@@ -166,15 +163,15 @@ export class HomeComponent extends Component<IHomeComponentProps, IHomeComponent
           </Hidden>
           <main
             className={classNames(classes.content, classes[`content-${anchor}`], {
-              [classes.contentShift]: drawerOpen,
-              [classes[`contentShift-${anchor}`]]: drawerOpen,
+              [classes.contentShift]: sidebarOpen!,
+              [classes[`contentShift-${anchor}`]]: sidebarOpen!,
             })}
           >
             {this.props.children}
           </main>
         </div>
 
-        <ChatComponent open={isChatOpen!} onToggle={this.toggleChat} />
+        {isChatOpen && <ChatComponent open={isChatOpen!} onToggle={this.toggleChat} />}
         {/* <CookieConsent
           location='bottom'
           buttonText={t!('home.cookieConsentButton')}
@@ -217,7 +214,8 @@ const mapDispatchToProps = (dispatch: any, ownProps: IHomeComponentProps) => {
     },
     goTo: (url: string) => Router.push(url),
     showSendFeedback: () => dispatch(globalActions.showSendFeedback()),
-    hideSendFeedback: () => dispatch(globalActions.hideSendFeedback())
+    hideSendFeedback: () => dispatch(globalActions.hideSendFeedback()),
+    toggleSidebar: () => dispatch(globalActions.toggleSidebar())
   }
 
 }
@@ -229,9 +227,11 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IHomeComponentProps)
   const isChatOpen = state.getIn(['chat', 'chatOpen'])
   const uid = state.getIn(['authorize', 'uid'], {})
   const global = state.get('global', {})
+  const sidebarOpen = state.getIn(['global', 'sidebar', 'open'], false)
 
   return {
     isChatOpen,
+    sidebarOpen,
     uid,
     authed: state.getIn(['authorize', 'authed'], false),
     global,

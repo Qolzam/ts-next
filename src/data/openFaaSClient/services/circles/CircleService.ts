@@ -46,7 +46,9 @@ export class CircleService implements ICircleService {
   }
   public getCircles = async (userId: string) => {
     try {
+      
       const result = await this._httpService.get(`circles/my`)
+      console.log('getCircles ', result)
       let parsedData: Map<string, Map<string, any>> = Map({})
       result.forEach((circle: any) => {
         const parsedCircle = {
@@ -60,6 +62,8 @@ export class CircleService implements ICircleService {
       })
       return parsedData
     } catch (error) {
+      
+      console.log(JSON.stringify(error))
       throw new SocialError(error.code, error.message)
     }
 

@@ -70,7 +70,7 @@ export class BountiesDialogComponent extends Component<IBountiesDialogComponentP
                 <Button
                     onClick={this.handleClickOpen}
                     classes={{ root: classes.buttonBounties }}>{text}</Button>
-                <Dialog
+                {this.state.open && <Dialog
                     maxWidth={'md'}
                     open={this.state.open}
                     onClose={this.handleClose}
@@ -160,7 +160,7 @@ export class BountiesDialogComponent extends Component<IBountiesDialogComponentP
                             image={image3}
                             subheader={'Limited Company'} />
                     </Grid>
-                </Dialog>
+                </Dialog>}
             </div>
     )
   }

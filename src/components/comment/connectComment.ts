@@ -54,7 +54,7 @@ const makeMapStateToProps = () => {
 
 export const connectComment =
     (component: Component<IPostComponentProps>) => {
-        const translateWrapper = withTranslation('translations')(component as any)
+        const translateWrapper = withTranslation('common')(component as any)
 
         return connect(makeMapStateToProps, mapDispatchToProps)(withStyles(commentStyles as any)(translateWrapper as any))
 

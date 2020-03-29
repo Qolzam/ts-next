@@ -33,7 +33,7 @@ export class ProfileComponent extends Component<IProfileComponentProps, IProfile
       namespacesRequired: ['common'],
     }
   }
-  
+
   historyUnlisten: any = null
   static propTypes = {
 
@@ -55,25 +55,28 @@ export class ProfileComponent extends Component<IProfileComponentProps, IProfile
 
   }
 
-  componentDidMount() {
-    const {history, users} = this.props
-    this.props.loadUserInfo()
-    if (!this.historyUnlisten && users) {
-      this.historyUnlisten =  history.listen((location: any, action: any) => {
-        const userId = (location.pathname as string).replace('/','')
-        const displayName = users.getIn([userId, 'fullName'],'')
-        this.props.setHeaderTitle(displayName)
-       
-      })
+  handleRouteChange = (url: string) => {
+    const {users} = this.props
+    const {userId} = this.props.router.query
+    if (users) {
+      const displayName = users.getIn([userId, 'fullName'],'')
+      this.props.setHeaderTitle(displayName)
     }
+  }
+
+  componentDidMount() {
+    const { router} = this.props
+    this.props.loadUserInfo()
+
+    router.events.on('routeChangeStart', this.handleRouteChange)
     this.props.setHeaderTitle(this.props.name)
     
   }
 
   componentWillUnmount() {
-    if (this.historyUnlisten) {
-      this.historyUnlisten()
-    }
+    const {router} = this.props
+
+    router.events.off('routeChangeStart', this.handleRouteChange)
   }
 
   /**
@@ -85,7 +88,7 @@ export class ProfileComponent extends Component<IProfileComponentProps, IProfile
     const { loadPosts, hasMorePosts, t, classes, profile, isCurrentUser, posts, postRequestId, userId } = this.props
 
     return (
-      <HomeComponent>
+      <>
         <div className={classes.bannerContainer}>
 
           <ImgCover height={'384px'} width={'100%'} className={classes.banner}
@@ -113,8 +116,7 @@ export class ProfileComponent extends Component<IProfileComponentProps, IProfile
             hasMorePosts={hasMorePosts}
             displayWriting={false} />
         </div>
-
-      </HomeComponent>
+</>
     )
   }
 }
@@ -164,5 +166,8 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IProfileComponentPro
 
 // - Connect component to redux store
 const translateWrapper = withTranslation('common')(ProfileComponent as any)
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withStyles(profileStyles as any)(translateWrapper as any) as any) as any)
+const withRouterComponent = withRouter(connect(mapStateToProps, mapDispatchToProps)(withStyles(profileStyles as any)(translateWrapper as any) as any) as any);
+(withRouterComponent as any).getLayout = (page: Component) => {
+  return <HomeComponent>{page}</HomeComponent>
+}
+export default withRouterComponent

@@ -111,6 +111,10 @@ export const globalReducer = (state: Map<string, any> = Map(new GlobalState()), 
       return state
         .setIn(['dialog', action.payload.type, 'open'], false)
 
+    case GlobalActionType.TOGGLE_SIDEBAR:
+      return state
+        .setIn(['sidebar',  'open'], !state.getIn(['sidebar',  'open'], false))
+
     case GlobalActionType.SHOW_SEND_FEEDBACK:
       return state
         .set('sendFeedbackStatus', true)

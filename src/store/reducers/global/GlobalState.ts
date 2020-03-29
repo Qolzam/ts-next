@@ -115,6 +115,10 @@ export class GlobalState {
   */
   masterLoadingQueue: number = 0
 
+  sidebar = Map({
+    open: false
+  })
+
  /**
   * Temp date storage
   *

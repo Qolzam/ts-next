@@ -19,6 +19,7 @@ export class StreamComponent extends Component<IStreamComponentProps, IStreamCom
       namespacesRequired: ['common'],
     }
   }
+  
 
   static propTypes = {
     /**
@@ -81,17 +82,17 @@ export class StreamComponent extends Component<IStreamComponentProps, IStreamCom
     const { hasMorePosts, posts, requestId, currentUser} = this.props
 
     return (
-      <HomeComponent>
       <div className='stream-root'>
         <PostStreamComponent homeTitle={currentUser ? currentUser.fullName : ''} requestId={requestId} posts={posts} loadStream={this.loadPosts} hasMorePosts={hasMorePosts} displayWriting />
       </div>
-
-      </HomeComponent>
     )
   }
 }
 
 // - Connect component to redux store
 const translateWrapper = withTranslation('common')(StreamComponent as any)
-
-export default connectStream(withStyles(streamStyles)(translateWrapper as any) as any)
+const connectComponent = connectStream(withStyles(streamStyles)(translateWrapper as any) as any);
+(connectComponent as any).getLayout = (page: Component) => {
+  return <HomeComponent>{page}</HomeComponent>
+}
+export default connectComponent

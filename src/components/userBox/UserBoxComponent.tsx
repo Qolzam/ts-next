@@ -16,10 +16,6 @@ import { userSelector } from '~/store/reducers/users/userSelector';
 import { IUserBoxComponentProps } from './IUserBoxComponentProps';
 import { IUserBoxComponentState } from './IUserBoxComponentState';
 
-// - Material UI
-// - Import app components
-// - Import API
-// - Import actions
 const styles = (theme: any) => ({
   root: {
     width: '100%',
@@ -139,14 +135,14 @@ export class UserBoxComponent extends Component<IUserBoxComponentProps, IUserBox
           paddingTop: 20
 
         }}>
-          <div onClick={() => this.props.goTo!(`/${this.props.userId}`)} style={{ cursor: 'pointer' }}>
+          <div onClick={() => this.props.goTo!(`/u/${this.props.userId}`)} style={{ cursor: 'pointer' }}>
             <UserAvatar
               fullName={this.props.fullName!}
               fileName={this.props.avatar!}
               size={90}
             />
           </div>
-          <div onClick={() => this.props.goTo!(`/${this.props.userId}`)} className='people__name' style={{ cursor: 'pointer' }}>
+          <div onClick={() => this.props.goTo!(`/u/${this.props.userId}`)} className='people__name' style={{ cursor: 'pointer' }}>
             <div>
               {this.props.fullName}
             </div>

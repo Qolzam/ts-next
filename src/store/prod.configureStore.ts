@@ -40,11 +40,12 @@ if (token) {
 //   }
 // }
 
-let store: Store<any> = createStore(rootReducer(), fromJS(initialState), compose(
+let store: any = createStore(rootReducer(), fromJS(initialState), compose(
   applyMiddleware(thunk, sagaMiddleware)
 ))
 
-sagaMiddleware.run(rootSaga);
+store.sagaTask = sagaMiddleware.run(rootSaga)
+
 
 return store
 

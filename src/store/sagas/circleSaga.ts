@@ -1,5 +1,4 @@
 import { CircleActionType } from '~/constants/circleActionType';
-import { Circle } from '~/core/domain/circles/circle';
 import { SocialProviderTypes } from '~/core/socialProviderTypes';
 import { Map } from 'immutable';
 import { all, call, put, select, takeLatest } from 'redux-saga/effects';
@@ -22,11 +21,12 @@ const userTieService: IUserTieService = provider.get<IUserTieService>(SocialProv
 /**
  * Fetch circles
  */
-function* dbFetchCircle(action: { type: CircleActionType, payload: any }) {
+function* dbFetchCircle() {
   let authedUser: Map<string, any> = yield select(authorizeSelector.getAuthedUser)
   const uid = authedUser.get('uid')
   if (uid) {
     try {
+      console.log('dbFetchCircle ', uid)
       const circles: Map<string, Map<string, any>> = yield call(circleService.getCircles, uid)
       yield put(circleActions.addCircles(circles))
     } catch (error) {
@@ -39,7 +39,7 @@ function* dbFetchCircle(action: { type: CircleActionType, payload: any }) {
 /**
  * Fetch user ties
  */
-function* dbFetchUserTies(action: { type: CircleActionType, payload: any }) {
+function* dbFetchUserTies() {
   let authedUser: Map<string, any> = yield select(authorizeSelector.getAuthedUser)
   const uid = authedUser.get('uid')
   if (uid) {
@@ -57,7 +57,7 @@ function* dbFetchUserTies(action: { type: CircleActionType, payload: any }) {
 /**
  * Fetch user tieds
  */
-function* dbFetchUserTieds(action: { type: CircleActionType, payload: any }) {
+function* dbFetchUserTieds() {
   let authedUser: Map<string, any> = yield select(authorizeSelector.getAuthedUser)
   const uid = authedUser.get('uid')
   if (uid) {
@@ -70,6 +70,15 @@ function* dbFetchUserTieds(action: { type: CircleActionType, payload: any }) {
 
     }
   }
+}
+
+
+export function* initCircleSaga() {
+  yield all([
+    call(dbFetchCircle),
+    call(dbFetchUserTies),
+    call(dbFetchUserTieds),
+  ]) 
 }
 
 export default function* circleSaga() {

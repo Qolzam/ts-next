@@ -1,4 +1,4 @@
-import { Post } from '~/core/domain/posts'
+import Router from 'next/router';
 import { User } from '~/core/domain/users'
 import {Map} from 'immutable'
 import { ServerRequestStatusType } from '~/store/actions/serverRequestStatusType'
@@ -69,4 +69,9 @@ export interface ISearchPostProps {
    * Styles
    */
   classes?: any
+
+  /**
+   * Router
+   */
+  router?: any
 }

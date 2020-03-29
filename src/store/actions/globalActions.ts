@@ -330,9 +330,10 @@ export const clearLoadedData = () => {
 }
 
 // - Load initial data
-export const loadInitialData = () => {
+export const loadInitialData = (isServer?: boolean) => {
   return {
-    type: GlobalActionType.LOAD_INITIAL_DATA
+    type: GlobalActionType.LOAD_INITIAL_DATA,
+    payload: {isServer}
   }
 }
 
@@ -356,6 +357,14 @@ export const closeDialog = (type: DialogType) => {
   }
 }
 
+/**
+ *  Toggle sidebar
+ */
+export const toggleSidebar = () => {
+  return {
+    type: GlobalActionType.TOGGLE_SIDEBAR,
+  }
+}
 
 /**
  * Create send feedback serevr request model

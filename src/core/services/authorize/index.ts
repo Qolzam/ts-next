@@ -31,7 +31,7 @@ export interface IAuthorizeService {
   /**
    * Logs out the user
    */
-  logout: () => void
+  logout: (req?: any) => void
 
   /**
    * Whether user is login or not

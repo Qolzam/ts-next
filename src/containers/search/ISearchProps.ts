@@ -21,6 +21,11 @@ export interface ISearchProps {
   classes?: any
 
   /**
+   * Router
+   */
+  router?: any
+
+  /**
    * Rediret to another route
    */
   goTo?: (url: string) => any

@@ -10,7 +10,7 @@ import { connectStream } from '~/containers/stream/connectStream';
 import { IStreamComponentProps } from '~/containers/stream/IStreamComponentProps';
 import { IStreamComponentState } from '~/containers/stream/IStreamComponentState';
 import { streamStyles } from '~/containers/stream/streamStyles';
-import HomeComponent from '~/containers/home/HomeComponent';
+import HomeComponent, { getLayout } from '~/containers/home/HomeComponent';
 export class StreamComponent extends Component<IStreamComponentProps, IStreamComponentState> {
   static async getInitialProps({req, store, isServer} : any) {
   
@@ -92,7 +92,5 @@ export class StreamComponent extends Component<IStreamComponentProps, IStreamCom
 // - Connect component to redux store
 const translateWrapper = withTranslation('common')(StreamComponent as any)
 const connectComponent = connectStream(withStyles(streamStyles)(translateWrapper as any) as any);
-(connectComponent as any).getLayout = (page: Component) => {
-  return <HomeComponent>{page}</HomeComponent>
-}
+(connectComponent as any).getLayout = getLayout
 export default connectComponent

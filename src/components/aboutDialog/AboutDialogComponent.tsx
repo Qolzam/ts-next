@@ -22,14 +22,10 @@ import { aboutDialogStyles } from './aboutDialogStyles';
 import { IAboutDialogProps } from './IAboutDialogProps';
 import { IAboutDialogState } from './IAboutDialogState';
 
-// - Material-UI
-// - Import actions
-// - Import app components
-// - Import API
 
-function Transition(props: any) {
-  return <Slide direction='up' {...props} />
-}
+const Transition = React.forwardRef(function Transition(props: any, ref: any) {
+  return <Slide direction="up" ref={ref} {...props} />;
+}) as any;
 
 /**
  * Create component class
@@ -82,7 +78,7 @@ export class AboutDialogComponent extends Component<IAboutDialogProps, IAboutDia
 
   render() {
 
-    const { t, classes,open, onClose, targetUser } = this.props
+    const { t, classes, open, onClose, targetUser } = this.props
 
     const aboutElem = (
       <div className={classes.rootInfo}>
@@ -117,48 +113,49 @@ export class AboutDialogComponent extends Component<IAboutDialogProps, IAboutDia
 
     return (
       <div>
-      <Dialog
-        id={'album-dialog-'}
-        open={open}
-        classes={{ paper: classes.paper }}
-        onClose={onClose}
-        TransitionComponent={Transition}
-      >
-        <div className={classes.root}>
-          <AppBar position='sticky' color='primary'>
-            <Toolbar>
-              <IconButton onClick={onClose}>
-                <BackIcon />
-              </IconButton>
-              <Typography variant='h6' color='inherit' className={classes.flex}>
-                {targetUser.fullName}
-              </Typography>
-              <UserAvatarComponent
-                fullName={targetUser.fullName!}
-                fileName={targetUser.avatar!}
-                size={32}
-                style={classes.avatar}
-              />
-            </Toolbar>
-          </AppBar>
-          <div className={classes.content}>
+        {<Dialog
+          id={'about-dialog-user-info'}
+          open={open}
+          classes={{ paper: classes.paper }}
+          onClose={onClose}
+          keepMounted
+          TransitionComponent={Transition}
+        >
+          <div className={classes.root}>
+            <AppBar position='sticky' color='primary'>
+              <Toolbar>
+                <IconButton onClick={onClose}>
+                  <BackIcon />
+                </IconButton>
+                <Typography variant='h6' color='inherit' className={classes.flex}>
+                  {targetUser.fullName}
+                </Typography>
+                <UserAvatarComponent
+                  fullName={targetUser.fullName!}
+                  fileName={targetUser.avatar!}
+                  size={32}
+                  style={classes.avatar}
+                />
+              </Toolbar>
+            </AppBar>
+            <div className={classes.content}>
 
-            {(StringAPI.isEmpty(targetUser.tagLine)
-              || (targetUser.birthday && targetUser.birthday > 0)
-              || !StringAPI.isEmpty(targetUser.companyName)) && aboutElem}
+              {(StringAPI.isEmpty(targetUser.tagLine)
+                || (targetUser.birthday && targetUser.birthday > 0)
+                || !StringAPI.isEmpty(targetUser.companyName)) && aboutElem}
 
-            {/* <div className={classes.rootInfo}>
+              {/* <div className={classes.rootInfo}>
               <Typography variant={'h6'} color='inherit' className={classes.title}>
                 {translate!('profile.contactInfo')}
               </Typography>
             </div> */}
 
-            {(!StringAPI.isEmpty(targetUser.twitterId)
-              || !StringAPI.isEmpty(targetUser.facebookId)
-              || !StringAPI.isEmpty(targetUser.instagramId)) && otherSocialElem}
+              {(!StringAPI.isEmpty(targetUser.twitterId)
+                || !StringAPI.isEmpty(targetUser.facebookId)
+                || !StringAPI.isEmpty(targetUser.instagramId)) && otherSocialElem}
+            </div>
           </div>
-        </div>
-      </Dialog>
+        </Dialog>}
       </div>
     )
   }
@@ -181,7 +178,7 @@ const makeMapStateToProps = () => {
   const mapStateToProps = (state: Map<string, any>, ownProps: IAboutDialogProps) => {
     const currentUser = selectCurrentUser(state).toJS() as User
     return {
-      
+
       currentUser,
     }
   }

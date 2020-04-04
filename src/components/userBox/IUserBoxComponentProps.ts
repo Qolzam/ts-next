@@ -29,7 +29,7 @@ export interface IUserBoxComponentProps {
   /**
    * Redirect page to [url]
    */
-  goTo?: (url: string) => any
+  goTo?: (url: string, as: string) => any
   
   /**
    * Styles

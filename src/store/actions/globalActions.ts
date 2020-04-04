@@ -2,7 +2,7 @@
 import { GlobalActionType } from '~/constants/globalActionType';
 import { ServerRequestType } from '~/constants/serverRequestType';
 import { Map } from 'immutable';
-import i18n from '~/locales/i18n';
+import {i18n} from '~/locales/i18n';
 import { DialogType } from '~/models/common/dialogType';
 import StringAPI from '~/api/StringAPI';
 import { Feed, SocialError } from '~/core/domain/common';
@@ -50,14 +50,14 @@ export let dbSendFeed = (newFeed: Feed) => {
 export const showNotificationRequest = () => {
   return (dispatch: Function, getState: Function) => {
     
-    return dispatch(showMessage(i18n.i18n.t('common.sentRequestMessage')))
+    return dispatch(showMessage(i18n.t('common.sentRequestMessage')))
   }
 }
 
 // - Show notification of success
 export const showNotificationSuccess = () => {
   return (dispatch: Function, getState: Function) => {
-    return dispatch(showMessage(i18n.i18n.t('common.successfulRequestMessage')))
+    return dispatch(showMessage(i18n.t('common.successfulRequestMessage')))
   }
 }
 

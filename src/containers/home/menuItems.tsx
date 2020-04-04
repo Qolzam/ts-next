@@ -1,23 +1,26 @@
 import SvgAccountCircle from '@material-ui/icons/AccountCircle';
-import i18n from '~/locales/i18n';
+import {i18n} from '~/locales/i18n';
 import SvgHome from '@material-ui/icons/Home';
 import SvgPeople from '@material-ui/icons/People';
 import React from 'react';
 
 export const menuItems = (userId: string, onFeedback: () => void) => [
     {
-      label: i18n.i18n.t('sidebar.home'),
+      label: i18n.t('sidebar.home'),
       path: '/',
+      as: '/',
       icon: <SvgHome />
     },
     {
-      label: i18n.i18n.t('sidebar.profile'),
-      path: `/u/${userId}`,
+      label: i18n.t('sidebar.profile'),
+      path: `/u/[userId]`,
+      as: `/u/${userId}`,
       icon: <SvgAccountCircle />
     },
     {
-      label: i18n.i18n.t('sidebar.people'),
-      path: `/people/find`,
+      label: i18n.t('sidebar.people'),
+      path: `/people/[tab]`,
+      as: '/people/find',
       icon: <SvgPeople />
     },
     // {

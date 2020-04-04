@@ -78,4 +78,4 @@ const makeMapStateToProps = () => {
 }
 
 export const connectMaster =
-  (component: Component<IMasterProps>) => withRouter(connect(makeMapStateToProps, mapDispatchToProps)(component as any) as any)
+  (component: Component<IMasterProps>) => connect(makeMapStateToProps, mapDispatchToProps)(component as any) as any

@@ -13,7 +13,8 @@ import ChatComponent from '~/components/chat/ChatComponent';
 import Router from 'next/router'
 import { Map } from 'immutable';
 import React, { Component } from 'react';
-const CookieConsent = require('react-cookie-consent');
+import CookieConsent from 'react-cookie-consent';
+import NoSsr from '@material-ui/core/NoSsr';
 import { withTranslation } from '~/locales/i18n';
 import IdleTimer from 'react-idle-timer'
 import { connect } from 'react-redux';
@@ -27,6 +28,7 @@ import { homeStyles } from './homeStyles';
 import { IHomeComponentProps } from './IHomeComponentProps';
 import { IHomeComponentState } from './IHomeComponentState';
 import { menuItems } from './menuItems';
+import MasterComponent from '../master';
 
 
 export class HomeComponent extends Component<IHomeComponentProps, IHomeComponentState> {
@@ -42,23 +44,44 @@ export class HomeComponent extends Component<IHomeComponentProps, IHomeComponent
     super(props)
     this.idleTimer = React.createRef()
 
+    this.state = {
+      sidebarOpen: false
+    }
 
     // Binding function to `this`
     this.toggleChat = this.toggleChat.bind(this)
     this.onActive = this.onActive.bind(this)
     this.onIdle = this.onIdle.bind(this)
+    this.handleDrawerToggle = this.handleDrawerToggle.bind(this)
   }
 
   /**
    * Handle drawer toggle
    */
   handleDrawerToggle = () => {
-    const {toggleSidebar} = this.props
-    toggleSidebar!()
-    
-  }
+    const { sidebarOpen } = this.state
+    localStorage.setItem('sidebar.open', String(!sidebarOpen))
+    this.setState((prevState) => {
+      return {
+        sidebarOpen: !prevState.sidebarOpen
+      }
+    })
 
+  }
   componentDidMount() {
+    const sidebarOpen = localStorage.getItem('sidebar.open')
+    console.log('sidebarOpen ', sidebarOpen)
+    if (sidebarOpen !== undefined && sidebarOpen !== null) {
+      if (sidebarOpen !== String(this.state.sidebarOpen)) {
+        this.setState({ sidebarOpen: sidebarOpen === 'true' })
+      }
+    }
+    else {
+      let width = window.innerWidth
+      if (width >= 600 && !this.state.sidebarOpen) {
+        this.handleDrawerToggle()
+      }
+    }
   }
 
   /**
@@ -85,15 +108,16 @@ export class HomeComponent extends Component<IHomeComponentProps, IHomeComponent
    * Render DOM component
    */
   render() {
-    const { sidebarOpen, showSendFeedback, t, classes, theme, isChatOpen } = this.props
+    const { showSendFeedback, t, classes, theme, isChatOpen } = this.props
+    const { sidebarOpen } = this.state
 
     const drawer = (
       <div>
         {
           menuItems(this.props.uid!, showSendFeedback!).map((item: any, index) => {
             if (item.path) {
-              return (<Link key={`home-menu-${index}`} href={item.path}>
-                <MenuItem style={{color: 'rgb(117, 117, 117)'}}>
+              return (<Link naked key={`home-menu-${index}`} href={item.path} as={item.as}>
+                <MenuItem style={{ color: 'rgb(117, 117, 117)' }}>
                   <ListItemIcon>
                     {item.icon!}
                   </ListItemIcon>
@@ -122,7 +146,7 @@ export class HomeComponent extends Component<IHomeComponentProps, IHomeComponent
     const mainElement = (
       <div className={classes.root}>
         <div className={classes.appFrame}>
-          <HomeHeader onToggleDrawer={this.handleDrawerToggle} drawerStatus={sidebarOpen!} />
+          <HomeHeader onToggleDrawer={this.handleDrawerToggle!} drawerStatus={sidebarOpen!} />
           <Hidden mdUp>
             <Drawer
               variant='temporary'
@@ -130,14 +154,14 @@ export class HomeComponent extends Component<IHomeComponentProps, IHomeComponent
               classes={{
                 paper: classes.drawerPaper,
               }}
-              onClose={this.handleDrawerToggle}
+              onClose={this.handleDrawerToggle!}
               ModalProps={{
                 keepMounted: true, // Better open performance on mobile.
               }}
             >
               <div>
                 <div className={classes.drawerHeader} >
-                  <TelarTextLogo viewBox='0 0 700 100' className={classes.logo}/>
+                  <TelarTextLogo viewBox='0 0 700 100' className={classes.logo} />
                 </div>
                 <MenuList style={{ color: 'rgb(117, 117, 117)', width: '210px', paddingTop: '0px' }}>
                   <Divider />
@@ -172,16 +196,18 @@ export class HomeComponent extends Component<IHomeComponentProps, IHomeComponent
         </div>
 
         {isChatOpen && <ChatComponent open={isChatOpen!} onToggle={this.toggleChat} />}
-        {/* <CookieConsent
-          location='bottom'
-          buttonText={t!('home.cookieConsentButton')}
-          cookieName='social-consent'
-          style={{ background: '#2B373B' }}
-          buttonStyle={{ color: '#4e503b', fontSize: '13px' }}
-          expires={150}
-        >
-          {t!('home.cookieConsentText')}{' '}
-        </CookieConsent> */}
+        <NoSsr>
+          <CookieConsent
+            location='bottom'
+            buttonText={t!('home.cookieConsentButton')}
+            cookieName='social-consent'
+            style={{ background: '#2B373B' }}
+            buttonStyle={{ color: '#4e503b', fontSize: '13px' }}
+            expires={150}
+          >
+            {t!('home.cookieConsentText')}{' '}
+          </CookieConsent>
+        </NoSsr>
 
       </div>
     )
@@ -191,8 +217,9 @@ export class HomeComponent extends Component<IHomeComponentProps, IHomeComponent
         onActive={this.onActive}
         onIdle={this.onIdle}
         timeout={1000 * 6}>
-
-        {mainElement}
+        <MasterComponent>
+          {mainElement}
+        </MasterComponent>
 
       </IdleTimer>
     )
@@ -205,14 +232,13 @@ const mapDispatchToProps = (dispatch: any, ownProps: IHomeComponentProps) => {
   return {
     openChat: () => dispatch(chatActions.openChat()),
     closeChat: () => dispatch(chatActions.closeChat()),
-    loadData: () => dispatch(globalActions.loadInitialData()),
     defaultDataDisable: () => {
       dispatch(globalActions.defaultDataDisable())
     },
     defaultDataEnable: () => {
       dispatch(globalActions.defaultDataEnable())
     },
-    goTo: (url: string) => Router.push(url),
+    goTo: (url: string, as: string) => Router.push(url, as),
     showSendFeedback: () => dispatch(globalActions.showSendFeedback()),
     hideSendFeedback: () => dispatch(globalActions.hideSendFeedback()),
     toggleSidebar: () => dispatch(globalActions.toggleSidebar())
@@ -239,7 +265,12 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IHomeComponentProps)
   }
 }
 
+
 // - Connect component to redux store
 const translateWrapper = withTranslation('common')(HomeComponent as any)
 
-export default withRouter<any, any>(connect(mapStateToProps, mapDispatchToProps)(withStyles(homeStyles as any, { withTheme: true })(translateWrapper as any) as any))
+const ConnectWrapper = connect(mapStateToProps, mapDispatchToProps)(withStyles(homeStyles as any, { withTheme: true })(translateWrapper as any) as any)
+export const getLayout = (page: Component) => {
+  return <ConnectWrapper>{page}</ConnectWrapper>
+}
+export default ConnectWrapper

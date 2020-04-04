@@ -15,7 +15,7 @@ import * as postActions from '~/store/actions/postActions';
 import * as userActions from '~/store/actions/userActions';
 import { postSelector } from '~/store/reducers/posts';
 import { userSelector } from '~/store/reducers/users/userSelector';
-import HomeComponent from '~/containers/home/HomeComponent';
+import HomeComponent, { getLayout } from '~/containers/home/HomeComponent';
 
 import PostStreamComponent from '~/containers/postStream/PostStreamComponent';
 import { IProfileComponentProps } from '~/containers/profile/IProfileComponentProps';
@@ -167,7 +167,5 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IProfileComponentPro
 // - Connect component to redux store
 const translateWrapper = withTranslation('common')(ProfileComponent as any)
 const withRouterComponent = withRouter(connect(mapStateToProps, mapDispatchToProps)(withStyles(profileStyles as any)(translateWrapper as any) as any) as any);
-(withRouterComponent as any).getLayout = (page: Component) => {
-  return <HomeComponent>{page}</HomeComponent>
-}
+(withRouterComponent as any).getLayout = getLayout
 export default withRouterComponent

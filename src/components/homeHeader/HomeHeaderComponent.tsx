@@ -192,21 +192,6 @@ export class HomeHeaderComponent extends Component<IHomeHeaderComponentProps, IH
   }
 
   /**
-   * Handle resize event for window to manipulate home header status
-   */
-  handleResize = (event: any) => {
-    const { drawerStatus } = this.props
-    // Set initial state
-    let width = window.innerWidth
-
-    if (width >= 600 && !drawerStatus) {
-      this.onToggleSidebar()
-    } else if (width < 600) {
-
-    }
-  }
-
-  /**
    * Handle search
    */
   handleSearch() {
@@ -251,7 +236,6 @@ export class HomeHeaderComponent extends Component<IHomeHeaderComponentProps, IH
     Router.events.on('routeChangeStart', this.handleRouteChange)
     
 
-      this.handleResize(null)
     
   }
 

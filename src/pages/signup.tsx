@@ -12,17 +12,17 @@ import VerifySignupComponent from '~/components/verifySignup/VerifySignupCompone
 import config from '~/config';
 import { authorizeSelector } from '~/store/reducers/authorize/authorizeSelector';
 
-import SignupComponent from '../signup';
-import { ISignupWrapperProps } from './ISignupWrapperProps';
-import { ISignupWrapperState } from './ISignupWrapperState';
-import { signupWrapperStyles } from './signupWrapperStyles';
+import SignupComponent from '~/containers/signup';
+import { ISignupWrapperProps } from '~/containers/signupWrapper/ISignupWrapperProps';
+import { ISignupWrapperState } from '~/containers/signupWrapper/ISignupWrapperState';
+import { signupWrapperStyles } from '~/containers/signupWrapper/signupWrapperStyles';
 
-// - Material-UI
-// - Components
-// - Import actions
-// - Create Login component class
 export class SignupWrapperComponent extends Component<ISignupWrapperProps, ISignupWrapperState> {
-
+  static async getInitialProps() {
+    return {
+      namespacesRequired: ['common'],
+    }
+  }
   /**
    * Component constructor
    */

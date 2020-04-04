@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Router from 'next/router'
 import { Map } from 'immutable';
 import React, { Component } from 'react';
-import { withTranslation } from '~/locales/i18n';
+import  {i18n, withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
 import { withRouter } from 'next/router';
 import FindPeople from '~/components/findPeople/FindPeopleComponent';
@@ -14,7 +14,7 @@ import Followers from '~/components/followers';
 import Following from '~/components/following';
 import YourCircles from '~/components/yourCircles';
 import * as globalActions from '~/store/actions/globalActions';
-import HomeComponent from '~/containers/home/HomeComponent';
+import HomeComponent, { getLayout } from '~/containers/home/HomeComponent';
 
 import { IPeopleComponentProps } from '~/containers/people/IPeopleComponentProps';
 import { IPeopleComponentState } from '~/containers/people/IPeopleComponentState';
@@ -60,7 +60,7 @@ export class PeopleComponent extends Component<IPeopleComponentProps,IPeopleComp
    * Hadle on tab change
    */
   handleChangeTab = (event: any, value: any) => {
-    const { goTo, setHeaderTitle, t} = this.props
+    const { goTo, setHeaderTitle,t} = this.props
     this.setState({ tabIndex: value })
     switch (value) {
       case 0:
@@ -127,10 +127,9 @@ export class PeopleComponent extends Component<IPeopleComponentProps,IPeopleComp
     const {circlesLoaded, t} = this.props
     const {tabIndex} = this.state
     return (
-      <HomeComponent >
       <div style={styles.people}>
       <AppBar position='static' color='default'>
-      <Tabs indicatorColor={'secondary'}
+      <Tabs TabIndicatorProps={{color: 'transparent'}}
       onChange={this.handleChangeTab}
       value={tabIndex} centered
       textColor='primary'
@@ -147,7 +146,6 @@ export class PeopleComponent extends Component<IPeopleComponentProps,IPeopleComp
       </TabContainer>}
       {tabIndex === 2 && <TabContainer>{circlesLoaded ? <Followers /> : ''}</TabContainer>}
       </div>
-      </HomeComponent>
     )
   }
 
@@ -172,7 +170,7 @@ export class PeopleComponent extends Component<IPeopleComponentProps,IPeopleComp
 const mapDispatchToProps = (dispatch: any, ownProps: IPeopleComponentProps) => {
 
   return {
-    goTo: (url: string) => Router.push(url),
+    goTo: (url: string) => Router.push('/people/[tab]',url),
     setHeaderTitle : (title: string) => dispatch(globalActions.setHeaderTitle(title))
 
   }
@@ -194,7 +192,5 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IPeopleComponentProp
 // - Connect component to redux store
 const translateWrapper = withTranslation('common')(PeopleComponent as any)
 const withRouterComponent = withRouter(connect(mapStateToProps, mapDispatchToProps)(translateWrapper as any) as any);
-(withRouterComponent as any).getLayout = (page: Component) => {
-  return <HomeComponent>{page}</HomeComponent>
-}
+(withRouterComponent as any).getLayout = getLayout
 export default withRouterComponent

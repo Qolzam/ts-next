@@ -2,7 +2,7 @@
 import Backdrop, { BackdropProps } from '@material-ui/core/Backdrop';
 import { withStyles } from '@material-ui/core/styles';
 import React, { Component } from 'react';
-const Lightbox = require('react-image-lightbox');
+import Lightbox from 'react-image-lightbox';
 
 import { IPictureDialogProps } from './IPictureDialogProps';
 import { IPictureDialogState } from './IPictureDialogState';

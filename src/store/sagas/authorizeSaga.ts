@@ -140,12 +140,6 @@ function* onAuthStateChanged(action: any) {
         yield call(onLoginUser, claim)
         const userProfile = Map({avatar: claim.avatar, fullName: claim.displayName, uid: claim.uid, email: claim.email})
         yield put(userActions.addUserInfo(claim.uid, userProfile))
-
-        // Only on client side
-        if (!req) {
-            yield put(globalActions.loadInitialData())
-            
-        }
     } else {
         yield call(onLogoutUser, req)
     }

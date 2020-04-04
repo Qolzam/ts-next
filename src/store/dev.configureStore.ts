@@ -23,6 +23,7 @@ const sagaMiddleware = createSagaMiddleware()
 let token = null
 if (typeof window !== 'undefined') {
   token = window.localStorage.getItem('red-gold.scure.token')
+
 }
 
 let uid = ''
@@ -40,7 +41,7 @@ if (token) {
 //   }
 // }
 
-let store: any = createStore(rootReducer(), fromJS(initialState), compose(
+let store: any = createStore(rootReducer(), initialState, compose(
   applyMiddleware(thunk, sagaMiddleware), cacheEnhancer()
 ))
 

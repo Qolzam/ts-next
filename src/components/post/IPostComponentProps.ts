@@ -61,7 +61,7 @@ export interface IPostComponentProps {
   /**
    * Redirect to {url} route
    */
-  goTo?: (url: string) => any
+  goTo?: (url: string, as: string) => any
 
   /**
    * Set tile of top bar

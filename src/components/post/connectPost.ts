@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch: any, ownProps: IPostComponentProps) => {
       toggleSharingComments: (status: boolean) => {
         dispatch(postActions.dbUpdatePost(post.set('disableSharing', status), (x: any) => x))
       },
-      goTo: (url: string) => router.push(url),
+      goTo: (url: string, as: string) => router.push(url, as),
       setHomeTitle: (title: string) => dispatch(globalActions.setHeaderTitle(title || '')),
       getPostComments: (ownerUserId: string, postId: string, page: number, limit: number) => dispatch(commentActions.dbFetchComments(ownerUserId, postId, page,limit))
     }

@@ -389,11 +389,11 @@ getAlbum() {
     return (
       <Card key={id + 'post-card'} className='animate-top'>
         <CardHeader
-          title={<Link href={`/u/${ownerUserId}`}>{ownerDisplayName}</Link>}
+          title={<Link naked href={'/u/[userId]'} as={`/u/${ownerUserId}`} > {ownerDisplayName}</Link>}
           subheader={creationDate ? (version === config.dataFormat.postVersion
              ? moment(creationDate).local().fromNow()
              : moment(creationDate!).local().fromNow()) + ` | ${this.getPermissionLabel()}` : <LinearProgress color='primary' />}
-          avatar={<Link href={`/u/${ownerUserId}`}><UserAvatar fullName={ownerDisplayName!} fileName={ownerAvatar!} size={36} /></Link>}
+          avatar={<Link naked href={'/u/[userId]'} as={`/u/${ownerUserId}`}><UserAvatar fullName={ownerDisplayName!} fileName={ownerAvatar!} size={36} /></Link>}
           action={isPostOwner ? this.rightIconMenu() : ''}
         >
         </CardHeader>
@@ -438,7 +438,7 @@ getAlbum() {
                 onClick={(evt: any) => {
                   evt.preventDefault()
                   evt.stopPropagation()
-                  goTo!(`/tag/${match}`)
+                  goTo!('/tag/[tag]' ,`/tag/${match}`)
                   setHomeTitle!(`#${match}`)
                 }}
                 >

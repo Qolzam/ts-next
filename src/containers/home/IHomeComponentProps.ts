@@ -55,6 +55,11 @@ export interface IHomeComponentProps {
      * Load user data into store
      */
   loadData?: Function
+  
+    /**
+     * Handle toggle sidebar
+     */
+  handleDrawerToggle?: any
 
     /**
      * Set flag {false} which user data has not loaded
@@ -66,7 +71,7 @@ export interface IHomeComponentProps {
    *
    * @memberof IHomeComponentProps
    */
-  goTo?: (url: string) => any
+  goTo?: (url: string, as: string) => any
 
   /**
    * If there is more post {true} or not {false}
@@ -117,5 +122,10 @@ export interface IHomeComponentProps {
    * Theme
    */
   theme?: any
+  
+  /**
+   * Children
+   */
+  children?: any
 
 }

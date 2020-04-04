@@ -16,6 +16,7 @@ import { ISearchUserProps } from '~/containers/searchUser/ISearchUserProps';
 import { ISearchUserState } from '~/containers/searchUser/ISearchUserState';
 import { searchUserStyles } from '~/containers/searchUser/searchUserStyles';
 import HomeComponent from '~/containers/home';
+import { getLayout } from '~/containers/home/HomeComponent';
 
 /**
  * Create component class
@@ -128,7 +129,5 @@ export class SearchUserComponent extends Component<ISearchUserProps, ISearchUser
 // - Connect component to redux store
 const translateWrapper = withTranslation('common')(SearchUserComponent as any)
 const withRouterComponent = withRouter<any, any>(connectSearchUser(withStyles(searchUserStyles as any)(translateWrapper as any) as any));
-(withRouterComponent as any).getLayout = (page: Component) => {
-  return <HomeComponent>{page}</HomeComponent>
-}
+(withRouterComponent as any).getLayout = getLayout
 export default withRouterComponent

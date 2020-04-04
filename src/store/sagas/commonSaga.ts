@@ -35,9 +35,10 @@ function* clearLoadedData() {
 }
 
 /**
- * Clear loaded data
+ * Loaded data
  */
 function* loadInitialData(action: any) {
+  console.log('loadInitialData')
   const {isServer} = action.payload
   yield put(imageGalleryActions.dbGetImageGallery())
   yield put(userActions.dbGetUserInfo())

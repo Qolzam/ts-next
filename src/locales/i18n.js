@@ -1,4 +1,4 @@
-import NextI18Next from 'next-i18next'
+const NextI18Next = require('next-i18next').default
 
 const NextI18NextInstance = new NextI18Next({
   defaultLanguage: 'en',
@@ -14,10 +14,7 @@ const NextI18NextInstance = new NextI18Next({
   },
 })
 
-export default NextI18NextInstance
-
-/* Optionally, export class methods as named exports */
-export const {
-  appWithTranslation,
-  withTranslation,
-} = NextI18NextInstance
+exports["default"] = NextI18NextInstance
+exports.appWithTranslation = NextI18NextInstance.appWithTranslation
+exports.withTranslation = NextI18NextInstance.withTranslation
+exports.i18n = NextI18NextInstance.i18n

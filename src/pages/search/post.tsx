@@ -14,6 +14,7 @@ import { ISearchPostProps } from '~/containers/searchPost/ISearchPostProps';
 import { ISearchPostState } from '~/containers/searchPost/ISearchPostState';
 import { searchPostStyles } from '~/containers/searchPost/searchPostStyles';
 import HomeComponent from '~/containers/home';
+import { getLayout } from '~/containers/home/HomeComponent';
 
 // - Material-UI
 // - Import actions
@@ -121,7 +122,5 @@ export class SearchPostComponent extends Component<ISearchPostProps, ISearchPost
 // - Connect component to redux store
 const translateWrapper = withTranslation('common')(SearchPostComponent as any)
 const withRouterComponent = withRouter<any, any>(connectSearchPost(withStyles(searchPostStyles as any)(translateWrapper as any) as any));
-(withRouterComponent as any).getLayout = (page: Component) => {
-  return <HomeComponent>{page}</HomeComponent>
-}
+(withRouterComponent as any).getLayout = getLayout
 export default withRouterComponent

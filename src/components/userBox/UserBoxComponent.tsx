@@ -135,14 +135,14 @@ export class UserBoxComponent extends Component<IUserBoxComponentProps, IUserBox
           paddingTop: 20
 
         }}>
-          <div onClick={() => this.props.goTo!(`/u/${this.props.userId}`)} style={{ cursor: 'pointer' }}>
+          <div onClick={() => this.props.goTo!('/u/[userId]' , `/u/${this.props.userId}`)} style={{ cursor: 'pointer' }}>
             <UserAvatar
               fullName={this.props.fullName!}
               fileName={this.props.avatar!}
               size={90}
             />
           </div>
-          <div onClick={() => this.props.goTo!(`/u/${this.props.userId}`)} className='people__name' style={{ cursor: 'pointer' }}>
+          <div onClick={() => this.props.goTo!('/u/[userId]',`/u/${this.props.userId}`)} className='people__name' style={{ cursor: 'pointer' }}>
             <div>
               {this.props.fullName}
             </div>
@@ -161,7 +161,7 @@ export class UserBoxComponent extends Component<IUserBoxComponentProps, IUserBox
  */
 const mapDispatchToProps = (dispatch: Function, ownProps: IUserBoxComponentProps) => {
   return {
-    goTo: (url: string) => Router.push(url)
+    goTo: (url: string, as: string) => Router.push(url, as)
 
   }
 }

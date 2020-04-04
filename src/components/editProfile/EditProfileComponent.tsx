@@ -24,8 +24,8 @@ import AppInput from '~/layouts/appInput';
 import AppDialogTitle from '~/layouts/dialogTitle/DialogTitleComponent';
 import moment from 'moment/moment';
 import React, { Component } from 'react';
-const DayPickerInput = require('react-day-picker/DayPickerInput');
-const MomentLocaleUtils = require('react-day-picker/moment');
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import MomentLocaleUtils from 'react-day-picker/moment';
 import EventListener from 'react-event-listener';
 import { withTranslation } from '~/locales/i18n';
 import { connect } from 'react-redux';
@@ -439,7 +439,7 @@ export class EditProfileComponent extends Component<IEditProfileComponentProps, 
 
       <div>
         {/* Edit profile dialog */}
-        <Dialog
+        {this.props.open && <Dialog
           PaperProps={{ className: classes.fullPageXs }}
           key='Edit-Profile'
           open={this.props.open!}
@@ -555,7 +555,7 @@ export class EditProfileComponent extends Component<IEditProfileComponentProps, 
               </div>
               <div className={classes.box}>
                 <DayPickerInput
-                  classNames={{ container: classes.dayPicker, overlay: '' }}
+                  classNames={{ container: classes.dayPicker, overlay: '', overlayWrapper: '' }}
                   value={defaultBirthday}
                   onDayChange={this.handleBirthdayDateChange}
                   formatDate={formatDate}
@@ -579,7 +579,7 @@ export class EditProfileComponent extends Component<IEditProfileComponentProps, 
             <Button variant='contained' color='primary' onClick={this.handleUpdate} style={this.styles.updateButton}> {t!('profile.updateButton')} </Button>
           </DialogActions>
         </Dialog>
-
+}
         {/* Image gallery for banner*/}
         {this.state.openBanner
           && (<Dialog

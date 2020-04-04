@@ -2,6 +2,8 @@
 const cookieParser = require('cookie-parser');
 const express = require('express')
 const next = require('next')
+const nextI18NextMiddleware = require('next-i18next/middleware').default
+const nextI18next = require('./src/locales/i18n').default
 
 const devProxy = {
   '/api': {
@@ -22,30 +24,37 @@ const app = next({
 const handle = app.getRequestHandler()
 
 let server
-app
-  .prepare()
-  .then(() => {
-    server = express()
-   server.use(cookieParser());
-    // Set up the proxy.
-    if (dev && devProxy) {
-      const proxyMiddleware = require('http-proxy-middleware')
-      Object.keys(devProxy).forEach(function(context) {
-        server.use(proxyMiddleware(context, devProxy[context]))
-      })
-    }
 
-    // Default catch-all handler to allow Next.js to handle all other routes
-    server.all('*', (req, res) => handle(req, res))
+const serverRunner = (async () => {
+  await app.prepare()
+  const server = express()
+  server.use(cookieParser());
 
-    server.listen(port, err => {
-      if (err) {
-        throw err
-      }
-      console.log(`> Ready on port ${port} [${env}]`)
+  // Set up the proxy.
+  if (dev && devProxy) {
+    const proxyMiddleware = require('http-proxy-middleware')
+    Object.keys(devProxy).forEach(function(context) {
+      server.use(proxyMiddleware(context, devProxy[context]))
     })
+  }
+
+  // Install localization
+  await nextI18next.initPromise
+  server.use(nextI18NextMiddleware(nextI18next))
+
+  // Default catch-all handler to allow Next.js to handle all other routes
+  server.all('*', (req, res) => handle(req, res))
+
+  server.listen(port, err => {
+    if (err) {
+      throw err
+    }
+    console.log(`> Ready on port ${port} [${env}]`)
   })
-  .catch(err => {
-    console.log('An error occurred, unable to start the server')
-    console.log(err)
-  })
+
+})
+
+serverRunner().then().catch((error) => {
+  console.log('An error occurred, unable to start the server')
+  console.log(error)
+})

@@ -36,7 +36,7 @@
     "emoji-mart": "^2.11.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "faker": "^4.1.0",
     "formik": "1.5.4",
     "http-proxy-middleware": "^0.20.0",
